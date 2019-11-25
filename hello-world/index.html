@@ -117,7 +117,7 @@
     
         
             
-            <li><div data-rel="yyy-类别">yyy-类别<small>(1)</small></div>
+            <li><div data-rel="xxx-类别">xxx-类别<small>(1)</small></div>
                 
             </li>
             
@@ -125,7 +125,7 @@
     
         
             
-            <li><div data-rel="xxx-类别">xxx-类别<small>(1)</small></div>
+            <li><div data-rel="yyy-类别">yyy-类别<small>(1)</small></div>
                 
             </li>
             
@@ -192,11 +192,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a class="color2">yyy-标签</a>
+        <a class="color2">xxx-标签</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a class="color2">xxx-标签</a>
+        <a class="color2">yyy-标签</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -225,14 +225,6 @@
             <span class="post-date" title="2019-11-25 09:21:44">2019/11/25</span>
         </a>
         
-        <a  class="yyy-类别 "
-           href="/renhaizhou/"
-           data-tag="yyy-标签"
-           data-author="" >
-            <span class="post-title" title="MarkDown Hello World">MarkDown Hello World</span>
-            <span class="post-date" title="2019-11-24 13:26:28">2019/11/24</span>
-        </a>
-        
         <a  class="xxx-类别 "
            href="/markdown/"
            data-tag="xxx-标签"
@@ -241,7 +233,15 @@
             <span class="post-date" title="2019-11-24 13:26:28">2019/11/24</span>
         </a>
         
-        <a  class="mq "
+        <a  class="yyy-类别 "
+           href="/renhaizhou/"
+           data-tag="yyy-标签"
+           data-author="" >
+            <span class="post-title" title="MarkDown Hello World">MarkDown Hello World</span>
+            <span class="post-date" title="2019-11-24 13:26:28">2019/11/24</span>
+        </a>
+        
+        <a id="top" class="mq "
            href="/rocketmq01/"
            data-tag="消息中间件"
            data-author="" >
@@ -444,7 +444,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#aaa-标签','#bbb-标签','#yyy-标签','#xxx-标签','#消息中间件',],
+            'data': ['#aaa-标签','#bbb-标签','#xxx-标签','#yyy-标签','#消息中间件',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
