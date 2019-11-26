@@ -97,7 +97,15 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(9)</small></div></li>
+    <li><div class="all active">全部文章<small>(11)</small></div></li>
+    
+        
+            
+            <li><div data-rel="jvm">jvm<small>(2)</small></div>
+                
+            </li>
+            
+        
     
         
             
@@ -125,7 +133,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="9">
+<input type="hidden" id="yelog_site_posts_number" value="11">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -160,6 +168,10 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
+        <a class="color4">虚拟机</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a class="color3">文档</a>
     </li>
     
@@ -172,6 +184,22 @@
 
     
     <nav id="title-list-nav">
+        
+        <a id="top" class="jvm "
+           href="/jvm002/"
+           data-tag="虚拟机"
+           data-author="" >
+            <span class="post-title" title="jvm002">jvm002</span>
+            <span class="post-date" title="2019-11-26 18:28:53">2019/11/26</span>
+        </a>
+        
+        <a id="top" class="jvm "
+           href="/jvm001/"
+           data-tag="虚拟机"
+           data-author="" >
+            <span class="post-title" title="001、开篇词：JVM 优化实战，广大 Java 工程师心中永远的痛！">001、开篇词：JVM 优化实战，广大 Java 工程师心中永远的痛！</span>
+            <span class="post-date" title="2019-11-26 18:24:40">2019/11/26</span>
+        </a>
         
         <a id="top" class="mq "
            href="/rocketmq01/"
@@ -375,7 +403,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#文档','#消息中间件',],
+            'data': ['#虚拟机','#文档','#消息中间件',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
