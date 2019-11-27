@@ -405,7 +405,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-27 12:39:14'>2019-11-24 13:26</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-27 13:07:03'>2019-11-24 13:26</time>
         
     </div>
     <div class="article-meta">
@@ -497,12 +497,68 @@ int main() {
     return 0;
 }</code></pre>
 <p><strong>3-hexo支持mermaid图表</strong></p>
+<p><strong>横向流程图源码格式：</strong></p>
 <pre class="mermaid">graph LR
 A[方形] -->B(圆角)
     B --> C{条件a}
     C -->|a=1| D[结果1]
     C -->|a=2| E[结果2]
     F[横向流程图]</pre>
+<p><strong>竖向流程图源码格式：</strong></p>
+<pre class="mermaid">graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;</pre>
+<p><strong>甘特图样例：</strong></p>
+<pre class="mermaid">gantt
+dateFormat  YYYY-MM-DD
+title Adding GANTT diagram to mermaid
+excludes weekdays 2014-01-10
+
+section A section
+Completed task            :done,    des1, 2014-01-06,2014-01-08
+Active task               :active,  des2, 2014-01-09, 3d
+Future task               :         des3, after des2, 5d
+Future task2               :         des4, after des3, 5d</pre>
+<p><strong>类图</strong></p>
+<pre class="mermaid">classDiagram
+Class01 <|-- AveryLongClass : Cool
+Class03 *-- Class04
+Class05 o-- Class06
+Class07 .. Class08
+Class09 --> C2 : Where am i?
+Class09 --* C3
+Class09 --|> Class07
+Class07 : equals()
+Class07 : Object[] elementData
+Class01 : size()
+Class01 : int chimp
+Class01 : int gorilla
+Class08 <--> C2: Cool label</pre>
+<p>git图</p>
+<pre class="mermaid">gitGraph:
+options
+{
+    "nodeSpacing": 150,
+    "nodeRadius": 10
+}
+end
+commit
+branch newbranch
+checkout newbranch
+commit
+commit
+checkout master
+commit
+commit
+merge newbranch</pre>
+
+
+
+
+
+
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
@@ -520,7 +576,7 @@ A[方形] -->B(圆角)
     
     <p><span class="copy-title">本文作者:</span><a  title="shadow">shadow</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-24, 13:26:28</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-27, 12:39:14</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-27, 13:07:03</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/markdown/" title="MarkDown Hello World">https://renhaizhou.github.io.com/markdown/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -644,7 +700,7 @@ A[方形] -->B(圆角)
             window.mermaid = null
         }
         $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
-            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;default&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;forest&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
             if (window.mermaid) {
                 mermaid.initialize(mermaidOptions)
                 mermaid.contentLoaded()
