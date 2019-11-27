@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>19 新技术引入：给团队分享 RocketMQ 的架构原理和使用方式 | 学海无涯</title>
+  <meta name="keywords" content=" 消息中间件 ">
+  <meta name="description" content="19 新技术引入：给团队分享 RocketMQ 的架构原理和使用方式 | 学海无涯">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="流水不腐户枢不蠹">
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="https:&#x2F;&#x2F;abce.xyz&#x2F;categories&#x2F;index.html">
+<meta property="og:site_name" content="学海无涯">
+<meta property="og:description" content="流水不腐户枢不蠹">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-25T01:21:44.386Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.png">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.png" />
+</a>
+<div class="author">
+    <span>shadow</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(23)</small></div></li>
+    
+        
+            
+            <li><div data-rel="markdown">markdown<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="jvm">jvm<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="mq">mq<small>(20)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="23">
+<input type="hidden" id="yelog_site_word_count" value="431">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://ywww.baidu.com/">百度</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="以 in: 开头进行全文搜索" autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color3">文档</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">虚拟机</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">消息中间件</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a id="top" class="jvm "
+           href="/jvm/jvm002/"
+           data-tag="虚拟机"
+           data-author="" >
+            <span class="post-title" title="002、一探究竟：我们写的Java代码到底是如何运行起来的？">002、一探究竟：我们写的Java代码到底是如何运行起来的？</span>
+            <span class="post-date" title="2019-11-26 18:28:53">2019/11/26</span>
+        </a>
+        
+        <a id="top" class="jvm "
+           href="/jvm/jvm001/"
+           data-tag="虚拟机"
+           data-author="" >
+            <span class="post-title" title="001、开篇词：JVM 优化实战，广大 Java 工程师心中永远的痛！">001、开篇词：JVM 优化实战，广大 Java 工程师心中永远的痛！</span>
+            <span class="post-date" title="2019-11-26 18:24:40">2019/11/26</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq20/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="20 授人以渔：结合你对其他 MQ 的了解，思考 RocketMQ 的设计有何特点？">20 授人以渔：结合你对其他 MQ 的了解，思考 RocketMQ 的设计有何特点？</span>
+            <span class="post-date" title="2019-11-27 10:50:31">2019/11/27</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq19/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="19 新技术引入：给团队分享 RocketMQ 的架构原理和使用方式">19 新技术引入：给团队分享 RocketMQ 的架构原理和使用方式</span>
+            <span class="post-date" title="2019-11-27 10:45:06">2019/11/27</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq18/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="18 授人以渔：你们公司主要使用的 MQ 是哪种？为什么要选用它？">18 授人以渔：你们公司主要使用的 MQ 是哪种？为什么要选用它？</span>
+            <span class="post-date" title="2019-11-27 10:43:51">2019/11/27</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq17/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="17 领导的要求：你来对 Kafka、RabbitMQ 以及 RocketMQ 进行技术选型调研">17 领导的要求：你来对 Kafka、RabbitMQ 以及 RocketMQ 进行技术选型调研</span>
+            <span class="post-date" title="2019-11-27 10:42:32">2019/11/27</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq16/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="16 授人以渔：结合自己的系统问题思考一下，MQ有什么用处？">16 授人以渔：结合自己的系统问题思考一下，MQ有什么用处？</span>
+            <span class="post-date" title="2019-11-27 10:40:29">2019/11/27</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq15/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="15 解决订单系统诸多问题的核心技术：消息中间件到底是什么？">15 解决订单系统诸多问题的核心技术：消息中间件到底是什么？</span>
+            <span class="post-date" title="2019-11-27 10:30:25">2019/11/27</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq14/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="14 阶段性复习：放大100倍压力，也要找出你系统的技术挑战！">14 阶段性复习：放大100倍压力，也要找出你系统的技术挑战！</span>
+            <span class="post-date" title="2019-11-27 10:27:27">2019/11/27</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq13/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="13 阶段性复习：一张思维导图给你梳理高并发订单系统面临的技术痛点！">13 阶段性复习：一张思维导图给你梳理高并发订单系统面临的技术痛点！</span>
+            <span class="post-date" title="2019-11-27 10:25:14">2019/11/27</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq12/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="12 授人以渔：你们系统会不会遇到流量洪峰的场景，导致瞬时压力过大？">12 授人以渔：你们系统会不会遇到流量洪峰的场景，导致瞬时压力过大？</span>
+            <span class="post-date" title="2019-11-27 10:23:28">2019/11/27</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq11/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="11 系统面临的现实问题：秒杀活动时数据库压力太大，该怎么缓解？">11 系统面临的现实问题：秒杀活动时数据库压力太大，该怎么缓解？</span>
+            <span class="post-date" title="2019-11-27 10:17:23">2019/11/27</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq10/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="10 授人以渔：你们有没有遇到过自己系统的数据，其他团队需要获取的？">10 授人以渔：你们有没有遇到过自己系统的数据，其他团队需要获取的？</span>
+            <span class="post-date" title="2019-11-27 09:50:22">2019/11/27</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq09/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="09 系统面临的现实问题：大数据团队需要订单数据，该怎么办？">09 系统面临的现实问题：大数据团队需要订单数据，该怎么办？</span>
+            <span class="post-date" title="2019-11-27 09:41:42">2019/11/27</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq08/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="08 授人以渔：你们有没有跟第三方系统对接过，有遇到什么问题吗？">08 授人以渔：你们有没有跟第三方系统对接过，有遇到什么问题吗？</span>
+            <span class="post-date" title="2019-11-26 18:12:36">2019/11/26</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq07/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="07 系统面临的现实问题：第三方客户系统的对接耦合性太高，经常出问题！">07 系统面临的现实问题：第三方客户系统的对接耦合性太高，经常出问题！</span>
+            <span class="post-date" title="2019-11-26 18:06:50">2019/11/26</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq06/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="06 授人以渔：你们系统出现过核心流程链路失败的情况吗？">06 授人以渔：你们系统出现过核心流程链路失败的情况吗？</span>
+            <span class="post-date" title="2019-11-26 16:43:07">2019/11/26</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq05/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="05 系统面临的现实问题：订单退款时经常流程失败，无法完成退款！">05 系统面临的现实问题：订单退款时经常流程失败，无法完成退款！</span>
+            <span class="post-date" title="2019-11-26 16:26:21">2019/11/26</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq04/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="04 授人以渔：你们系统的核心流程性能如何？有没有哪个环节拖慢了速度？">04 授人以渔：你们系统的核心流程性能如何？有没有哪个环节拖慢了速度？</span>
+            <span class="post-date" title="2019-11-26 09:47:18">2019/11/26</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq03/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="03 系统面临的现实问题：下订单的同时还要发券、发红包、Push推送，性能太差！">03 系统面临的现实问题：下订单的同时还要发券、发红包、Push推送，性能太差！</span>
+            <span class="post-date" title="2019-11-26 09:29:50">2019/11/26</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq02/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="02 授人以渔：能概括一下你们系统的架构设计、业务流程以及负载情况吗？">02 授人以渔：能概括一下你们系统的架构设计、业务流程以及负载情况吗？</span>
+            <span class="post-date" title="2019-11-26 09:15:09">2019/11/26</span>
+        </a>
+        
+        <a  class="mq "
+           href="/rocketmq/rocketmq01/"
+           data-tag="消息中间件"
+           data-author="" >
+            <span class="post-title" title="01 一个真实电商订单系统的整体架构、业务流程及负载情况">01 一个真实电商订单系统的整体架构、业务流程及负载情况</span>
+            <span class="post-date" title="2019-11-25 14:20:37">2019/11/25</span>
+        </a>
+        
+        <a  class="markdown "
+           href="/markdown/"
+           data-tag="文档"
+           data-author="" >
+            <span class="post-title" title="MarkDown Hello World">MarkDown Hello World</span>
+            <span class="post-date" title="2019-11-24 13:26:28">2019/11/24</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-rocketmq/rocketmq19" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">19 新技术引入：给团队分享 RocketMQ 的架构原理和使用方式</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="mq">mq</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color1">消息中间件</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-27 18:19:10'>2019-11-27 10:45</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:6</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="Hey, password is required here." />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="72b7c3904b15e818998888b52594631e953b4602d1ead061b74ec461f5db9c74">ad927d9020969ec2ea997a8ff334a938cfdb1afd8a50578eb3d0d8cbab0d21fe4edb8ed3f639f744cde8646ab5a169a8c5359ffcc6cbd7a6ecae8ecf74572c07ea1879101b7a573462efe412d69b88fca51f68703e85a0e261552616c7c4e24ba86a75add382dea6b6f6e7b78b9eafe3d1a4126147430ad6f477ad824b2f6b8c75d77195716706697ca11143e81de8bf06cb47e3a72ae644035c41e48d4b764daf89877f4b2129314c23259c41930e3beb6afa3bd17a94331dc6886298ed0e1be365bac4aa4f4616c079f1a884477864f84ffb2891ea62e4cd3babea6905d5208dbe5feb2cccfaccd6cb53763bdc8c8646db192b5bb5afd0b847aef9dd7e7ff8e11c3205e1d4901a3997c71046da4dce731ce87ef7943e7118ab15065858f83cde93f91af1bce14b30946016c7547b5f71c1cbf9448319e7706b0d77b0943ad704bd56c7a513d30fd118d1aa4a5162e284408d33fd3b3b39105494f94e9dd6fd3650d97128a4af6c90ef639296b03abbdc0e0133d8860bd6e1c7f598189048b02a6dd45eb53c0f703f0f9b707f77cd701e2aed628298ed6099ea3aa7950ac373d2a78855b5a3fa8174cc26c50350361acc0878f419b21f50a586bd057350fd9dd03d648958255fd0b7928f5f5eb4f1ea6f76183bdc036316f0a772053358ad4144d84ed242a1605fb253ad7c675c05e3a465a4e428533cb718f87d81c98a7cb5d3fd4bb42b0333358f611a57e18f9bdcfdb13e72c110044369d0c43b09d296f55e6204e6e0c3d9e04b129d351a1a328378fc473757e8f749e66bf5f2a5d6d08565353a524c0e3f94d7f058213697e978bd56c921e597941753019728de6b7286acf63fea7207289ea707cea681901296b2bffe5321c660e27e3001dea23493b9f37aa0ee4108045a0cf5b7d9bcf19a8a236e58e40917809b9a12da891306948b4737d3ce57e0676f01cd8c3dc3ea288674cae13e043939a99bcb379a0c470ffb8d2edd56ff381517aad9863a68c819c2c075bd0bae68d954324ed19acdadef46bbd99e20dbd4d24559433efe24d03f23af97e2f0692b95b1fd112edc0207c873e538a377fd5f43c4298cfbd38913f26754e609e3632280c884473d79f69eb6dd4e2eaa49bb5f6fcc5684e9dfefb57136de9697da4dfa80303a8b2c4cd6bec9c3d4b8a34f36e8b46924259bca4b565dff65332c16d75397db3b204ad4fc4c22023a152a75086a5a66ec22e43e883ad00027300c77cb9797ce6d36ec5a091d54acb55489cfbe18a06aa77ef1689ac1c6745b5a078a19f819de3f9561d31e93bcc91c721fc355aa925fc850029557ed49fb656f920850f51846692e9ec56d8de6c97f59cc5de4bb493026dc53f71b84758c08441e4bc4d5be31305a349d63c65c94a6cd29380b0d77ab394bc917e277259df2b2c239a1f72f9ddb3414767d00a68df2679c685b44d094973d8648b803c07190f01acadcd5f085e2473e59c7a9c7ea2b12e7b8c838f5a04524a088702ba38ccbe78dd51e398678762847918636485be636f8f3da9a5eda21fd1ebc6ac49a2899332b8a5c5333142dc3c54a7af308edd1f9914c02aa0cf8841cfa5db8eb1e96ae6b652785c1bdc7610e06f8679dd6349ca48124585b3ffae97503fc57281ef53769692cde7c32d4f029fced69b28f095b4f009af0bf19830fe34397c03c258b4ef8b43387fe3fcb8b31febd72de29bdcb920a78a7afa29e2cd6477752f40c753a6f83988976fee6151b90f34c80e9eeb878e0a977a056287eb7b5beb49100d89bb49f31aaac4ea302a767b7685c6dd0276155130c445a162516b96ad33493783881dcf935d2d5d228850ba88259d7fee04225b6280e7001f8e5a22719ef3ef768e4c74499755183bd2f15708c77bc4af2648c2a71e23055a6cfd6f3ee7f306b0857a2b4c6fec50dc7e81f70d1a20d79f6603c92ba962abd7ae6da321947ae72009a8c01c2eff215b60b460b9a707c7d7d841ae60f73b7618a159889840b2aaddd94ee3cc7d4d10880545bceddfd234eb2ece6483c60b570a29b9fb926098dd0f980d4b625a68caeddc54a078f9fdfa8625e5d39980745003a3773d55a3c2c6fd0d138d0767dc62e519306f31b88db00450132aa51f3de52566e9e24819791ad92c5d250fa8326f20b143112c8c6d53d3056b979b2eec4d8b6f5e75603b4eb898616dea7b0d1fb091450566a49d7fd787542e0d8c31f1ae109e3c06dae72a23dbfc7f905a748bc663e131b629dd7091da87581ebcf6868fceee30ec773419b043277283d9ce6c4f2a4f88b6a576db6f61b9df353f3546b183a89b4926d3d0d2c5af6021c976ee9faf4b5e651fff6542c9e1631caf2ecdcf2c789a656fccaeac6afa5faac27fdb593f6bdb3dbe99d2b3c263e9e4882d4c28a7fb6f1701be21ae6f8da58dfbb271e535650cc63e0733a75951f5c1e7cfca12bdcd366f4f6dc60bd956ae683aaffbe804755449324545b6c9f165cef72b04444f0f839e75c106ac795d060da75d030c500539a769fd603c9cd3597865cf17a7c1616f364a86ac6da338f40253b3cdd6a882cf00e7a0aed16a05b939c369302e9ab76ff56d59299ce89d9f4f1128dde1bec6700d74ad5ecaef7b3b7a1ae3b1ffe83eff4cf0f3303d097594645bbb5accd9f9d34201c2afd7b5b9961f034576f92657a54c22cdc00364de26c9008b5889a58b0c2d142d760fa0b24f8d2f8858271b99b474f3c1f73778511825ee7723d67081c4dfee8270f501e1a4632793730c172d3c6075444f3308d5caa858f45e394eb998fee6e7381873dc0f7824e52203996a87b60bf531f958ed154021b115343e6db9dd6ef3734eed33929a57fe9ac1e62c758cbe07d739f495074dac1e7b6a3bc06a016e19a73adbbe5a853e96ac8e234ceae05d6a22d7f73c3bef6cf74be69c78fb132ff68637dd41c709f1f617b98c1e0047338d5596822a3b2001c4749fe220a669cb2f26fbbb446a5d36d779f592c2b1276c71e6a32dbc854c7934b9bd819746af0fd7e06857e30e6eaa5e507959a14d9a4c6b3eca5e21817f34c518da383d6053f617b078beeab449e88e83ab97013f9d399d75b51b72a2f196fda2369dff214147fbc0fb5f6b62fe589ebd0a9561a3ecf1f6525b13f915b4feef011dc2f33f2539b7d7888f136c464c17908dd069ae4e9f966183563a5e052a49136d0e48266e6a76fcccafe89a57ec5d9624de4ab4f5a8269dbea8145f251049bc682fdbe4dfcc01181d44d4c7029424c2f9310b47b157e34d41b7fdaefd3a9b11068a52912427d7243a5c84b17c749ee152434b5b83b32d1d8ab1cf5d11824b4f9384628ea154b98c3a750dab9518da0989dee986c74d12b3d2a43de466599ddb017948182ddcf99bcc839049ff2c8bd256cfa95eb8f03b66cbfc4deef1fb2e27ad24d362fcea9ff56ca80da7b542cf8babb3deb66208903a95e0f21f9fe481f1e51b38e07bdb6c54ae2d0f263babd9d9f0836c5f840c13be8ed47e7e7dd5529551fdc1671a763ab65c3ac9c9eda55358ddf34abd893d3deecba605ba38e3d34df7512a932e479ed385d7b6d9bc393e12bf9f63c3123eb725d79e42145ac16adc5c97250f8b7893874d5f452eb586e6f9fc601081e59592d7d4fb3d77aed92cbc030a888e1ae499a96f54244abcebee0bfbb4f34fdc3c901a371a855a831fc9a9171b79b730d189bdfa2cf11923e6b45b64f9eda144632b3b1ba3386c4f2abd494e7e53824171e7e435993eed4ce525d798d3398e59611dc387e823b3e19d673dd6d01df6577200349e7e5d499d248eed1a1698526a20623a7c8bfd5d093793ead315046b6c5abbfe3f4bbcd89fe04593921a0cdfb1208b235de44cbf7f9916613b16e6deaf76f51ea6991963144aeb80f4a229d81a1edc8ea9b0b36d8485c1c104bb1b2b665f1d04396f84109cd2c01ca504ecaa31918f2ac41fd032e8aaf9570932e5bda3ed43f62de69a86949c0da63b47332f999f2c10cbb9bca4f0f6306a37e8cf87be4227b5ccda4f2dd9407610332182ec6bf931754c29f7d3287a11f61abf17d1813fbbae2db97f752c2b50778698f8c6d11d0f68babb2a0f8e2f0b5dad5e19bb9e2cb1d580a1e17c08771f447fb8c086989c40919ace1b348af293ac784aeaab4607dde33c8c9a3f4190ccd110142ca994d43a88a75041424fcf635476acef44679d8f9207f76cdd29f1d6fe2eab8fa590f1b85658fb5e7ca478a7941012a796550df26e8db14e4e2391914801f06ac43c958d7e5e3e60db76918c5059d105668166a3b9aa5a6d0d593e61b7dd4f161b6559324184e22f3f4d637098bb265f9e9da9bd3abf7006ab1ec097d8bb6658ba2689559b05a10fbdb704442820dfbdcfcf95ea4fcee6f917845be0cf08136e30a197d3527d1da26304ae68c647b02d5b770d2bdaf8428735f5eb5a3eba60d2273781797ecd3cabcaf9600688677a8d8eaf998bf192705337a34535e7beddf61cb1a81a181f5ea91a549ea335bce4096607b2c026bd927448355b75a3e2ceeb615504102c248804e6192c52997666483ce6df4c7f84ca987652b71aa35f8af4afb5793568a51fc9c5e80a4d60ef1690e839d24f453fe1e0b9542d4b94822238969c3870269dd0643dc2dd77546b74f72e22115123190b22b8e99d1f943adc656d6ff92e58d4ca68a51816077310fb51f41ba5e7da74b1c71ffab49a434081e98594fdd71bf18a35203970b2d542b5198e87bf1ba469473b2cfe4b0ba8700fe42c590bbfd30c3264e2611ec68a8be56d6f5c9d743db88cd46260c91a4516072a309231a164f8ee7795659cc20bb95b5ce497fd2af7ffc3eb80dbe9118c0f30226c3e950a905ae62d4e3b65e914b963debdc55f2f6ddd3e0f6057652455996f0e59e031d28957dd2708996ca998defb4ef8711e79d34f8829c59c8519a28e355e6a94e8346f39da1ea3f38d15f7fd19484eb099db250d9752402bf758c55d15548a2175e0c5ffaee039a939c17d41e846c70230f589910f3cd9601670d03331c85a53ffc5c988f554e220cd588d1245931b0752623a6f7ad7f48e4afd89c3fdb21186f282685432b6fe0cf5aee038494db516f29d74952a564fab62fc900b1a81ee806ad54a51c800ade47897d05f73b33a39291062c4f1d92748e9326480405b8d1176ccafcb3519788b0ce91d98333ba9b561a4a8d642dca5515633de6c475050ea3796c089606ff2572d31ffac29d95d4bb1406cdc39735944265dc7792189f134c66a3399055539eee11a8f56a191d97d34f6483b3c9b134fed5c71787350d6aab08d201a3c4fb7e5451b826d6f7d3cc3c5640a0bfc102856461e3835b9a06cfbd25240eb2cea633e939d6b21c201df6840d40547c95f0136066740e7190877bef0de0d4c8a57131e1bfcfdcd38b70b932f974ae5863bf66c65d91dbf6990110432c9e64c1c71abf5c76946d47f34c3587fe179bc16f87c2297c8e2a8528c88ed2c24f36a674032e8fa1c690f607707ee8e105165e6cc450b327989a341ae91b6427077a7994ebe756297bf394d29018b545abfd207ccd0eda0789fb04c3863309c2c8d24d22fbd43533d81051d84ee5a75be737a71674a2f17c1987bfb4bf96ededbfecc4c0369f9e848e6a02515379c727180072071c877ba627174f9552682e05f0bf9c8525b12a0c38fcfd64bc0cdb23e76d76eaea09ac71d416a9bfe05e0e84ef2cc9e3d13e0ec5a67861b1914c00ff81e161e7ed9869d071ff31df8e9d47adea6bacd2373e7db73cd69dc0f53e54226b25a0a5bab6a8034a678d0a6ac0a36846829d950f695a6839469416bd09a30dffb0a70122a024b9d152c96faa25b03d39d850386b207351af17bf8d67c728751b53569952a72cbd1971bb670a508714c4c45e33c9a39e74480c500e7695c54f22054e12a2d6ff2420b6b9dc48d70a349104954027d0e04413c685ce33449dc22c8a382c09ac5fefd9382806381a31a167d9a458bea0b7ca7b23d4f2008db066d98fff6f1615e35980c763683ac023bb49c619bebab5e716d7f4852db6a7c4795c417b5db0120631335b0ad54d1df397711ceda18cea7de9099b7d982863c8f3360f08ef33f6d5f676ea65dbe783b8d915de59de54a8bb444287531e4e533c1011469f49a3f934862e3e7a0c6aa36722be80b1064e4de2ae5550a2ae56ff3fcbfbf14c32a681a186fd588c15352063463e7b90b812e55a2f6dd4d45335b18787ba566b95c7c3beb541eb45a930079d863383ca4307e9908d536cdcfc9c2d990449093237e4dfa22f6b1fe5c027751ddedd95b4f94f9c19786ee4b9be9e22d84244a621c5a6985b4944b374645b43e2c4406d0d1a3092f9f09bef09cb45531e134a65d9ed9ca131f1645e88f12da28fdfd46bc73d8a0c2a9a787e6691a31405b4aba51f375bd483b3837ffdd89fbb16db4d180ffdf4287af63b8772055492c8fc3b99002b0abd74131fc3901bc2e317d33cb3c4b7306d8541042ee0bf93405088fbbef4a59700b96a9ec373672bb9d4459d3829d0f596e497aefc2ae807915d2d14a691a165f17149eef2013f9424bcaf2e6ced949da53081c8eedd2a277db27ae831f4b0cd265d303eb939544a682e843eee4c8f536427b21b054e46062f54f75245452b0014cf4dedbc444729dcf023e2fad4139a6f5ec6f7757511a2f1ce63b263f546d97d6db1515c831896cd58a7e220fa50ffbc5eedeff15bee7852c68142146aad127c73d99bbb94c63ff9cbf0ffe8a95ea0543a584121f9ae226aa315b4a30d1018d9646dc3976a550d518faf96382454c6f2217cf2bd700d5edc3cdbd6ca293172512d051105dcb56162e5639fb6efcc73160aac6c61527a9d2978b6308fb76c7c93a761ef95e523a55a839cf79cdcd998d6cbcd9bd95971cbe7f97218adfd28454507ea6f73fe9adfc97bd4933fa384bdbd7a313a57166520f0274a04dc1a268a88ce8d7b18234e9af71b8be2e60789cd3f61459a89e1a5e261438631084c29849a5ebb2e971aa2afe53368e256aa5331aaa461c14a56be91b5825e4668778b744ba3023f907ef875d7b9b438b8a3976da4d5662b5e120d6e24c13d11745756aa94596d7427b49e548d4b0afcfcaa05bf9c6611efb8b339bedbab4a6b6069940ac1f1bbffa429016677ea76e6102338395a07d5ca1e70e3e6c2e11126163f722ccf638a00cfa5046b667de93ed0480a7061cd19d2b3f0ca95ec640184dcd14c349db78bc0607a9172a4f75b272b66de5638d45a372e89ec369272118ec10a78b68f6d4316ad912924ac3969b7be051fcb05b5a202ea5fdb8999c21206cab35babe234da849da9438c07c215aee95c0dd3be09588af7499f81067dd1e92c73f6d79d232048c2bb4072b8e9e30c6232e3edae76ff2bb313e8bf8aa390cd1283515ddec0e96e250524876a4b026d946f320ed8f0c923daeb20ee026b6e6923ca21774f2c1b39574f0e8e73900a351129be4f3498599456b09ff760be39eb9cfbaec115ef610a4e3405dc2718dfa8da1d3d8488a9c185ba944bf6d4c4811e9a7bbbfe2762311b9221936ec69db6ac8857c012c72bf939e23462cca302a9f80dcab37706fbbc7f8d81d2a418d2dc13873191cafa279ea6f84a60e17544a9a580021924e7d484e643e0871383836b2452cbac9a384863ea86abdeddea98e662098377d0e80b9cfe6784d6ea04f68afa87881bbf7a62e259f7052f5b6b40550522c3f6b9ce2e16d8be28a8a7836f176a1fe45c681d6033a2e6e75964928e8935aa435b2553311ce8402841b5cf4ef2e0beb272164696240e55a7bcae7e07abf20c8c883f325faac36cdab2180bf4571571a097ff73218bb4436c5eece7e6fe7b5ff672b932627b5f399fa2c743c8bfd0cd6e389f75cc5e8cc97755f16fe32de88f08740655865432a7cbe565cd629e1a08834e823430e3faf39a813121048e028c3d20b4c586414795b34ac1ddff6c44e5f686f49ee5527ed337634f3fbacf443e6a80ea767a30ac40cb5d46b3e1f5efa421de00dd2c6f1dc1f8ddf1156c3bbee21eb61e3f7477c69652077819fdaf1f2c0d52f365ced83b724c42bb772920f076dde9576efc773804ae78a135a699db69e345ef0982aefeca56335b66b00a3a5b0b698932cf28aea7c9280c34d56eadb38d8544980e8e0ff33b3665aae95be48df3d1069950fbd7b7c0dd62da079893d038c8ca1bbb925134d3df7800a295ac15a12adfd73ceabfec368af47d65be236c9e433fb7bbf247e38cd986590d8a22f86056c09e2bf7452132ffd1fde09cb30b8116ef040ca934d3fea3a7b7adb840df6685b6c079c5e530cb53ed7c4c60dd6aee95114b732a3f1a4495b7074ce2eadd2d8bde13c5dc359b5606f215627bb2fc6900176d54a31ab3855f3fafd7fc029717a74a548beab70134ee5bc6319e2a31011b5266f1f763c9b87337ab1da4d2b89b85b9cc72186573cb611bcfc7646113e9930f975e8d4bbc5f7f5f74f0239e2d3fc122ee910ee4b6c8cf842f0800c3ac83c8c6f56e6b298c3e84b4da0a953e75a11a6c6f17874de294314306231bae535543eee934654b7204ac0bea02af014103f04db8cfef068086735f1f22e568cd43545037c9407534debe33999c64fba569f948906375952ab44472bc564f3f3819fe40618614c2233bb308048465bab04da2e5b60fb198bde01ec4e0f44ae7648f513506cb951b95969f9d27335942052b371317ba04f8fd79b57aa7b4f9c7a48119fa62e5fe863df8e17608c81e3af33831c03547c23d10e8d392af37d2362c045e6a450ec296ed652a872d2e1e1a13715cfd753da10c60c053ac7192131573a8ab8d7a8fd4a8873f4ae8b2c6eab682b93e445bbf1dbecff3f27b522938382d7166cef3fa50ba031f52de64a373f64d34f9e06b30402da834e09807b6334b280f41909e83746171bc3c6b1aa8003dc6d2e29248a7f7aa4684acf9e14db1aa136ec7458cd1f02b92706836232c0cfcce71b82ac196dd86a9653dadb6e7c50dcdf4408ebf4a4711177d0c724fa92d1b118f356685f6559350479cd5fd7eb662f79ad524a814a465ab6837ab5d749045590a15da856998ef96a7a96afadfe5b43abc47ee8370aa8409700e501ac4e850ac34a9ca33b4c65b8eff4b897ff9c84e78c9101396042051548c565052652d120a53f1b6b289b35cb5ece0deb385cfa2dca926d169127736123f9c5a36cb60d83e1b8e1fd7d664e09d7dcd1b7301961b6908a4e4feea99e78687a00d2941448cea9b46464ec0ffb93595291285ad163d332db6f6f7099370e60096e1ced5fd969ec798380cd799c936e83672d54443f0e67d183e6546ec67342e004e71e6d6218b7cc9b8ad555d6ec1c90988c7ad81cd8b79454611b59d9444dfeb862b274fd3a53c80fe050f8a96a0f33a803e9476dec65c7c83837ebbab9b2626b678dd7e1059c09257bbd61c7438213e99e0788b5749b923d92e62eb13f2139eae5a157afd8c7fbde5c862708dcd6e6079346ca784a114be7398dc96275aedd6d45840263c082a419802634936cb1f8f547a852d6f514b81f81530628c3e3f62590b1d46d61cc9d5bbeabfd0079f2b40200b0807e86d4133337899b7094868db1d92763056b87595360efc70401ce60bdb340f58296f145eb6a3474d6d06712365026181a19cd5a660e43ca271015f0e3782260f74a2c8efe0aeffa7c6890491ff3f6d6c5e7c3061a79cb170512a0c3d0ae73a6be8dfcae7159a93db3938a59a3c873f2c6f5aeb7caffdb34dde5881bb1d881f7ffbef7f06a0b75b14c3ab20737df53cb4615ab461fcf46e975835842257a2d82a78bca16940266072e2f29e039ea7392da204b750838cd2a60864e996391ff97893111e3b6da9a782782570720ef8e18257742b448ab6c540eaeea8b15bdf395dc756518d8db464657abebc2a9b4a69d9d3c0c2231e22491ec818ac5e62d75f42d1038e08cb366bccef32e98202bdaf946273c875617996644e181659494eb0ce879f2795bd2df4a58044cb708afb58aced9009a80bc7c7f2ac009d01414bbd0d10db811f9d10f8f1c172271f86a4a7d5ada04a6c72f62597fb7787d1cb7a4ff926d595a9dbf7b1e6a2c161ed1fc6f6d2aa40084afa1bb8a35cb2dbabcc17aec48960ee05078c6625d84a4b45559349011d939420f8aa4a99e5721286f04a6def610c0ea4d14c8058a5aaf3c5478e5466c5c9c16e3a98d4bbed4b8f8147f05bbe89fa2326efeef85572d0df44eb90cd949da5e6a166b4a4cb57c613ac97bbfd828194340835c6102c1e97f13dc12e69df54731950ec708efbb98e07c292d6d8ee0d9be012d773ae1d38b862c31adbfe6429d2f8284cb0feba689083ef027418b5d21eed67de641996a15b233cd7472110c160efac67152340a6baae06e618ae3c55f8c4ccaaa6de3581791238c80b0818d79c549fd2176aed039ae854631a1a5e1c91d8072bc0b24d27a28e02bc675e334136286c604590bcaa417ba8dfadc9f38be167cbd79309e826315430d21505ae3315f1</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论 </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>19 新技术引入：给团队分享 RocketMQ 的架构原理和使用方式</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">6</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="shadow">shadow</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-27, 10:45:06</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-27, 18:19:10</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/rocketmq/rocketmq19/" title="19 新技术引入：给团队分享 RocketMQ 的架构原理和使用方式">https://abce.xyz/rocketmq/rocketmq19/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 shadow</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#文档','#虚拟机','#消息中间件',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+        /* 渲染*/
+        function HTMLDecode(text) {
+            var temp = document.createElement("div");
+            temp.innerHTML = text;
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        }
+        if (window.mermaid){
+            window.mermaid = null
+        }
+        $.getScript("//cdn.jsdelivr.net/npm/mermaid@8.4.2/dist/mermaid.min.js", function () {
+            var mermaidOptions = JSON.parse(HTMLDecode("{&#34;theme&#34;:&#34;forest&#34;,&#34;startOnLoad&#34;:true,&#34;flowchart&#34;:{&#34;useMaxWidth&#34;:false,&#34;htmlLabels&#34;:true}}"))
+            if (window.mermaid) {
+                mermaid.initialize(mermaidOptions)
+                mermaid.contentLoaded()
+            }
+        })
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
