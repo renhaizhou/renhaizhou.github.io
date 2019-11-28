@@ -10,6 +10,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
   <link rel="alternate" href="/atom.xml" title="学海无涯" type="application/atom+xml">
+  <meta name="google-site-verification" content="true">
+  <meta name="baidu-site-verification" content="QjKSXJyUsd">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -20,13 +22,13 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://abce.xyz').hostname,
+    hostname: new URL('https://www.abce.xyz').hostname,
     root: '/',
     scheme: 'Pisces',
     version: '7.5.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
@@ -50,14 +52,14 @@
   <meta name="description" content="今天的授人以渔环节，希望大家去做一个调研和技术对比，对MQ做一些深度的思考。 希望大家可以去查阅资料了解一下Kafka和RabbitMQ两种技术的架构原理，尤其关注以下几点： 他们都是如何集群化部署抗高并发的？ 他们对海量消息是如何分布式存储的？ 他们是如何实现主从多备份的高可用架构的？ 他们是如何实现集群路由让别人找到对应的机器发送消息和接收消息的？ 希望大家搞明白这几个问题，从架构原理上自己对">
 <meta property="og:type" content="website">
 <meta property="og:title" content="20 授人以渔：结合你对其他 MQ 的了解，思考 RocketMQ 的设计有何特点？">
-<meta property="og:url" content="https:&#x2F;&#x2F;abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq20.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq20.html">
 <meta property="og:site_name" content="学海无涯">
 <meta property="og:description" content="今天的授人以渔环节，希望大家去做一个调研和技术对比，对MQ做一些深度的思考。 希望大家可以去查阅资料了解一下Kafka和RabbitMQ两种技术的架构原理，尤其关注以下几点： 他们都是如何集群化部署抗高并发的？ 他们对海量消息是如何分布式存储的？ 他们是如何实现主从多备份的高可用架构的？ 他们是如何实现集群路由让别人找到对应的机器发送消息和接收消息的？ 希望大家搞明白这几个问题，从架构原理上自己对">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-28T05:56:05.867Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://abce.xyz/renhaizhou/rocketmq/rocketmq20">
+<link rel="canonical" href="https://www.abce.xyz/renhaizhou/rocketmq/rocketmq20">
 
 
 <script id="page-configurations">
@@ -383,6 +385,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 

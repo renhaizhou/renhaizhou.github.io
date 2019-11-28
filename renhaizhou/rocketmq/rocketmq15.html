@@ -10,6 +10,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
   <link rel="alternate" href="/atom.xml" title="学海无涯" type="application/atom+xml">
+  <meta name="google-site-verification" content="true">
+  <meta name="baidu-site-verification" content="QjKSXJyUsd">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -20,13 +22,13 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://abce.xyz').hostname,
+    hostname: new URL('https://www.abce.xyz').hostname,
     root: '/',
     scheme: 'Pisces',
     version: '7.5.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
@@ -50,27 +52,27 @@
   <meta name="description" content="1、解决订单系统诸多问题的核心技术：消息中间件 今天一上班，小猛非常期待的跑到了明哥的工位旁：明哥，现在订单系统的所有问题我们都搞清楚了，是不是可以开始研究对应的技术方案了啊？ 明哥说：当然了，今天开始我们要慢慢调研和落地一些技术方案，去逐步解决订单系统面临的各种问题了。 首先第一步，我先给你介绍一个用来解决我们订单系统问题的核心技术，消息中间件。 明哥问：你对消息中间件有了解过吗？ 小猛说：这个">
 <meta property="og:type" content="website">
 <meta property="og:title" content="15 解决订单系统诸多问题的核心技术：消息中间件到底是什么？">
-<meta property="og:url" content="https:&#x2F;&#x2F;abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq15.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq15.html">
 <meta property="og:site_name" content="学海无涯">
 <meta property="og:description" content="1、解决订单系统诸多问题的核心技术：消息中间件 今天一上班，小猛非常期待的跑到了明哥的工位旁：明哥，现在订单系统的所有问题我们都搞清楚了，是不是可以开始研究对应的技术方案了啊？ 明哥说：当然了，今天开始我们要慢慢调研和落地一些技术方案，去逐步解决订单系统面临的各种问题了。 首先第一步，我先给你介绍一个用来解决我们订单系统问题的核心技术，消息中间件。 明哥问：你对消息中间件有了解过吗？ 小猛说：这个">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-1.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-2.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-3.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-4.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-5.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-6.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-7.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-8.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-9.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-10.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-11.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-12.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-1.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-2.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-3.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-4.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-5.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-6.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-7.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-8.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-9.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-10.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-11.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-12.jpg">
 <meta property="og:updated_time" content="2019-11-28T05:56:05.867Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq15-1.jpg">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq15-1.jpg">
 
-<link rel="canonical" href="https://abce.xyz/renhaizhou/rocketmq/rocketmq15">
+<link rel="canonical" href="https://www.abce.xyz/renhaizhou/rocketmq/rocketmq15">
 
 
 <script id="page-configurations">
@@ -484,6 +486,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 
