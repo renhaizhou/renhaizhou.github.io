@@ -477,7 +477,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-28 10:40:42'>2019-11-26 18:28</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-28 10:47:11'>2019-11-26 18:28</time>
         
     </div>
     <div class="article-meta">
@@ -533,13 +533,13 @@
 <p>然后呢，就是把你打包好的jar包或者是war包给放到线上机器去部署。</p>
 <p>这个部署就有很多种途径了，但是最基本的一种方式，就是通过Tomcat这类容器来部署代码，也可以是你自己手动通过“java”命令来运行一个jar包中的代码。</p>
 <p>咱们先用下面这张图，回忆一下这个顺序。</p>
-<p><img src="../images/jvm1-1.jpg" alt="jvm1-1"></p>
+<p><img src="../../images/jvm1-1.jpg" alt="jvm1-1"></p>
 <p>但是实际上这里有一个非常关键的步骤，那就是“编译”</p>
 <p>也就是说，在我们写好的“.java”代码打包的过程中，一般就会把代码编译成“.class”后缀的字节码文件，比如“User.class”，“Hello.class”，”Customer.class“。</p>
 <p>然后这个“.class”后缀的字节码文件，他才是可以被运行起来的！</p>
 <p>所以首先，无论大家对JVM机制是否熟悉，咱们都先来回顾一下这个编译的过程，以及“.class”字节码文件的概念。</p>
 <p>来看看下图，一起来感受一下：</p>
-<p><img src="../images/jvm1-2.jpg" alt="jvm1-2"></p>
+<p><img src="../../images/jvm1-2.jpg" alt="jvm1-2"></p>
 <p>接着我们可能就要思考下一个问题：</p>
 <p>对于编译好的这些“.class”字节码，是怎么让他们运行起来的呢？</p>
 <p>这个时候就需要使用诸如“java -jar”之类的命令来运行我们写好的代码了。</p>
@@ -548,18 +548,18 @@
 <p>所以平时我们写好的某个系统在一台机器上部署的时候，你一旦启动这个系统，其实就是启动了一个JVM，由它来负责运行这台机器上运行的这个系统。</p>
 <p>对这个概念，大家一定要先搞清楚。</p>
 <p>我们还是用一张图来展示一下，相信大家图文结合，会理解的更好。</p>
-<p><img src="../images/jvm1-3.jpg" alt="jvm1-3"></p>
+<p><img src="../../images/jvm1-3.jpg" alt="jvm1-3"></p>
 <p>接着下一步，JVM要运行这些“.class”字节码文件中的代码，那是不是首先得把这些“.class”文件中包含的各种类给加载进来？</p>
 <p>这些“.class”文件不就是我们写好的一个一个的类吗？对不对？</p>
 <p>此时就会有一个“类加载器”的概念。</p>
 <p>此时会采用类加载器把编译好的那些“.class”字节码文件给加载到JVM中，然后供后续代码运行来使用。</p>
 <p>我们再看下图。</p>
-<p><img src="../images/jvm1-4.jpg" alt="jvm1-4"></p>
+<p><img src="../../images/jvm1-4.jpg" alt="jvm1-4"></p>
 <p>接着，最后一步，JVM就会基于自己的字节码执行引擎，来执行加载到内存里的我们写好的那些类了</p>
 <p>比如你的代码中有一个“main()”方法，那么JVM就会从这个“main()”方法开始执行里面的代码。</p>
 <p>他需要哪个类的时候，就会使用类加载器来加载对应的类，反正对应的类就在“.class”文件中。</p>
 <p>大家最后看看下面的图。</p>
-<p><img src="../images/jvm1-5.jpg" alt="jvm1-5"></p>
+<p><img src="../../images/jvm1-5.jpg" alt="jvm1-5"></p>
 <p>好，最后我们来对本文小结一下：</p>
 <p>无论是对JVM了解或者是不了解的同学，我们都希望通过第一周的基本原理知识讲解，降低学习后面JVM优化实战技术的门槛。</p>
 <p>对于了解JVM的同学权当复习梳理，而且鼓励大家在底部评论发言，说说自己的理解和看法。</p>
@@ -587,7 +587,7 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">1.5k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="shadow">shadow</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-26, 18:28:53</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-28, 10:40:42</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-28, 10:47:11</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/jvm/jvm002/" title="002、一探究竟：我们写的Java代码到底是如何运行起来的？">https://abce.xyz/jvm/jvm002/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

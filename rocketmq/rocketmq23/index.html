@@ -477,7 +477,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-28 10:15:59'>2019-11-28 10:08</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-28 10:46:01'>2019-11-28 10:08</time>
         
     </div>
     <div class="article-meta">
@@ -526,7 +526,7 @@
 <p>先来看第一个问题，我们都知道，为了保证MQ的数据不丢失而且具备一定的高可用性，所以一般都是得将Broker部署成Master-Slave模式的，也就是一个Master Broker对应一个Slave Broker</p>
 <p>然后Master需要在接收到消息之后，将数据同步给Slave，这样一旦Master Broker挂了，还有Slave上有一份数据。</p>
 <p>小猛说着打开了一张图：</p>
-<p><img src="../images/mq23-1.jpg" alt="m23-1"></p>
+<p><img src="../../images/mq23-1.jpg" alt="m23-1"></p>
 <p>说明：</p>
 <p>Slave Broker也会向所有的NameServer进行注册，图中没有画出！</p>
 <p>Slave Broker也会向所有的NameServer每30s发送心跳，图中没有画出！</p>
@@ -535,21 +535,21 @@
 <p>答案是第二种，RocketMQ的Master-Slave模式采取的是Slave Broker不停的发送请求到Master Broker去拉取消息。</p>
 <p>所以首先要明白这一点，就是RocketMQ自身的Master-Slave模式采取的是Pull模式拉取消息。</p>
 <p>小猛说着又打开了一个图，在图里他标识出来了Slave拉取消息的示意：</p>
-<p><img src="../images/mq23-2.jpg" alt="m23-2"></p>
+<p><img src="../../images/mq23-2.jpg" alt="m23-2"></p>
 <p>3、RocketMQ 实现读写分离了吗？</p>
 <p>下一个问题，既然Master Broker主要是接收系统的消息写入，然后会同步给Slave Broker，那么其实本质上Slave Broker也应该有一份一样的数据。</p>
 <p>所以这里提出一个疑问，作为消费者的系统在获取消息的时候，是从Master Broker获取的？还是从Slave Broker获取的？</p>
 <p>其实都不是。答案是：有可能从Master Broker获取消息，也有可能从Slave Broker获取消息</p>
 <p>作为消费者的系统在获取消息的时候会先发送请求到Master Broker上去，请求获取一批消息，此时Master Broker是会返回一批消息给消费者系统的</p>
 <p>小猛说着打开了一张图，里面有这个示意。</p>
-<p><img src="../images/mq23-3.jpg" alt="m23-3"></p>
+<p><img src="../../images/mq23-3.jpg" alt="m23-3"></p>
 <p>然后Master Broker在返回消息给消费者系统的时候，会根据当时Master Broker的负载情况和Slave Broker的同步情况，向消费者系统建议下一次拉取消息的时候是从Master Broker拉取还是从Slave Broker拉取。</p>
 <p>举个例子，要是这个时候Master Broker负载很重，本身要抗10万写并发了，你还要从他这里拉取消息，给他加重负担，那肯定是不合适的。</p>
 <p>所以此时Master Broker就会建议你从Slave Broker去拉取消息。</p>
 <p>或者举另外一个例子，本身这个时候Master Broker上都已经写入了100万条数据了，结果Slave Broke不知道啥原因，同步的特别慢，才同步了96万条数据，落后了整整4万条消息的同步，这个时候你作为消费者系统可能都获取到96万条数据了，那么下次还是只能从Master Broker去拉取消息。</p>
 <p>因为Slave Broker同步太慢了，导致你没法从他那里获取更新的消息了。</p>
 <p>所以这一切都会由Master Broker根据情况来决定，小猛说着打开了一个图，里面有示意。</p>
-<p><img src="../images/mq23-4.jpg" alt="m23-4"></p>
+<p><img src="../../images/mq23-4.jpg" alt="m23-4"></p>
 <p>所以在写入消息的时候，通常来说肯定是选择Master Broker去写入的</p>
 <p>但是在拉取消息的时候，有可能从Master Broker获取，也可能从Slave Broker去获取，一切都根据当时的情况来定。</p>
 <p>4、如果Slave Broke挂掉了有什么影响？</p>
@@ -566,7 +566,7 @@
 <p>在RocketMQ 4.5版本之前，都是用Slave Broker同步数据，尽量保证数据不丢失，但是一旦Master故障了，Slave是没法自动切换成Master的。</p>
 <p>所以在这种情况下，如果Master Broker宕机了，这时就得手动做一些运维操作，把Slave Broker重新修改一些配置，重启机器给调整为Master Broker，这是有点麻烦的，而且会导致中间一段时间不可用。</p>
 <p>小猛说着打开了一张图，在图里他标识出来了Master故障情况下的手工运维的情况。</p>
-<p><img src="../images/mq23-5.jpg" alt="m23-5"></p>
+<p><img src="../../images/mq23-5.jpg" alt="m23-5"></p>
 <p>所以这种Master-Slave模式不是彻底的高可用模式，他没法实现自动把Slave切换为Master</p>
 <p>6、基于Dledger实现RocketMQ高可用自动切换</p>
 <p>在RocketMQ 4.5之后，这种情况得到了改变，因为RocketMQ支持了一种新的机制，叫做Dledger</p>
@@ -575,11 +575,11 @@
 <p>今天我先讲讲基于Dledger可以实现RocketMQ的高可用自动切换的效果。</p>
 <p>简单来说，把Dledger融入RocketMQ之后，就可以让一个Master Broker对应多个Slave Broker，也就是说一份数据可以有多份副本，比如一个Master Broker对应两个Slave Broker。</p>
 <p>然后依然会在Master和Slave之间进行数据同步，小猛说着打开了一张图。</p>
-<p><img src="../images/mq23-6.jpg" alt="m23-6"></p>
+<p><img src="../../images/mq23-6.jpg" alt="m23-6"></p>
 <p>此时一旦Master Broker宕机了，就可以在多个副本，也就是多个Slave中，通过Dledger技术和Raft协议算法进行leader选举，直接将一个Slave Broker选举为新的Master Broker，然后这个新的Master Broker就可以对外提供服务了。</p>
 <p>整个过程也许只要10秒或者几十秒的时间就可以完成，这样的话，就可以实现Master Broker挂掉之后，自动从多个Slave Broker中选举出来一个新的Master Broker，继续对外服务，一切都是自动的。</p>
 <p>小猛说着就打开了另外一张图，在图里就有Slave自动选举，以及Slave切换为新的Master的过程。</p>
-<p><img src="../images/mq23-7.jpg" alt="m23-7"></p>
+<p><img src="../../images/mq23-7.jpg" alt="m23-7"></p>
 <p>所以。。。说到这里，小猛对下面一直沉默听分享的明哥说，我觉得我们在设计RocketMQ生产部署架构的时候，完全可以采用基于Dledger的部署方式，这样可以让RocketMQ做到自动故障切换了！</p>
 <p>明哥听到这里，对小猛非常的赞赏。小猛非常靠谱，把一些关键的问题都梳理的很清晰，包括Broker主从同步原理、故障时的自动切换缺点、最新版本的Dledger自动切换改进，这些问题都已经考虑到了。</p>
 <p>大家听到这里，也是一阵热烈的掌声，因为随着分享的推进，每个人都觉得RocketMQ这个技术到落地实践的距离更近了。</p>
@@ -596,7 +596,7 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">2.2k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="shadow">shadow</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-28, 10:08:00</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-28, 10:15:59</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-28, 10:46:01</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/rocketmq/rocketmq23/" title="23 设计生产架构之前的功课：Broker的主从架构原理是什么？">https://abce.xyz/rocketmq/rocketmq23/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

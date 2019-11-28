@@ -477,7 +477,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-28 10:27:09'>2019-11-28 10:17</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-28 10:46:01'>2019-11-28 10:17</time>
         
     </div>
     <div class="article-meta">
@@ -524,7 +524,7 @@
 <p>2、NameServer集群化部署，保证高可用性</p>
 <p>首先第一步，我们要让NameServer集群化部署，我建议可以部署在三台机器上，这样可以充分保证NameServer作为路由中心的可用性，哪怕是挂掉两台机器，只要有一个NameServer还在运行，就能保证MQ系统的稳定性。</p>
 <p>小猛说着，打开了架构方案里的第一张图。</p>
-<p><img src="../images/mq25-1.jpg" alt="m25-1"></p>
+<p><img src="../../images/mq25-1.jpg" alt="m25-1"></p>
 <p>因为我上次分享的时候也说了，NameServer的设计是采用的Peer-to-Peer的模式来做的，也就是可以集群化部署，但是里面任何一台机器都是独立运行的，跟其他的机器没有任何通信。</p>
 <p>每台NameServer实际上都会有完整的集群路由信息，包括所有的Broker节点信息，我们的数据信息，等等。所以只要任何一台NameServer存活下来，就可以保证MQ系统正常运行，不会出现故障。</p>
 <p>因此NameServer的集群化部署是必须的第一步。</p>
@@ -536,7 +536,7 @@
 <p>所以既然现在RocketMQ 4.5之后已经基于Dledger技术实现了可以自动让Slave切换为Master的功能，那么我们肯定是选择基于Dledger的主备自动切换的功能来进行生产架构的部署。</p>
 <p>而且Dledger技术是要求至少得是一个Master带两个Slave，这样有三个Broke组成一个Group，也就是作为一个分组来运行。一旦Master宕机，他就可以从剩余的两个Slave中选举出来一个新的Master对外提供服务。</p>
 <p>此时小猛又打开了一个图。</p>
-<p><img src="../images/mq25-2.jpg" alt="m25-2"></p>
+<p><img src="../../images/mq25-2.jpg" alt="m25-2"></p>
 <p>每个Broker（不论是Master和Slave）都会把自己注册到所有的NameServer上去。</p>
 <p>注：图中没有画出Slave Broker注册到NameServer。</p>
 <p>然后Master Broker还会把数据同步给两个Slave Broker，保证一份数据在不同机器上有多份副本。</p>
@@ -548,7 +548,7 @@
 <p>在RocketMQ的实现中，采用的是TCP长连接进行通信。</p>
 <p>也就是说，Broker会跟每个NameServer都建立一个TCP长连接，然后定时通过TCP长连接发送心跳请求过去</p>
 <p>小猛说着打开下一张图，在这个图里完善了一些Broker跟NameServer通信的细节。</p>
-<p><img src="../images/mq25-3.jpg" alt="m25-3"></p>
+<p><img src="../../images/mq25-3.jpg" alt="m25-3"></p>
 <p>所以各个NameServer就是通过跟Broker建立好的长连接不断收到心跳包，然后定时检查Broker有没有120s都没发送心跳包，来判定集群里各个Broker到底挂掉了没有。</p>
 <p>5、使用MQ的系统都要多机器集群部署</p>
 <p>下一步，我们一定会有很多的系统使用RocketMQ，有些系统是作为生产者往MQ发送消息，有些系统是作为消费者从MQ获取消息，当然还有的系统是既作为生产者，又作为消费者，所以我们要考虑这些系统的部署。</p>
@@ -556,7 +556,7 @@
 <p>因为一个系统如果就部署在一台机器上，然后作为生产者向MQ发送消息，那么一旦哪天机器上的生产者系统挂了，整个流程就断开了，不能保证高可用性。</p>
 <p>但是如果在多台机器上部署生产者系统，任何一台机器上的生产者挂了，其他机器上的生产者系统可以继续运行。</p>
 <p>小猛此时打开了下一张图，里面有生产者系统和消费者系统集群化部署的示意。</p>
-<p><img src="../images/mq25-4.jpg" alt="m25-4"></p>
+<p><img src="../../images/mq25-4.jpg" alt="m25-4"></p>
 <p>上述所说在图里可以清晰看到，同理消费者系统也是集群化部署的，如果一台机器上的消费者系统挂了，其他机器上的消费者系统应该是可以继续运行的。</p>
 <p>6、MQ的核心数据模型：Topic到底是什么？</p>
 <p>下一步，生产者和消费者都会往MQ里写入消息和获取消息了，但是有一个问题：</p>
@@ -579,26 +579,26 @@
 <p>我们可以在创建Topic的时候指定让他里面的数据分散存储在多台Broker机器上，比如一个Topic里有1000万条数据，此时有2台Broker，那么就可以让每台Broker上都放500万条数据。</p>
 <p>这样就可以把一个Topic代表的数据集合分布式存储在多台机器上了。</p>
 <p>小猛说着，打开了一个图，在这个图里，新画出来了一个Master Broker和两个Slave Broker，因为Dledger技术要求每个Master都得带两个Slave来进行选举。然后示意出来了一个订单Topic的数据分布式存储在两个Master Broker上了。</p>
-<p><img src="../images/mq25-5.jpg" alt="m25-5"></p>
+<p><img src="../../images/mq25-5.jpg" alt="m25-5"></p>
 <p>而且另外很重要的一件事是，每个Broke在进行定时的心跳汇报给NameServer的时候，都会告诉NameServer自己当前的数据情况，比如有哪些Topic的哪些数据在自己这里，这些信息都是属于路由信息的一部分。</p>
 <p>小猛说着在上面的图里画了一个红圈，示意了Broker心跳的时候会汇报给NameServer自己的数据情况，这样每个NameServer都知道集群里有哪些Broker，每个Broker存放了哪些Topic的数据。</p>
-<p><img src="../images/mq25-6.jpg" alt="m25-6"></p>
+<p><img src="../../images/mq25-6.jpg" alt="m25-6"></p>
 <p>8、生产者系统是如何将消息发送给Broker的？</p>
 <p>接着是下一个问题：生产者系统是如何将消息发送到Broker的呢？</p>
 <p>首先我们之前说过，在发送消息之前，得先有一个Topic，然后在发送消息的时候你得指定你要发送到哪个Topic里面去。</p>
 <p>接着既然你知道你要发送的Topic，那么就可以跟NameServer建立一个TCP长连接，然后定时从他那里拉取到最新的路由信息，包括集群里有哪些Broker，集群里有哪些Topic，每个Topic都存储在哪些Broker上。</p>
 <p>小猛说着打开了一张示意图，在里面用红圈示意了拉取路由信息。</p>
-<p><img src="../images/mq25-7.jpg" alt="m25-7"></p>
+<p><img src="../../images/mq25-7.jpg" alt="m25-7"></p>
 <p>然后生产者系统自然就可以通过路由信息找到自己要投递消息的Topic分布在哪几台Broker上，此时可以根据负载均衡算法，从里面选择一台Broke机器出来，比如round robine轮询算法，或者是hash算法，都可以。</p>
 <p>这个具体的选择Broker的算法，后面我们在讲RocketMQ技术落地到项目的时候再来细说就可以。</p>
 <p>总之，选择一台Broker之后，就可以跟那个Broker也建立一个TCP长连接，然后通过长连接向Broker发送消息即可.</p>
 <p>Broker收到消息之后就会存储在自己本地磁盘里去。小猛说着又打开了一个图，在图里用红圈圈出了发送消息的地方。</p>
-<p><img src="../images/mq25-8.jpg" alt="m25-8"></p>
+<p><img src="../../images/mq25-8.jpg" alt="m25-8"></p>
 <p>这里唯一要注意的一点，就是生产者一定是投递消息到Master Broker的，然后Master Broker会同步数据给他的Slave Brokers，实现一份数据多份副本，保证Master故障的时候数据不丢失，而且可以自动把Slave切换为Master提供服务。</p>
 <p>9、消费者是如何从Broker上拉取消息的？</p>
 <p>消费者系统其实跟生产者系统原理是类似的，他们也会跟NameServer建立长连接，然后拉取路由信息，接着找到自己要获取消息的Topic在哪几台Broker上，就可以跟Broker建立长连接，从里面拉取消息了。</p>
 <p>小猛说着打开了最后一张图，也就是最终的MQ生产部署架构图。</p>
-<p><img src="../images/mq25-9.jpg" alt="m25-9"></p>
+<p><img src="../../images/mq25-9.jpg" alt="m25-9"></p>
 <p>这里唯一要注意的一点是，消费者系统可能会从Master Broker拉取消息，也可能从Slave Broker拉取消息，都有可能，一切都看具体情况。</p>
 <p>10、整体架构：高可用、高并发、海量消息、可伸缩</p>
 <p>小猛指着最终的架构图说，整个这套生产架构是实现完全高可用的，因为NameServer随便一台机器挂了都不怕，他是集群化部署的，每台机器都有完整的路由信息；</p>
@@ -624,7 +624,7 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">3.8k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="shadow">shadow</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-28, 10:17:14</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-28, 10:27:09</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-28, 10:46:01</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/rocketmq/rocketmq25/" title="25 落地第一步：设计一套高可用的消息中间件生产部署架构">https://abce.xyz/rocketmq/rocketmq25/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

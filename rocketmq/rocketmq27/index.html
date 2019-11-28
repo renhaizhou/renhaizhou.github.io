@@ -477,7 +477,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-11-28 10:34:34'>2019-11-28 10:25</time>
+        创建时间:<time class="date" title='更新时间: 2019-11-28 10:46:01'>2019-11-28 10:25</time>
         
     </div>
     <div class="article-meta">
@@ -521,7 +521,7 @@
 <p>既然已经完成了RocketMQ生产架构的设计了，接着就得一步一步完成真正的生产集群的部署了，明哥这个时候给小猛布置了第一个实战任务，就是先分配几台机器给小猛，让他完成一个小规模的RocketMQ集群的部署。</p>
 <p>这个小规模的RocketMQ集群部署好了之后，还需要对这个集群进行压测，看一看在公司的机器配置下，可以抗下多高的QPS。</p>
 <p>小猛接下了这个任务，同时又看了看他之前设计出来的最终生产部署架构图，他知道这个图仅仅是一个逻辑架构图，不是物理部署架构图，但是物理部署架构图得参照这个逻辑架构图才能部署出来。</p>
-<p><img src="../images/mq27-1.jpg" alt="m27-1"></p>
+<p><img src="../../images/mq27-1.jpg" alt="m27-1"></p>
 <p>2、公司给小猛分配的第一批机器</p>
 <p>小猛先看了看公司给他分配的第一批机器的各项配置，然后迅速基于这批机器制定了RocketMQ集群部署的规划。</p>
 <p>NameServer：3台机器，每台机器都是8核CPU + 16G内存 + 500G磁盘 + 千兆网卡</p>
@@ -613,12 +613,12 @@
 <p>6、编写最基本的生产者和消费者代码准备压测</p>
 <p>接着就可以编写最基本的生产者和消费者代码，准备执行压测了。</p>
 <p>可以新建两个工程，一个是生产者，一个是消费者，两个工程都需要加入下面的依赖：</p>
-<p><img src="../images/mq27-2.jpg" alt="m27-2"></p>
+<p><img src="../../images/mq27-2.jpg" alt="m27-2"></p>
 <p>然后生产者的示例代码如下，大家现在不需要知道里面的含义，只要知道他可以发送消息即可，基本的代码说明都写在下面的注释里了</p>
 <p>简单来说，就是只要一运行，就立马不停的在while死循环里去发送消息，根据需要可以设置为多个线程：</p>
-<p><img src="../images/mq27-3.jpg" alt="m27-3"></p>
+<p><img src="../../images/mq27-3.jpg" alt="m27-3"></p>
 <p>接着是示例用的消费者代码，如下所示，关键的注释都写在里面了，消费者就是不停的去获取消息然后打印出来即可：</p>
-<p><img src="../images/mq27-4.jpg" alt="m27-4"></p>
+<p><img src="../../images/mq27-4.jpg" alt="m27-4"></p>
 <p>小猛忙活了几天总算弄完了一个小集群，由三个NameServer、三个Broker以及四个业务系统机器组成，他试了一下，Broker都正常运行，请求NameServer可以看到集群信息，而且测试了一下，能够正常的发送消息和接收消息。</p>
 <p>一切万事俱备，只欠东风，接下来就要调整Broker的OS内核参数、JVM参数然后重新启动Broker，接着就可以启动生产者和消费者去发送消息和获取消息，然后去观察RocketMQ能承载的QPS，CPU、IO、磁盘、网络等负载。</p>
 
@@ -634,7 +634,7 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">2.9k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="shadow">shadow</a></p>
     <p><span class="copy-title">发布时间:</span>2019-11-28, 10:25:53</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-28, 10:34:34</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-28, 10:46:01</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/rocketmq/rocketmq27/" title="27 部署一个小规模的 RocketMQ 集群，为压测做好准备">https://abce.xyz/rocketmq/rocketmq27/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
