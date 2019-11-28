@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>test-sitemap</title>
+      <link href="/hexo-next-sitemap/"/>
+      <url>/hexo-next-sitemap/</url>
+      
+        <content type="html"><![CDATA[<p><strong>测试站点地图</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 站点地图 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> sitemap </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MarkDown Hello World</title>
       <link href="/markdown/"/>
       <url>/markdown/</url>
