@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="学海无涯" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://abce.xyz').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="1、将目光从 NameServer 转移到 Broker 小猛上次的NameServer技术分享做的非常成功，大家都通过分享学到了更多的东西，尤其对RocketMQ集群运作的原理，有了更进一步的认识 不过好多人都想对Broker的原理有更多的了解，毕竟最终实现MQ功能的就是Broker。 因此小猛也将自己研究RocketMQ的目光从NameServer转移到了Broker上，他花了一些时间对Bro">
+<meta property="og:type" content="website">
+<meta property="og:title" content="23 设计生产架构之前的功课：Broker的主从架构原理是什么？">
+<meta property="og:url" content="https:&#x2F;&#x2F;abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq23.html">
+<meta property="og:site_name" content="学海无涯">
+<meta property="og:description" content="1、将目光从 NameServer 转移到 Broker 小猛上次的NameServer技术分享做的非常成功，大家都通过分享学到了更多的东西，尤其对RocketMQ集群运作的原理，有了更进一步的认识 不过好多人都想对Broker的原理有更多的了解，毕竟最终实现MQ功能的就是Broker。 因此小猛也将自己研究RocketMQ的目光从NameServer转移到了Broker上，他花了一些时间对Bro">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq23-1.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq23-2.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq23-3.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq23-4.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq23-5.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq23-6.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq23-7.jpg">
+<meta property="og:updated_time" content="2019-11-28T05:58:15.740Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;abce.xyz&#x2F;images&#x2F;mq23-1.jpg">
+
+<link rel="canonical" href="https://abce.xyz/renhaizhou/rocketmq/rocketmq23">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: false,
+    isPage: true,
+    isArchive: false
+  };
+</script>
+
+  <title>23 设计生产架构之前的功课：Broker的主从架构原理是什么？ | 学海无涯
+  </title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学海无涯</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">苦作舟</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-renhaizhou">
+
+    <a href="/renhaizhou/jvm" rel="section"><i class="fa fa-fw fa-calendar"></i>renhaizhou</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">23 设计生产架构之前的功课：Broker的主从架构原理是什么？
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/renhaizhou/">RENHAIZHOU</a></li>
+            <li><a href="/renhaizhou/rocketmq/">ROCKETMQ</a></li>
+            <li>ROCKETMQ23</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <p>1、将目光从 NameServer 转移到 Broker</p>
+<p>小猛上次的NameServer技术分享做的非常成功，大家都通过分享学到了更多的东西，尤其对RocketMQ集群运作的原理，有了更进一步的认识</p>
+<p>不过好多人都想对Broker的原理有更多的了解，毕竟最终实现MQ功能的就是Broker。</p>
+<p>因此小猛也将自己研究RocketMQ的目光从NameServer转移到了Broker上，他花了一些时间对Broker的原理做了研究，也积累了一些心得体会，接着他又做了一份PPT，打算给大家再做一次Broker原理的分享。</p>
+<p>这一天，小猛再次把大家都叫到了会议室，开始了他的第三次技术分享：RocketMQ Broker原理分析</p>
+<p>2、Master Broker是如何将消息同步给Slave Broker的？</p>
+<p>先来看第一个问题，我们都知道，为了保证MQ的数据不丢失而且具备一定的高可用性，所以一般都是得将Broker部署成Master-Slave模式的，也就是一个Master Broker对应一个Slave Broker</p>
+<p>然后Master需要在接收到消息之后，将数据同步给Slave，这样一旦Master Broker挂了，还有Slave上有一份数据。</p>
+<p>小猛说着打开了一张图：</p>
+<p><img src="../../images/mq23-1.jpg" alt="m23-1"></p>
+<p>说明：</p>
+<p>Slave Broker也会向所有的NameServer进行注册，图中没有画出！</p>
+<p>Slave Broker也会向所有的NameServer每30s发送心跳，图中没有画出！</p>
+<p>在这里，我们先考虑一个问题，Master Broker是如何将消息同步给Slave Broker的？</p>
+<p>是Master Broker主动推送给Slave Broker？还是Slave Broker发送请求到Master Broker去拉取？</p>
+<p>答案是第二种，RocketMQ的Master-Slave模式采取的是Slave Broker不停的发送请求到Master Broker去拉取消息。</p>
+<p>所以首先要明白这一点，就是RocketMQ自身的Master-Slave模式采取的是Pull模式拉取消息。</p>
+<p>小猛说着又打开了一个图，在图里他标识出来了Slave拉取消息的示意：</p>
+<p><img src="../../images/mq23-2.jpg" alt="m23-2"></p>
+<p>3、RocketMQ 实现读写分离了吗？</p>
+<p>下一个问题，既然Master Broker主要是接收系统的消息写入，然后会同步给Slave Broker，那么其实本质上Slave Broker也应该有一份一样的数据。</p>
+<p>所以这里提出一个疑问，作为消费者的系统在获取消息的时候，是从Master Broker获取的？还是从Slave Broker获取的？</p>
+<p>其实都不是。答案是：有可能从Master Broker获取消息，也有可能从Slave Broker获取消息</p>
+<p>作为消费者的系统在获取消息的时候会先发送请求到Master Broker上去，请求获取一批消息，此时Master Broker是会返回一批消息给消费者系统的</p>
+<p>小猛说着打开了一张图，里面有这个示意。</p>
+<p><img src="../../images/mq23-3.jpg" alt="m23-3"></p>
+<p>然后Master Broker在返回消息给消费者系统的时候，会根据当时Master Broker的负载情况和Slave Broker的同步情况，向消费者系统建议下一次拉取消息的时候是从Master Broker拉取还是从Slave Broker拉取。</p>
+<p>举个例子，要是这个时候Master Broker负载很重，本身要抗10万写并发了，你还要从他这里拉取消息，给他加重负担，那肯定是不合适的。</p>
+<p>所以此时Master Broker就会建议你从Slave Broker去拉取消息。</p>
+<p>或者举另外一个例子，本身这个时候Master Broker上都已经写入了100万条数据了，结果Slave Broke不知道啥原因，同步的特别慢，才同步了96万条数据，落后了整整4万条消息的同步，这个时候你作为消费者系统可能都获取到96万条数据了，那么下次还是只能从Master Broker去拉取消息。</p>
+<p>因为Slave Broker同步太慢了，导致你没法从他那里获取更新的消息了。</p>
+<p>所以这一切都会由Master Broker根据情况来决定，小猛说着打开了一个图，里面有示意。</p>
+<p><img src="../../images/mq23-4.jpg" alt="m23-4"></p>
+<p>所以在写入消息的时候，通常来说肯定是选择Master Broker去写入的</p>
+<p>但是在拉取消息的时候，有可能从Master Broker获取，也可能从Slave Broker去获取，一切都根据当时的情况来定。</p>
+<p>4、如果Slave Broke挂掉了有什么影响？</p>
+<p>下一个问题：如果Slave Broker挂掉了，会对整个系统有影响吗？</p>
+<p>答案是：有一点影响，但是影响不太大</p>
+<p>因为消息写入全部是发送到Master Broker的，然后消息获取也可以走Master Broker，只不过有一些消息获取可能是从Slave Broker去走的。</p>
+<p>所以如果Slave Broker挂了，那么此时无论消息写入还是消息拉取，还是可以继续从Master Broke去走，对整体运行不影响。</p>
+<p>只不过少了Slave Broker，会导致所有读写压力都集中在Master Broker上。</p>
+<p>5、如果Master Broker挂掉了该怎么办？</p>
+<p>现在假设出现了一个故障，Master Broker突然挂了，这样会怎么样？</p>
+<p>这个时候就对消息的写入和获取都有一定的影响了。但是其实本质上而言，Slave Broker也是跟Master Broker一样有一份数据在的，只不过Slave Broker上的数据可能有部分没来得及从Master Broker同步。</p>
+<p>但是此时RocketMQ可以实现直接自动将Slave Broker切换为Master Broker吗？</p>
+<p>答案是：不能</p>
+<p>在RocketMQ 4.5版本之前，都是用Slave Broker同步数据，尽量保证数据不丢失，但是一旦Master故障了，Slave是没法自动切换成Master的。</p>
+<p>所以在这种情况下，如果Master Broker宕机了，这时就得手动做一些运维操作，把Slave Broker重新修改一些配置，重启机器给调整为Master Broker，这是有点麻烦的，而且会导致中间一段时间不可用。</p>
+<p>小猛说着打开了一张图，在图里他标识出来了Master故障情况下的手工运维的情况。</p>
+<p><img src="../../images/mq23-5.jpg" alt="m23-5"></p>
+<p>所以这种Master-Slave模式不是彻底的高可用模式，他没法实现自动把Slave切换为Master</p>
+<p>6、基于Dledger实现RocketMQ高可用自动切换</p>
+<p>在RocketMQ 4.5之后，这种情况得到了改变，因为RocketMQ支持了一种新的机制，叫做Dledger</p>
+<p>本身这个东西是基于Raft协议实现的一个机制，实现原理和算法思想是有点复杂的，我们在这里先不细说。</p>
+<p>因为。。。小猛说到这里，挠了挠头，有点不好意思的说到，我也是最近明哥给了任务之后才开始研究RocketMQ的，一些东西还没研究那么深。不过等我们后面一边在实践RocketMQ技术的时候，我会一边继续深入研究的，以后如果有机会再给大家再做技术分享，专门分析这个Dledger底层的原理。</p>
+<p>今天我先讲讲基于Dledger可以实现RocketMQ的高可用自动切换的效果。</p>
+<p>简单来说，把Dledger融入RocketMQ之后，就可以让一个Master Broker对应多个Slave Broker，也就是说一份数据可以有多份副本，比如一个Master Broker对应两个Slave Broker。</p>
+<p>然后依然会在Master和Slave之间进行数据同步，小猛说着打开了一张图。</p>
+<p><img src="../../images/mq23-6.jpg" alt="m23-6"></p>
+<p>此时一旦Master Broker宕机了，就可以在多个副本，也就是多个Slave中，通过Dledger技术和Raft协议算法进行leader选举，直接将一个Slave Broker选举为新的Master Broker，然后这个新的Master Broker就可以对外提供服务了。</p>
+<p>整个过程也许只要10秒或者几十秒的时间就可以完成，这样的话，就可以实现Master Broker挂掉之后，自动从多个Slave Broker中选举出来一个新的Master Broker，继续对外服务，一切都是自动的。</p>
+<p>小猛说着就打开了另外一张图，在图里就有Slave自动选举，以及Slave切换为新的Master的过程。</p>
+<p><img src="../../images/mq23-7.jpg" alt="m23-7"></p>
+<p>所以。。。说到这里，小猛对下面一直沉默听分享的明哥说，我觉得我们在设计RocketMQ生产部署架构的时候，完全可以采用基于Dledger的部署方式，这样可以让RocketMQ做到自动故障切换了！</p>
+<p>明哥听到这里，对小猛非常的赞赏。小猛非常靠谱，把一些关键的问题都梳理的很清晰，包括Broker主从同步原理、故障时的自动切换缺点、最新版本的Dledger自动切换改进，这些问题都已经考虑到了。</p>
+<p>大家听到这里，也是一阵热烈的掌声，因为随着分享的推进，每个人都觉得RocketMQ这个技术到落地实践的距离更近了。</p>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/renhaizhou/">RENHAIZHOU</a></li>
+            <li><a href="/renhaizhou/rocketmq/">ROCKETMQ</a></li>
+            <li>ROCKETMQ23</li>
+          
+  </ul>
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="shadow"
+      src="/images/jinbao.png">
+  <p class="site-author-name" itemprop="name">shadow</p>
+  <div class="site-description" itemprop="description">流水不腐户枢不蠹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.baidu.com/" title="http:&#x2F;&#x2F;www.baidu.com" rel="noopener" target="_blank">百度</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shadow</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+</body>
+</html>
