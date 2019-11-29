@@ -57,7 +57,7 @@
 <meta property="og:site_name" content="学海无涯">
 <meta property="og:description" content="git命令  在现有目录中初始化仓库 git init 如果你是在一个已经存在文件的文件夹（而不是空文件夹）中初始化 Git 仓库来进行版本控制的话，你应该开始跟踪这些文件并提交。 你可通过 git add 命令来实现对指定文件的跟踪，然后执行 git commit 提交 Git 克隆的是该 Git 仓库服务器上的几乎所有数据，而不是仅仅复制完成你的工作所需要文件。 当你执行 git clone">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-29T08:13:02.824Z">
+<meta property="og:updated_time" content="2019-11-29T10:06:28.686Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://www.abce.xyz/git/git01/">
@@ -223,7 +223,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-29 14:01:07 / 修改时间：16:13:02" itemprop="dateCreated datePublished" datetime="2019-11-29T14:01:07+08:00">2019-11-29</time>
+              <time title="创建时间：2019-11-29 14:01:07 / 修改时间：18:06:28" itemprop="dateCreated datePublished" datetime="2019-11-29T14:01:07+08:00">2019-11-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -295,9 +295,157 @@
 <li>删除标签 要删除掉你本地仓库上的标签，可以使用命令 <code>git tag -d &lt;tagname&gt;</code> 应该注意的是上述命令并不会从任何远程仓库中移除这个标签，你必须使用 <code>git push &lt;remote&gt; :refs/tags/&lt;tagname&gt;</code> 来更新你的远程仓库：<code>git push origin :refs/tags/v1.4-lw</code></li>
 <li>检出标签 如果你想查看某个标签所指向的文件版本，可以使用 git checkout 命令 <code>git checkout 2.0.0</code></li>
 </ol>
-<p><strong>Table 1. git log –pretty=format 常用的选项</strong><br>| 选项  |                    说明                     |<br>| :—: | :—————————————–: |<br>|  %H   |      提交对象（commit）的完整哈希字串       |<br>|  %h   |           提交对象的简短哈希字串            |<br>|  %T   |        树对象（tree）的完整哈希字串         |<br>|  %t   |            树对象的简短哈希字串             |<br>|  %P   |       父对象（parent）的完整哈希字串        |<br>|  %p   |            父对象的简短哈希字串             |<br>|  %an  |            作者（author）的名字             |<br>|  %ae  |             作者的电子邮件地址              |<br>|  %ad  | 作者修订日期（可以用 –date= 选项定制格式） |<br>|  %ar  |     作者修订日期，按多久以前的方式显示      |<br>|  %cn  |          提交者（committer）的名字          |<br>|  %ce  |            提交者的电子邮件地址             |<br>|  %cd  |                  提交日期                   |<br>|  %cr  |       提交日期，按多久以前的方式显示        |<br>|  %s   |                  提交说明                   |</p>
-<p><strong>Table 2. git log 的常用选项</strong><br>|      选项       |                                                 说明                                                  |<br>| :————-: | :—————————————————————————————————: |<br>|       -p        |                                  按补丁格式显示每个更新之间的差异。                                   |<br>|     –stat      |                                   显示每次更新的文件修改统计信息。                                    |<br>|   –shortstat   |                             只显示 –stat 中最后的行数修改添加移除统计。                              |<br>|   –name-only   |                                 仅在提交信息后显示已修改的文件清单。                                  |<br>|  –name-status  |                                   显示新增、修改、删除的文件清单。                                    |<br>| –abbrev-commit |                           仅显示 SHA-1 的前几个字符，而非所有的 40 个字符。                           |<br>| –relative-date |                            使用较短的相对时间显示（比如，“2 weeks ago”）。                            |<br>|     –graph     |                                  显示 ASCII 图形表示的分支合并历史。                                  |<br>|     –graph     |                                  显示 ASCII 图形表示的分支合并历史。                                  |<br>|    –pretty     | 使用其他格式显示历史提交信息。可用的选项包括 oneline，short，full，fuller 和 format（后跟指定格式）。 |</p>
-<p><strong>Table 3. 限制 git log 输出的选项</strong><br>|       选项       |                说明                |<br>| :————–: | :——————————–: |<br>|       -(n)       |       仅显示最近的 n 条提交        |<br>| –since, –after |     仅显示指定时间之后的提交。     |<br>|     –author     |     仅显示指定作者相关的提交。     |<br>|   –committer    |    仅显示指定提交者相关的提交。    |<br>|      –grep      |      仅显示含指定关键字的提交      |<br>|        -S        | 仅显示添加或移除了某个关键字的提交 |</p>
+<p><strong>Table 1. git log –pretty=format 常用的选项</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">%H</td>
+<td align="center">提交对象（commit）的完整哈希字串</td>
+</tr>
+<tr>
+<td align="center">%h</td>
+<td align="center">提交对象的简短哈希字串</td>
+</tr>
+<tr>
+<td align="center">%T</td>
+<td align="center">树对象（tree）的完整哈希字串</td>
+</tr>
+<tr>
+<td align="center">%t</td>
+<td align="center">树对象的简短哈希字串</td>
+</tr>
+<tr>
+<td align="center">%P</td>
+<td align="center">父对象（parent）的完整哈希字串</td>
+</tr>
+<tr>
+<td align="center">%p</td>
+<td align="center">父对象的简短哈希字串</td>
+</tr>
+<tr>
+<td align="center">%an</td>
+<td align="center">作者（author）的名字</td>
+</tr>
+<tr>
+<td align="center">%ae</td>
+<td align="center">作者的电子邮件地址</td>
+</tr>
+<tr>
+<td align="center">%ad</td>
+<td align="center">作者修订日期（可以用 –date= 选项定制格式）</td>
+</tr>
+<tr>
+<td align="center">%ar</td>
+<td align="center">作者修订日期，按多久以前的方式显示</td>
+</tr>
+<tr>
+<td align="center">%cn</td>
+<td align="center">提交者（committer）的名字</td>
+</tr>
+<tr>
+<td align="center">%ce</td>
+<td align="center">提交者的电子邮件地址</td>
+</tr>
+<tr>
+<td align="center">%cd</td>
+<td align="center">提交日期</td>
+</tr>
+<tr>
+<td align="center">%cr</td>
+<td align="center">提交日期，按多久以前的方式显示</td>
+</tr>
+<tr>
+<td align="center">%s</td>
+<td align="center">提交说明</td>
+</tr>
+</tbody></table>
+<p><strong>Table 2. git log 的常用选项</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-p</td>
+<td align="center">按补丁格式显示每个更新之间的差异。</td>
+</tr>
+<tr>
+<td align="center">–stat</td>
+<td align="center">显示每次更新的文件修改统计信息。</td>
+</tr>
+<tr>
+<td align="center">–shortstat</td>
+<td align="center">只显示 –stat 中最后的行数修改添加移除统计。</td>
+</tr>
+<tr>
+<td align="center">–name-only</td>
+<td align="center">仅在提交信息后显示已修改的文件清单。</td>
+</tr>
+<tr>
+<td align="center">–name-status</td>
+<td align="center">显示新增、修改、删除的文件清单。</td>
+</tr>
+<tr>
+<td align="center">–abbrev-commit</td>
+<td align="center">仅显示 SHA-1 的前几个字符，而非所有的 40 个字符。</td>
+</tr>
+<tr>
+<td align="center">–relative-date</td>
+<td align="center">使用较短的相对时间显示（比如，“2 weeks ago”）。</td>
+</tr>
+<tr>
+<td align="center">–graph</td>
+<td align="center">显示 ASCII 图形表示的分支合并历史。</td>
+</tr>
+<tr>
+<td align="center">–graph</td>
+<td align="center">显示 ASCII 图形表示的分支合并历史。</td>
+</tr>
+<tr>
+<td align="center">–pretty</td>
+<td align="center">使用其他格式显示历史提交信息。可用的选项包括 oneline，short，full，fuller 和 format（后跟指定格式）。</td>
+</tr>
+</tbody></table>
+<p><strong>Table 3. 限制 git log 输出的选项</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-(n)</td>
+<td align="center">仅显示最近的 n 条提交</td>
+</tr>
+<tr>
+<td align="center">–since, –after</td>
+<td align="center">仅显示指定时间之后的提交。</td>
+</tr>
+<tr>
+<td align="center">–author</td>
+<td align="center">仅显示指定作者相关的提交。</td>
+</tr>
+<tr>
+<td align="center">–committer</td>
+<td align="center">仅显示指定提交者相关的提交。</td>
+</tr>
+<tr>
+<td align="center">–grep</td>
+<td align="center">仅显示含指定关键字的提交</td>
+</tr>
+<tr>
+<td align="center">-S</td>
+<td align="center">仅显示添加或移除了某个关键字的提交</td>
+</tr>
+</tbody></table>
 
     </div>
 
