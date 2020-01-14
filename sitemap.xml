@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.abce.xyz/design-pattern/factory/</loc>
+    
+    <lastmod>2020-01-14T09:37:15.717Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.abce.xyz/graph-xinzhili/</loc>
     
     <lastmod>2020-01-14T07:56:55.754Z</lastmod>
@@ -121,21 +128,14 @@
   </url>
   
   <url>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq04.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.867Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq10.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.867Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq05.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.867Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq14.html</loc>
     
     <lastmod>2019-11-28T05:56:05.867Z</lastmod>
     
@@ -149,7 +149,14 @@
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq04.html</loc>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq14.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq05.html</loc>
     
     <lastmod>2019-11-28T05:56:05.867Z</lastmod>
     
@@ -177,21 +184,14 @@
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq03.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq09.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq01.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq03.html</loc>
     
     <lastmod>2019-11-28T05:56:05.866Z</lastmod>
     
@@ -205,14 +205,21 @@
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq11.html</loc>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq19.html</loc>
     
     <lastmod>2019-11-28T05:56:05.866Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq19.html</loc>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq09.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq11.html</loc>
     
     <lastmod>2019-11-28T05:56:05.866Z</lastmod>
     
@@ -226,7 +233,14 @@
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq16.html</loc>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq12.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq06.html</loc>
     
     <lastmod>2019-11-28T05:56:05.865Z</lastmod>
     
@@ -240,21 +254,7 @@
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq12.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.865Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.abce.xyz/renhaizhou/jvm/jvm002.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.865Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.abce.xyz/renhaizhou/jvm/jvm001.html</loc>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq16.html</loc>
     
     <lastmod>2019-11-28T05:56:05.865Z</lastmod>
     
@@ -268,7 +268,14 @@
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq06.html</loc>
+    <loc>https://www.abce.xyz/renhaizhou/jvm/jvm001.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.abce.xyz/renhaizhou/jvm/jvm002.html</loc>
     
     <lastmod>2019-11-28T05:56:05.865Z</lastmod>
     
