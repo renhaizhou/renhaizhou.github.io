@@ -57,7 +57,7 @@
 <meta property="og:site_name" content="学海无涯">
 <meta property="og:description" content="graph TD     机构 --- 科室     机构管理员 --- 机构     医生 --- 机构     医生 --- 科室     医生 --- 患者     护士 --- 机构     护士 --- 科室     护士 --- 患者     患者 --- 药 graph TD     患者X --- 1A上级医生     患者X --- 3B下级医生     患者Y --- 4B上级">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-14T05:23:09.732Z">
+<meta property="og:updated_time" content="2020-01-14T07:56:55.754Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://www.abce.xyz/graph-xinzhili/">
@@ -223,7 +223,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-14 11:54:55 / 修改时间：13:23:09" itemprop="dateCreated datePublished" datetime="2020-01-14T11:54:55+08:00">2020-01-14</time>
+              <time title="创建时间：2020-01-14 11:54:55 / 修改时间：15:56:55" itemprop="dateCreated datePublished" datetime="2020-01-14T11:54:55+08:00">2020-01-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,11 +282,35 @@
     机构4 --- 护士R</pre>
 
 <pre class="mermaid">graph BT
-    A --> B
-    A --> C
-    D --> A
-    E --> A
-    F --> A</pre>
+    subgraph baseserver
+    user-service[user-service:用户服务]
+    business-service[business-service:订单服务]
+    medical-service[medical-service:医学逻辑服务]
+    medicine-service[medicine-service:药库服务]
+    chat-service[chat-service:聊天服务]
+    dpc-service[dpc-service:医患服务]
+    mas-service[mas-service:药盒服务]
+    notify-service[notify-service:推送服务]
+    workorder-server[workorder-service:工单服务]
+    end  
+    subgraph apiserver
+    patient-api-service[patient-api-service:患者端api]
+    doctor-api-service[doctor-api-service:医生端api]
+    user-service-->doctor-api-service
+    business-service-->doctor-api-service
+    medical-service-->doctor-api-service
+    medicine-service-->doctor-api-service
+    chat-service-->doctor-api-service
+    dpc-service-->doctor-api-service
+    mas-service-->doctor-api-service
+    notify-service-->doctor-api-service
+    workorder-server-->doctor-api-service
+    end
+    subgraph gatekeeperserver
+    gatekeeper-server[gatekeeper-server:网关服务]
+    patient-api-service-->gatekeeper-server
+    doctor-api-service-->gatekeeper-server
+    end</pre>
     </div>
 
     
