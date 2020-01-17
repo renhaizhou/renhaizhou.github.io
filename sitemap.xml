@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.abce.xyz/design-pattern/flyweight/</loc>
+    
+    <lastmod>2020-01-17T05:52:38.730Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.abce.xyz/graph-xinzhili/</loc>
+    
+    <lastmod>2020-01-16T10:29:01.905Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.abce.xyz/design-pattern/adapter/</loc>
     
     <lastmod>2020-01-16T08:05:56.769Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>https://www.abce.xyz/design-pattern/factory/</loc>
     
     <lastmod>2020-01-16T05:47:30.457Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.abce.xyz/graph-xinzhili/</loc>
-    
-    <lastmod>2020-01-14T07:56:55.754Z</lastmod>
     
   </url>
   
@@ -135,6 +142,13 @@
   </url>
   
   <url>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq15.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.867Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq05.html</loc>
     
     <lastmod>2019-11-28T05:56:05.867Z</lastmod>
@@ -156,13 +170,6 @@
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq15.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.867Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq04.html</loc>
     
     <lastmod>2019-11-28T05:56:05.867Z</lastmod>
@@ -177,28 +184,14 @@
   </url>
   
   <url>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq13.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq08.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq01.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq09.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq11.html</loc>
     
     <lastmod>2019-11-28T05:56:05.866Z</lastmod>
     
@@ -212,7 +205,7 @@
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq03.html</loc>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq09.html</loc>
     
     <lastmod>2019-11-28T05:56:05.866Z</lastmod>
     
@@ -226,14 +219,35 @@
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq13.html</loc>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq03.html</loc>
     
     <lastmod>2019-11-28T05:56:05.866Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq06.html</loc>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq11.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq01.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq17.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq12.html</loc>
     
     <lastmod>2019-11-28T05:56:05.865Z</lastmod>
     
@@ -254,13 +268,6 @@
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq12.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.865Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.abce.xyz/renhaizhou/jvm/jvm002.html</loc>
     
     <lastmod>2019-11-28T05:56:05.865Z</lastmod>
@@ -275,14 +282,14 @@
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq07.html</loc>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq06.html</loc>
     
     <lastmod>2019-11-28T05:56:05.865Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq17.html</loc>
+    <loc>https://www.abce.xyz/renhaizhou/rocketmq/rocketmq07.html</loc>
     
     <lastmod>2019-11-28T05:56:05.865Z</lastmod>
     

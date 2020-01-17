@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="学海无涯" type="application/atom+xml">
+  <meta name="google-site-verification" content="true">
+  <meta name="baidu-site-verification" content="smDoDjalmL">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.abce.xyz').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由于享元模式要求能够共享的对象必须是细粒度对象，因此它又称为轻量级模式，它是一种对象结构型模式。享元模式结构较为复杂，一般结合工厂模式一起使用。 角色Flyweight（抽象享元类）：通常是一个接口或抽象类，在抽象享元类">
+<meta name="keywords" content="designpattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="享元设计模式">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;design-pattern&#x2F;flyweight&#x2F;index.html">
+<meta property="og:site_name" content="学海无涯">
+<meta property="og:description" content="享元模式享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由于享元模式要求能够共享的对象必须是细粒度对象，因此它又称为轻量级模式，它是一种对象结构型模式。享元模式结构较为复杂，一般结合工厂模式一起使用。 角色Flyweight（抽象享元类）：通常是一个接口或抽象类，在抽象享元类">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-17T05:52:38.730Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.abce.xyz/design-pattern/flyweight/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>享元设计模式 | 学海无涯</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学海无涯</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">苦作舟</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/baidusitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.abce.xyz/design-pattern/flyweight/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/jinbao.png">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="流水不腐户枢不蠹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          享元设计模式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-17 13:32:32 / 修改时间：13:52:38" itemprop="dateCreated datePublished" datetime="2020-01-17T13:32:32+08:00">2020-01-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><p>享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由于享元模式要求能够共享的对象必须是细粒度对象，因此它又称为轻量级模式，它是一种对象结构型模式。享元模式结构较为复杂，一般结合工厂模式一起使用。</p>
+<h2 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h2><p>Flyweight（抽象享元类）：通常是一个接口或抽象类，在抽象享元类中声明了具体享元类公共的方法，这些方法可以向外界提供享元对象的内部数据（内部状态），同时也可以通过这些方法来设置外部数据（外部状态）。</p>
+<p>ConcreteFlyweight（具体享元类）：它实现了抽象享元类，其实例称为享元对象；在具体享元类中为内部状态提供了存储空间。通常我们可以结合单例模式来设计具体享元类，为每一个具体享元类提供唯一的享元对象。</p>
+<p>UnsharedConcreteFlyweight（非共享具体享元类）：并不是所有的抽象享元类的子类都需要被共享，不能被共享的子类可设计为非共享具体享元类；当需要一个非共享具体享元类的对象时可以直接通过实例化创建。</p>
+<p>FlyweightFactory（享元工厂类）：享元工厂类用于创建并管理享元对象，它针对抽象享元类编程，将各种类型的具体享元对象存储在一个享元池中，享元池一般设计为一个存储“键值对”的集合（也可以是其他类型的集合），可以结合工厂模式进行设计；当用户请求一个具体享元对象时，享元工厂提供一个存储在享元池中已创建的实例或者创建一个新的实例（如果不存在的话），返回新创建的实例并将其存储在享元池中。</p>
+<blockquote>
+<p>单纯享元模式：在单纯享元模式中，所有的具体享元类都是可以共享的，不存在非共享具体享元类。<br>复合享元模式：将一些单纯享元对象使用组合模式加以组合，还可以形成复合享元对象，这样的复合享元对象本身不能共享，但是它们可以分解成单纯享元对象，而后者则可以共享</p>
+</blockquote>
+<p>在享元模式中引入了享元工厂类，享元工厂类的作用在于提供一个用于存储享元对象的享元池，当用户需要对象时，首先从享元池中获取，如果享元池中不存在，则创建一个新的享元对象返回给用户，并在享元池中保存该新增对象。</p>
+<p>典型的享元工厂类的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlyweightFactory</span> </span>&#123;</span><br><span class="line">    <span class="comment">//定义一个HashMap用于存储享元对象，实现享元池</span></span><br><span class="line">    <span class="keyword">private</span> HashMap flyweights = newHashMap();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Flyweight <span class="title">getFlyweight</span><span class="params">(String key)</span></span>&#123;</span><br><span class="line">        <span class="comment">//如果对象存在，则直接从享元池获取</span></span><br><span class="line">        <span class="keyword">if</span>(flyweights.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span>(Flyweight)flyweights.get(key);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果对象不存在，先创建一个新的对象添加到享元池中，然后返回</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            Flyweight fw = newConcreteFlyweight();</span><br><span class="line">            flyweights.put(key,fw);</span><br><span class="line">            <span class="keyword">return</span> fw;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>享元类的设计是享元模式的要点之一，在享元类中要将内部状态和外部状态分开处理，通常将内部状态作为享元类的成员变量，而外部状态通过注入的方式添加到享元类中。</p>
+<p>典型的享元类代码如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flyweight</span> </span>&#123;</span><br><span class="line">    <span class="comment">//内部状态intrinsicState作为成员变量，同一个享元对象其内部状态是一致的</span></span><br><span class="line">    <span class="keyword">private</span> String intrinsicState;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Flyweight</span><span class="params">(String intrinsicState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.intrinsicState=intrinsicState;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//外部状态extrinsicState在使用时由外部设置，不保存在享元对象中，即使是同一个对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">(String extrinsicState)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//......</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>一般网盘对于相同的文件只保留一份，譬如有一个场景：当我们上传一部别人上传过的电影，会发现很快就上传完成了，实际上不是真的上传，而是引用别人曾经上传过的那部电影，这样一可以提高我们的用户体验，二可以节约存储空间避免资源浪费</p>
+<p>首先定义一个工具类 HashUtil，计算内容的hash值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashUtil</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">computeHashId</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        String cacheKey;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">final</span> MessageDigest mDigest = MessageDigest.getInstance(<span class="string">"MD5"</span>);</span><br><span class="line">            mDigest.update(key.getBytes());</span><br><span class="line">            cacheKey = bytesToHexString(mDigest.digest());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchAlgorithmException e) &#123;</span><br><span class="line">            cacheKey = String.valueOf(key.hashCode());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cacheKey;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">bytesToHexString</span><span class="params">(<span class="keyword">byte</span>[] bytes)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// http://stackoverflow.com/questions/332079</span></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; bytes.length; i++) &#123;</span><br><span class="line">            String hex = Integer.toHexString(<span class="number">0xFF</span> &amp; bytes[i]);</span><br><span class="line">            <span class="keyword">if</span> (hex.length() == <span class="number">1</span>) &#123;</span><br><span class="line">                sb.append(<span class="string">'0'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            sb.append(hex);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>资源类 Resource，相当于享元类的内部状态</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Resource</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String hashId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> byteSize;</span><br><span class="line">    <span class="keyword">private</span> String content;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Resource</span><span class="params">(String content)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.content = content;</span><br><span class="line">        <span class="keyword">this</span>.hashId = HashUtil.computeHashId(content);   <span class="comment">// 文件的hash值</span></span><br><span class="line">        <span class="keyword">this</span>.byteSize = content.length();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ....getter、setter、toString...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用户的文件类 File，其中的 resource 为内部状态，owner和filename为外部状态</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span> <span class="title">File</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> String owner;</span><br><span class="line">    <span class="keyword">protected</span> String filename;</span><br><span class="line">    <span class="keyword">protected</span> Resource resource;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">File</span><span class="params">(String owner, String filename)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.owner = owner;</span><br><span class="line">        <span class="keyword">this</span>.filename = filename;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">fileMeta</span><span class="params">()</span> </span>&#123;<span class="comment">// 文件存储到文件系统中需要的key</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.owner == <span class="keyword">null</span> || filename == <span class="keyword">null</span> || resource == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"未知文件"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> owner + <span class="string">"-"</span> + filename + resource.getHashId();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> fileMeta() + <span class="string">", 资源内容："</span> + getResource().toString();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ....getter、setter、toString...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>网盘类 PanServer，该类使用单例模式（在其他例子中该类还使用工厂方法模式），在upload方法中根据所上传的文件的hashId判断是否已经有相同内容的文件存在，存在则引用，不存在才上传该文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PanServer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> PanServer panServer = <span class="keyword">new</span> PanServer(); <span class="comment">// 单例模式</span></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, Resource&gt; resourceSystem; <span class="comment">// 资源系统，相当于享元池</span></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, File&gt; fileSystem;   <span class="comment">// 文件系统</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PanServer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        resourceSystem = <span class="keyword">new</span> HashMap&lt;String, Resource&gt;();</span><br><span class="line">        fileSystem = <span class="keyword">new</span> HashMap&lt;String, File&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> PanServer <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> panServer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">upload</span><span class="params">(String username, LocalFile localFile)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> startTime = System.currentTimeMillis();</span><br><span class="line">        File file = <span class="keyword">new</span> File(username, localFile.getFilename());</span><br><span class="line">        String hashId = HashUtil.computeHashId(localFile.getContent());     <span class="comment">// 计算文件hash值</span></span><br><span class="line">        System.out.println(username + <span class="string">" 上传文件"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (resourceSystem.containsKey(hashId)) &#123;</span><br><span class="line">                System.out.println(String.format(<span class="string">"检测到内容相同的文件《%s》，为了节约空间，重用文件"</span>, localFile.getFilename()));</span><br><span class="line">                file.setResource(<span class="keyword">this</span>.resourceSystem.get(hashId));</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.println(String.format(<span class="string">"文件《%s》上传中...."</span>, localFile.getFilename()));</span><br><span class="line">                Resource newResource = <span class="keyword">new</span> Resource(localFile.getContent());</span><br><span class="line">                file.setResource(newResource);</span><br><span class="line">                <span class="keyword">this</span>.resourceSystem.put(newResource.getHashId(), newResource); <span class="comment">// 将资源对象存储到资源池中</span></span><br><span class="line">                Thread.sleep(<span class="number">3000</span>);     <span class="comment">// 上传文件需要耗费一定时间</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        fileSystem.put(file.fileMeta(), file);</span><br><span class="line">        <span class="keyword">long</span> endTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(String.format(<span class="string">"文件上传完成，共耗费 %s 毫秒\n"</span>, endTime - startTime));</span><br><span class="line">        <span class="keyword">return</span> file.fileMeta();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">(String fileKey)</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">this</span>.fileSystem.get(fileKey);</span><br><span class="line">        <span class="keyword">if</span> (file == <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"文件不存在"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"下载文件："</span> + file.display());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 转为 LocalFile 返回</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>客户端和本地文件类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LocalFile</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String filename;</span><br><span class="line">    <span class="keyword">private</span> String content;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LocalFile</span><span class="params">(String filename, String content)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.filename = filename;</span><br><span class="line">        <span class="keyword">this</span>.content = content;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...省略...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        PanServer panServer = PanServer.getInstance();</span><br><span class="line"></span><br><span class="line">        String fileContent = <span class="string">"这是一个pdf文件《设计模式：从入门到放弃》"</span>;</span><br><span class="line">        LocalFile localFile1 = <span class="keyword">new</span> LocalFile(<span class="string">"小明的设计模式.pdf"</span>, fileContent);</span><br><span class="line">        String fikeKey1 = panServer.upload(<span class="string">"小明"</span>, localFile1);</span><br><span class="line"></span><br><span class="line">        LocalFile localFile2 = <span class="keyword">new</span> LocalFile(<span class="string">"大明的设计模式.pdf"</span>, fileContent);</span><br><span class="line">        String fikeKey2 = panServer.upload(<span class="string">"大明"</span>, localFile2);</span><br><span class="line"></span><br><span class="line">        panServer.download(fikeKey1);</span><br><span class="line">        panServer.download(fikeKey2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">小明 上传文件</span><br><span class="line">文件《小明的设计模式.pdf》上传中....</span><br><span class="line">文件上传完成，共耗费 <span class="number">3077</span> 毫秒</span><br><span class="line"></span><br><span class="line">大明 上传文件</span><br><span class="line">检测到内容相同的文件《大明的设计模式.pdf》，为了节约空间，重用文件</span><br><span class="line">文件上传完成，共耗费 <span class="number">100</span> 毫秒</span><br><span class="line"></span><br><span class="line">下载文件：小明-小明的设计模式.pdf-f73ea50f00f87b42d1f2e4eb6b71d383, 资源内容：Resource &#123;hashId=<span class="string">'f73ea50f00f87b42d1f2e4eb6b71d383'</span>, byteSize=<span class="number">22</span>, content=<span class="string">'这是一个pdf文件《设计模式：从入门到放弃》'</span>&#125;</span><br><span class="line">下载文件：大明-大明的设计模式.pdf-f73ea50f00f87b42d1f2e4eb6b71d383, 资源内容：Resource &#123;hashId</span><br></pre></td></tr></table></figure>
+<p>小明和大明各自上传了一份文件，文件的内容（内部状态）是相同的，但是名称（外部状态）不同，由于内部状态相同没有必要重复存储，所以内部状态之拷贝了一份</p>
+<h1 id="享元模式总结"><a href="#享元模式总结" class="headerlink" title="享元模式总结"></a>享元模式总结</h1><h2 id="享元模式的主要优点如下："><a href="#享元模式的主要优点如下：" class="headerlink" title="享元模式的主要优点如下："></a>享元模式的主要优点如下：</h2><ul>
+<li>可以极大减少内存中对象的数量，使得相同或相似对象在内存中只保存一份，从而可以节约系统资源，提高系统性能。</li>
+<li>享元模式的外部状态相对独立，而且不会影响其内部状态，从而使得享元对象可以在不同的环境中被共享。</li>
+</ul>
+<h2 id="享元模式的主要缺点如下："><a href="#享元模式的主要缺点如下：" class="headerlink" title="享元模式的主要缺点如下："></a>享元模式的主要缺点如下：</h2><ul>
+<li>享元模式使得系统变得复杂，需要分离出内部状态和外部状态，这使得程序的逻辑复杂化。</li>
+<li>为了使对象可以共享，享元模式需要将享元对象的部分状态外部化，而读取外部状态将使得运行时间变长。</li>
+</ul>
+<h2 id="适用场景："><a href="#适用场景：" class="headerlink" title="适用场景："></a>适用场景：</h2><ul>
+<li>一个系统有大量相同或者相似的对象，造成内存的大量耗费。</li>
+<li>对象的大部分状态都可以外部化，可以将这些外部状态传入对象中。</li>
+<li>在使用享元模式时需要维护一个存储享元对象的享元池，而这需要耗费一定的系统资源，因此，应当在需要多次重复使用享元对象时才值得使用享元模式。</li>
+</ul>
+<h1 id="源码分析享元模式的典型应用"><a href="#源码分析享元模式的典型应用" class="headerlink" title="源码分析享元模式的典型应用"></a>源码分析享元模式的典型应用</h1><h2 id="String中的享元模式"><a href="#String中的享元模式" class="headerlink" title="String中的享元模式"></a>String中的享元模式</h2><p>Java中将String类定义为final（不可改变的），JVM中字符串一般保存在字符串常量池中，java会确保一个字符串在常量池中只有一个拷贝，这个字符串常量池在JDK6.0以前是位于常量池中，位于永久代，而在JDK7.0中，JVM将其从永久代拿出来放置于堆中。</p>
+<p>我们做一个测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s1 = <span class="string">"hello"</span>;</span><br><span class="line">        String s2 = <span class="string">"hello"</span>;</span><br><span class="line">        String s3 = <span class="string">"he"</span> + <span class="string">"llo"</span>;</span><br><span class="line">        String s4 = <span class="string">"hel"</span> + <span class="keyword">new</span> String(<span class="string">"lo"</span>);</span><br><span class="line">        String s5 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">        String s6 = s5.intern();</span><br><span class="line">        String s7 = <span class="string">"h"</span>;</span><br><span class="line">        String s8 = <span class="string">"ello"</span>;</span><br><span class="line">        String s9 = s7 + s8;</span><br><span class="line">        System.out.println(s1==s2);<span class="comment">//true</span></span><br><span class="line">        System.out.println(s1==s3);<span class="comment">//true</span></span><br><span class="line">        System.out.println(s1==s4);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s1==s9);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s4==s5);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s1==s6);<span class="comment">//true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>String类的final修饰的，以字面量的形式创建String变量时，jvm会在编译期间就把该字面量hello放到字符串常量池中，由Java程序启动的时候就已经加载到内存中了。这个字符串常量池的特点就是有且只有一份相同的字面量，如果有其它相同的字面量，jvm则返回这个字面量的引用，如果没有相同的字面量，则在字符串常量池创建这个字面量并返回它的引用。</p>
+<p>由于s2指向的字面量hello在常量池中已经存在了（s1先于s2），于是jvm就返回这个字面量绑定的引用，所以s1==s2。</p>
+<p>s3中字面量的拼接其实就是hello，jvm在编译期间就已经对它进行优化，所以s1和s3也是相等的。</p>
+<p>s4中的new String(“lo”)生成了两个对象，lo，new String(“lo”)，lo存在字符串常量池，new String(“lo”)存在堆中，String s4 = “hel” + new String(“lo”)实质上是两个对象的相加，编译器不会进行优化，相加的结果存在堆中，而s1存在字符串常量池中，当然不相等。s1==s9的原理一样。</p>
+<p>s4==s5两个相加的结果都在堆中，不用说，肯定不相等。</p>
+<p>s1==s6中，s5.intern()方法能使一个位于堆中的字符串在运行期间动态地加入到字符串常量池中（字符串常量池的内容是程序启动的时候就已经加载好了），如果字符串常量池中有该对象对应的字面量，则返回该字面量在字符串常量池中的引用，否则，创建复制一份该字面量到字符串常量池并返回它的引用。因此s1==s6输出true。</p>
+<h2 id="Integer-中的享元模式"><a href="#Integer-中的享元模式" class="headerlink" title="Integer 中的享元模式"></a>Integer 中的享元模式</h2><p>使用例子如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Integer i1 = <span class="number">12</span> ;</span><br><span class="line">        Integer i2 = <span class="number">12</span> ;</span><br><span class="line">        System.out.println(i1 == i2);</span><br><span class="line"></span><br><span class="line">        Integer b1 = <span class="number">128</span> ;</span><br><span class="line">        Integer b2 = <span class="number">128</span> ;</span><br><span class="line">        System.out.println(b1 == b2);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>输出是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+<p>为什么第一个是true，第二个是false？<br>反编译后可以发现 Integer b1 = 128; 实际变成了 Integer b1 = Integer.valueOf(128);，所以我们来看 Integer 中的 valueOf 方法的实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Integer</span> <span class="keyword">extends</span> <span class="title">Number</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> var0)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> var0 &gt;= -<span class="number">128</span> &amp;&amp; var0 &lt;= Integer.IntegerCache.high ? Integer.IntegerCache.cache[var0 + <span class="number">128</span>] : <span class="keyword">new</span> Integer(var0);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...省略...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>IntegerCache 缓存类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//是Integer内部的私有静态类,里面的cache[]就是jdk事先缓存的Integer。</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntegerCache</span> </span>&#123;</span><br><span class="line">       <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> low = -<span class="number">128</span>;<span class="comment">//区间的最低值</span></span><br><span class="line">       <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> high;<span class="comment">//区间的最高值，后面默认赋值为127，也可以用户手动设置虚拟机参数</span></span><br><span class="line">       <span class="keyword">static</span> <span class="keyword">final</span> Integer cache[]; <span class="comment">//缓存数组</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">static</span> &#123;</span><br><span class="line">           <span class="comment">// high value may be configured by property</span></span><br><span class="line">           <span class="keyword">int</span> h = <span class="number">127</span>;</span><br><span class="line">           <span class="comment">//这里可以在运行时设置虚拟机参数来确定h  :-Djava.lang.Integer.IntegerCache.high=250</span></span><br><span class="line">           String integerCacheHighPropValue =</span><br><span class="line">               sun.misc.VM.getSavedProperty(<span class="string">"java.lang.Integer.IntegerCache.high"</span>);</span><br><span class="line">           <span class="keyword">if</span> (integerCacheHighPropValue != <span class="keyword">null</span>) &#123;<span class="comment">//用户设置了</span></span><br><span class="line">               <span class="keyword">int</span> i = parseInt(integerCacheHighPropValue);</span><br><span class="line">               i = Math.max(i, <span class="number">127</span>);<span class="comment">//虽然设置了但是还是不能小于127</span></span><br><span class="line">               <span class="comment">// 也不能超过最大值</span></span><br><span class="line">               h = Math.min(i, Integer.MAX_VALUE - (-low) -<span class="number">1</span>);</span><br><span class="line">           &#125;</span><br><span class="line">           high = h;</span><br><span class="line"></span><br><span class="line">           cache = <span class="keyword">new</span> Integer[(high - low) + <span class="number">1</span>];</span><br><span class="line">           <span class="keyword">int</span> j = low;</span><br><span class="line">           <span class="comment">//循环将区间的数赋值给cache[]数组</span></span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; cache.length; k++)</span><br><span class="line">               cache[k] = <span class="keyword">new</span> Integer(j++);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">private</span> <span class="title">IntegerCache</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到 Integer 默认先创建并缓存 -128 ~ 127 之间数的 Integer 对象，当调用 valueOf 时如果参数在 -128 ~ 127 之间则计算下标并从缓存中返回，否则创建一个新的 Integer 对象</p>
+<h2 id="Long中的享元模式"><a href="#Long中的享元模式" class="headerlink" title="Long中的享元模式"></a>Long中的享元模式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Long</span> <span class="keyword">extends</span> <span class="title">Number</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Long</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Long <span class="title">valueOf</span><span class="params">(<span class="keyword">long</span> var0)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> var0 &gt;= -<span class="number">128L</span> &amp;&amp; var0 &lt;= <span class="number">127L</span> ? Long.LongCache.cache[(<span class="keyword">int</span>)var0 + <span class="number">128</span>] : <span class="keyword">new</span> Long(var0);</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">LongCache</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">LongCache</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">final</span> Long cache[] = <span class="keyword">new</span> Long[-(-<span class="number">128</span>) + <span class="number">127</span> + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">static</span> &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cache.length; i++)</span><br><span class="line">                cache[i] = <span class="keyword">new</span> Long(i - <span class="number">128</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同理，Long 中也有缓存，不过不能指定缓存最大值</p>
+<h2 id="Apache-Commons-Pool2中的享元模式"><a href="#Apache-Commons-Pool2中的享元模式" class="headerlink" title="Apache Commons Pool2中的享元模式"></a>Apache Commons Pool2中的享元模式</h2><p>对象池化的基本思路是：将用过的对象保存起来，等下一次需要这种对象的时候，再拿出来重复使用，从而在一定程度上减少频繁创建对象所造成的开销。用于充当保存对象的“容器”的对象，被称为“对象池”（Object Pool，或简称Pool）</p>
+<p>Apache Commons Pool实现了对象池的功能。定义了对象的生成、销毁、激活、钝化等操作及其状态转换，并提供几个默认的对象池实现。</p>
+<p>有几个重要的对象：</p>
+<p>PooledObject（池对象）：用于封装对象（如：线程、数据库连接、TCP连接），将其包裹成可被池管理的对象。<br>PooledObjectFactory（池对象工厂）：定义了操作PooledObject实例生命周期的一些方法，PooledObjectFactory必须实现线程安全。<br>Object Pool （对象池）：Object Pool负责管理PooledObject，如：借出对象，返回对象，校验对象，有多少激活对象，有多少空闲对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对象池</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;S, PooledObject&lt;S&gt;&gt; allObjects = <span class="keyword">new</span> ConcurrentHashMap&lt;S, PooledObject&lt;S&gt;&gt;();</span><br></pre></td></tr></table></figure>
+<p>重要方法：</p>
+<p>borrowObject：从池中借出一个对象。<br>returnObject：将一个对象返还给池。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechat.jpg" alt="shadow 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/designpattern/" rel="tag"># designpattern</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/design-pattern/adapter/" rel="prev" title="适配器模式">
+      <i class="fa fa-chevron-left"></i> 适配器模式
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#享元模式"><span class="nav-number">1.</span> <span class="nav-text">享元模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#角色"><span class="nav-number">1.1.</span> <span class="nav-text">角色</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#享元模式总结"><span class="nav-number">3.</span> <span class="nav-text">享元模式总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#享元模式的主要优点如下："><span class="nav-number">3.1.</span> <span class="nav-text">享元模式的主要优点如下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#享元模式的主要缺点如下："><span class="nav-number">3.2.</span> <span class="nav-text">享元模式的主要缺点如下：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适用场景："><span class="nav-number">3.3.</span> <span class="nav-text">适用场景：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码分析享元模式的典型应用"><span class="nav-number">4.</span> <span class="nav-text">源码分析享元模式的典型应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#String中的享元模式"><span class="nav-number">4.1.</span> <span class="nav-text">String中的享元模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Integer-中的享元模式"><span class="nav-number">4.2.</span> <span class="nav-text">Integer 中的享元模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Long中的享元模式"><span class="nav-number">4.3.</span> <span class="nav-text">Long中的享元模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache-Commons-Pool2中的享元模式"><span class="nav-number">4.4.</span> <span class="nav-text">Apache Commons Pool2中的享元模式</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="shadow"
+      src="/images/jinbao.png">
+  <p class="site-author-name" itemprop="name">shadow</p>
+  <div class="site-description" itemprop="description">流水不腐户枢不蠹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.baidu.com/" title="http:&#x2F;&#x2F;www.baidu.com" rel="noopener" target="_blank">百度</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shadow</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+</body>
+</html>
