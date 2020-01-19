@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>spring源码</title>
+      <link href="/dot/spring-source/"/>
+      <url>/dot/spring-source/</url>
+      
+        <content type="html"><![CDATA[<p><img src="../../images/spring.svg" alt="AnnotationConfigApplicationContext源码架构图"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> spring框架 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> spring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>组合设计模式</title>
       <link href="/design-pattern/composite/"/>
       <url>/design-pattern/composite/</url>
