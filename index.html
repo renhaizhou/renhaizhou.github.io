@@ -198,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://www.abce.xyz/dot/spring-source/">
+    <link itemprop="mainEntityOfPage" href="https://www.abce.xyz/spring/spring-source/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/jinbao.png">
@@ -212,7 +212,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/dot/spring-source/" class="post-title-link" itemprop="url">spring源码</a>
+            <a href="/spring/spring-source/" class="post-title-link" itemprop="url">spring源码</a>
         </h1>
 
         <div class="post-meta">
@@ -221,10 +221,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-01-19 15:40:41 / 修改时间：15:45:22" itemprop="dateCreated datePublished" datetime="2020-01-19T15:40:41+08:00">2020-01-19</time>
+              <time title="创建时间：2020-01-19 15:40:41" itemprop="dateCreated datePublished" datetime="2020-01-19T15:40:41+08:00">2020-01-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-21 12:37:05" itemprop="dateModified" datetime="2020-01-21T12:37:05+08:00">2020-01-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -1648,10 +1654,16 @@ Observer <|-- HexaObserver</pre>
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-11-29 14:01:07 / 修改时间：18:06:28" itemprop="dateCreated datePublished" datetime="2019-11-29T14:01:07+08:00">2019-11-29</time>
+              <time title="创建时间：2019-11-29 14:01:07" itemprop="dateCreated datePublished" datetime="2019-11-29T14:01:07+08:00">2019-11-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-21 12:26:11" itemprop="dateModified" datetime="2020-01-21T12:26:11+08:00">2020-01-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -1676,7 +1688,8 @@ Observer <|-- HexaObserver</pre>
 
       
           <p><strong>git命令</strong></p>
-<ol>
+<h1 id="git-revert-流程"><a href="#git-revert-流程" class="headerlink" title="git revert 流程"></a>git revert 流程</h1><p><img src="../../images/git-revert.svg" alt="git-revert-流程"></p>
+<h1 id="git-基本命令"><a href="#git-基本命令" class="headerlink" title="git 基本命令"></a>git 基本命令</h1><ol>
 <li>在现有目录中初始化仓库 <code>git init</code></li>
 <li>如果你是在一个已经存在文件的文件夹（而不是空文件夹）中初始化 Git 仓库来进行版本控制的话，你应该开始跟踪这些文件并提交。 你可通过 <code>git add</code> 命令来实现对指定文件的跟踪，然后执行 <code>git commit</code> 提交</li>
 <li>Git 克隆的是该 Git 仓库服务器上的几乎所有数据，而不是仅仅复制完成你的工作所需要文件。 当你执行 <code>git clone</code> 命令的时候，默认配置下远程 Git 仓库中的每一个文件的每一个版本都将被拉取下来。</li>
