@@ -50,12 +50,12 @@
   };
 </script>
 
-  <meta name="description" content="希望大家今天在学习完RocketMQ的主从同步架构以及高可用切换机制之后，思考以下一些问题： 假设如果没有RocketMQ 4.5新版本引入的Dledger技术，仅仅是靠之前的Master-Slave主从同步机制，那么在Master崩溃的时候，可能会造成多长时间的系统不可用？这个时候如何能够尽快的恢复集群运行？依赖手工运维的话，如何能尽快的去完成这个运维操作？ 在RocketMQ 4.5之后引入了">
+  <meta name="description" content="希望大家今天在学习完RocketMQ的主从同步架构以及高可用切换机制之后，思考以下一些问题：假设如果没有RocketMQ 4.5新版本引入的Dledger技术，仅仅是靠之前的Master-Slave主从同步机制，那么在Master崩溃的时候，可能会造成多长时间的系统不可用？这个时候如何能够尽快的恢复集群运行？依赖手工运维的话，如何能尽快的去完成这个运维操作？">
 <meta property="og:type" content="website">
 <meta property="og:title" content="24 授人以渔：Broker主从同步有没有数据不一致问题？">
 <meta property="og:url" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq24.html">
 <meta property="og:site_name" content="书山有路勤为径">
-<meta property="og:description" content="希望大家今天在学习完RocketMQ的主从同步架构以及高可用切换机制之后，思考以下一些问题： 假设如果没有RocketMQ 4.5新版本引入的Dledger技术，仅仅是靠之前的Master-Slave主从同步机制，那么在Master崩溃的时候，可能会造成多长时间的系统不可用？这个时候如何能够尽快的恢复集群运行？依赖手工运维的话，如何能尽快的去完成这个运维操作？ 在RocketMQ 4.5之后引入了">
+<meta property="og:description" content="希望大家今天在学习完RocketMQ的主从同步架构以及高可用切换机制之后，思考以下一些问题：假设如果没有RocketMQ 4.5新版本引入的Dledger技术，仅仅是靠之前的Master-Slave主从同步机制，那么在Master崩溃的时候，可能会造成多长时间的系统不可用？这个时候如何能够尽快的恢复集群运行？依赖手工运维的话，如何能尽快的去完成这个运维操作？">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-28T05:58:22.982Z">
 <meta name="twitter:card" content="summary">
@@ -225,8 +225,8 @@
       
       
       <div class="post-body">
-          <p>希望大家今天在学习完RocketMQ的主从同步架构以及高可用切换机制之后，思考以下一些问题：</p>
-<p>假设如果没有RocketMQ 4.5新版本引入的Dledger技术，仅仅是靠之前的Master-Slave主从同步机制，那么在Master崩溃的时候，可能会造成多长时间的系统不可用？这个时候如何能够尽快的恢复集群运行？依赖手工运维的话，如何能尽快的去完成这个运维操作？</p>
+          <p>希望大家今天在学习完RocketMQ的主从同步架构以及高可用切换机制之后，思考以下一些问题：</p><p>假设如果没有RocketMQ 4.5新版本引入的Dledger技术，仅仅是靠之前的Master-Slave主从同步机制，那么在Master崩溃的时候，可能会造成多长时间的系统不可用？这个时候如何能够尽快的恢复集群运行？依赖手工运维的话，如何能尽快的去完成这个运维操作？</p><a id="more"></a>
+
 <p>在RocketMQ 4.5之后引入了Dledger技术可以做到自动选举新的Master，那么在Master崩溃一直到新的Master被选举出来的这个过程中，你觉得对于使用MQ的系统而言，会处于一个什么样的状态呢？</p>
 <p>希望大家去研究一下Kafka和RabbitMQ的多副本和高可用机制，Kafka是如何在集群里维护多个副本的？出现故障的时候能否实现自动切换？RabbitMQ是如何在集群里维护多个数据副本的？出现故障的时候能否实现自动切换？</p>
 <p>既然有主从同步机制，那么有没有主从数据不一致的问题？Slave永远落后Master一些数据，这就是主从不一致。那么这种不一致有没有什么问题？有办法保证主从数据强制一致吗？这样做又会有什么缺点呢？</p>
@@ -295,20 +295,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -327,7 +327,7 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="http://www.baidu.com/" title="http:&#x2F;&#x2F;www.baidu.com" rel="noopener" target="_blank">百度</a>
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
         </li>
     </ul>
   </div>
@@ -354,6 +354,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">97k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:28</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>

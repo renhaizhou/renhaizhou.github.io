@@ -50,12 +50,12 @@
   };
 </script>
 
-  <meta name="description" content="1、将目光从 NameServer 转移到 Broker 小猛上次的NameServer技术分享做的非常成功，大家都通过分享学到了更多的东西，尤其对RocketMQ集群运作的原理，有了更进一步的认识 不过好多人都想对Broker的原理有更多的了解，毕竟最终实现MQ功能的就是Broker。 因此小猛也将自己研究RocketMQ的目光从NameServer转移到了Broker上，他花了一些时间对Bro">
+  <meta name="description" content="1、将目光从 NameServer 转移到 Broker小猛上次的NameServer技术分享做的非常成功，大家都通过分享学到了更多的东西，尤其对RocketMQ集群运作的原理，有了更进一步的认识不过好多人都想对Broker的原理有更多的了解，毕竟最终实现MQ功能的就是Broker。因此小猛也将自己研究RocketMQ的目光从NameServer转移到了Broker上，他花了一些时间对Broker">
 <meta property="og:type" content="website">
 <meta property="og:title" content="23 设计生产架构之前的功课：Broker的主从架构原理是什么？">
 <meta property="og:url" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq23.html">
 <meta property="og:site_name" content="书山有路勤为径">
-<meta property="og:description" content="1、将目光从 NameServer 转移到 Broker 小猛上次的NameServer技术分享做的非常成功，大家都通过分享学到了更多的东西，尤其对RocketMQ集群运作的原理，有了更进一步的认识 不过好多人都想对Broker的原理有更多的了解，毕竟最终实现MQ功能的就是Broker。 因此小猛也将自己研究RocketMQ的目光从NameServer转移到了Broker上，他花了一些时间对Bro">
+<meta property="og:description" content="1、将目光从 NameServer 转移到 Broker小猛上次的NameServer技术分享做的非常成功，大家都通过分享学到了更多的东西，尤其对RocketMQ集群运作的原理，有了更进一步的认识不过好多人都想对Broker的原理有更多的了解，毕竟最终实现MQ功能的就是Broker。因此小猛也将自己研究RocketMQ的目光从NameServer转移到了Broker上，他花了一些时间对Broker">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq23-1.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq23-2.jpg">
@@ -233,10 +233,10 @@
       
       
       <div class="post-body">
-          <p>1、将目光从 NameServer 转移到 Broker</p>
-<p>小猛上次的NameServer技术分享做的非常成功，大家都通过分享学到了更多的东西，尤其对RocketMQ集群运作的原理，有了更进一步的认识</p>
-<p>不过好多人都想对Broker的原理有更多的了解，毕竟最终实现MQ功能的就是Broker。</p>
-<p>因此小猛也将自己研究RocketMQ的目光从NameServer转移到了Broker上，他花了一些时间对Broker的原理做了研究，也积累了一些心得体会，接着他又做了一份PPT，打算给大家再做一次Broker原理的分享。</p>
+          <p>1、将目光从 NameServer 转移到 Broker</p><p>小猛上次的NameServer技术分享做的非常成功，大家都通过分享学到了更多的东西，尤其对RocketMQ集群运作的原理，有了更进一步的认识</p><p>不过好多人都想对Broker的原理有更多的了解，毕竟最终实现MQ功能的就是Broker。</p><p>因此小猛也将自己研究RocketMQ的目光从NameServer转移到了Broker上，他花了一些时间对Broker的原理做了研究，也积累了一些心得体会，接着他又做了一份PPT，打算给大家再做一次Broker原理的分享。</p><a id="more"></a>
+
+
+
 <p>这一天，小猛再次把大家都叫到了会议室，开始了他的第三次技术分享：RocketMQ Broker原理分析</p>
 <p>2、Master Broker是如何将消息同步给Slave Broker的？</p>
 <p>先来看第一个问题，我们都知道，为了保证MQ的数据不丢失而且具备一定的高可用性，所以一般都是得将Broker部署成Master-Slave模式的，也就是一个Master Broker对应一个Slave Broker</p>
@@ -361,20 +361,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -393,7 +393,7 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="http://www.baidu.com/" title="http:&#x2F;&#x2F;www.baidu.com" rel="noopener" target="_blank">百度</a>
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
         </li>
     </ul>
   </div>
@@ -420,6 +420,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">97k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:28</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>

@@ -50,12 +50,12 @@
   };
 </script>
 
-  <meta name="description" content="系统面临的现实问题： 秒杀活动时数据库压力太大，该怎么缓解？ 1、愁眉苦脸的小猛：为啥订单系统有一大堆问题？ 小猛今天一早就到了公司，但是在工位上愁眉不展。因为他经过最近几天的学习，觉得自己所在的订单技术团队，这个订单系统面临的技术问题真是太多了。 他一边想，一边在自己的A4白纸上画图。  小猛一边画图，一边自言自语：首先是在一个订单支付之前，用户一旦下了订单，就会锁定对应的商品库存，别人就不能买">
+  <meta name="description" content="系统面临的现实问题：秒杀活动时数据库压力太大，该怎么缓解？1、愁眉苦脸的小猛：为啥订单系统有一大堆问题？小猛今天一早就到了公司，但是在工位上愁眉不展。因为他经过最近几天的学习，觉得自己所在的订单技术团队，这个订单系统面临的技术问题真是太多了。他一边想，一边在自己的A4白纸上画图。小猛一边画图，一边自言自语：首先是在一个订单支付之前，用户一旦下了订单，就会锁定对应的商品库存，别人就不能买了。然后万一">
 <meta property="og:type" content="website">
 <meta property="og:title" content="11 系统面临的现实问题：秒杀活动时数据库压力太大，该怎么缓解？">
 <meta property="og:url" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq11.html">
 <meta property="og:site_name" content="书山有路勤为径">
-<meta property="og:description" content="系统面临的现实问题： 秒杀活动时数据库压力太大，该怎么缓解？ 1、愁眉苦脸的小猛：为啥订单系统有一大堆问题？ 小猛今天一早就到了公司，但是在工位上愁眉不展。因为他经过最近几天的学习，觉得自己所在的订单技术团队，这个订单系统面临的技术问题真是太多了。 他一边想，一边在自己的A4白纸上画图。  小猛一边画图，一边自言自语：首先是在一个订单支付之前，用户一旦下了订单，就会锁定对应的商品库存，别人就不能买">
+<meta property="og:description" content="系统面临的现实问题：秒杀活动时数据库压力太大，该怎么缓解？1、愁眉苦脸的小猛：为啥订单系统有一大堆问题？小猛今天一早就到了公司，但是在工位上愁眉不展。因为他经过最近几天的学习，觉得自己所在的订单技术团队，这个订单系统面临的技术问题真是太多了。他一边想，一边在自己的A4白纸上画图。小猛一边画图，一边自言自语：首先是在一个订单支付之前，用户一旦下了订单，就会锁定对应的商品库存，别人就不能买了。然后万一">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq11-1.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq11-2.jpg">
@@ -232,13 +232,13 @@
       
       
       <div class="post-body">
-          <p>系统面临的现实问题：</p>
-<p>秒杀活动时数据库压力太大，该怎么缓解？</p>
-<p>1、愁眉苦脸的小猛：为啥订单系统有一大堆问题？</p>
-<p>小猛今天一早就到了公司，但是在工位上愁眉不展。因为他经过最近几天的学习，觉得自己所在的订单技术团队，这个订单系统面临的技术问题真是太多了。</p>
-<p>他一边想，一边在自己的A4白纸上画图。</p>
-<p><img src="../../images/mq11-1.jpg" alt="m11-1"></p>
-<p>小猛一边画图，一边自言自语：首先是在一个订单支付之前，用户一旦下了订单，就会锁定对应的商品库存，别人就不能买了。然后万一用户一直没支付，还得一个后台线程不停的扫描数据库里的待支付订单，去自动取消长时间没支付的订单。</p>
+          <p>系统面临的现实问题：</p><p>秒杀活动时数据库压力太大，该怎么缓解？</p><p>1、愁眉苦脸的小猛：为啥订单系统有一大堆问题？</p><p>小猛今天一早就到了公司，但是在工位上愁眉不展。因为他经过最近几天的学习，觉得自己所在的订单技术团队，这个订单系统面临的技术问题真是太多了。</p><p>他一边想，一边在自己的A4白纸上画图。</p><p><img src="../../images/mq11-1.jpg" alt="m11-1"></p><p>小猛一边画图，一边自言自语：首先是在一个订单支付之前，用户一旦下了订单，就会锁定对应的商品库存，别人就不能买了。然后万一用户一直没支付，还得一个后台线程不停的扫描数据库里的待支付订单，去自动取消长时间没支付的订单。</p><a id="more"></a>
+
+
+
+
+
+
 <p>但是如果这种订单有几十万甚至几百万之多呢？不停的让后台线程扫描，性能很差，也非常的不方便。</p>
 <p>接着小猛又在白纸上画了一个图出来。</p>
 <p><img src="../../images/mq11-2.jpg" alt="m11-2"></p>
@@ -365,20 +365,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -397,7 +397,7 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="http://www.baidu.com/" title="http:&#x2F;&#x2F;www.baidu.com" rel="noopener" target="_blank">百度</a>
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
         </li>
     </ul>
   </div>
@@ -424,6 +424,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">97k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:28</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>

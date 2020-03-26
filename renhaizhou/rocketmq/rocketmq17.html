@@ -50,12 +50,12 @@
   };
 </script>
 
-  <meta name="description" content="领导的要求： 你来对 Kafka、RabbitMQ 以及 RocketMQ 进行技术选型调研 1、小猛的顿悟：订单系统的很多问题都可以用MQ来解决 小猛昨天听了明哥对MQ这个东西的一番解释之后，已经有了一个基本的概念了，他回到家里仔细的想了想，发现似乎订单系统面临的很多问题都可以用MQ来解决！ 举个例子，支付订单流程中步骤过多，导致性能很差。这个问题可以用MQ来解决，让订单系统仅仅完成最核心的一些">
+  <meta name="description" content="领导的要求：你来对 Kafka、RabbitMQ 以及 RocketMQ 进行技术选型调研1、小猛的顿悟：订单系统的很多问题都可以用MQ来解决小猛昨天听了明哥对MQ这个东西的一番解释之后，已经有了一个基本的概念了，他回到家里仔细的想了想，发现似乎订单系统面临的很多问题都可以用MQ来解决！举个例子，支付订单流程中步骤过多，导致性能很差。这个问题可以用MQ来解决，让订单系统仅仅完成最核心的一些步骤和调">
 <meta property="og:type" content="website">
 <meta property="og:title" content="17 领导的要求：你来对 Kafka、RabbitMQ 以及 RocketMQ 进行技术选型调研">
 <meta property="og:url" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq17.html">
 <meta property="og:site_name" content="书山有路勤为径">
-<meta property="og:description" content="领导的要求： 你来对 Kafka、RabbitMQ 以及 RocketMQ 进行技术选型调研 1、小猛的顿悟：订单系统的很多问题都可以用MQ来解决 小猛昨天听了明哥对MQ这个东西的一番解释之后，已经有了一个基本的概念了，他回到家里仔细的想了想，发现似乎订单系统面临的很多问题都可以用MQ来解决！ 举个例子，支付订单流程中步骤过多，导致性能很差。这个问题可以用MQ来解决，让订单系统仅仅完成最核心的一些">
+<meta property="og:description" content="领导的要求：你来对 Kafka、RabbitMQ 以及 RocketMQ 进行技术选型调研1、小猛的顿悟：订单系统的很多问题都可以用MQ来解决小猛昨天听了明哥对MQ这个东西的一番解释之后，已经有了一个基本的概念了，他回到家里仔细的想了想，发现似乎订单系统面临的很多问题都可以用MQ来解决！举个例子，支付订单流程中步骤过多，导致性能很差。这个问题可以用MQ来解决，让订单系统仅仅完成最核心的一些步骤和调">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-28T05:56:05.865Z">
 <meta name="twitter:card" content="summary">
@@ -225,11 +225,11 @@
       
       
       <div class="post-body">
-          <p>领导的要求：</p>
-<p>你来对 Kafka、RabbitMQ 以及 RocketMQ 进行技术选型调研</p>
-<p>1、小猛的顿悟：订单系统的很多问题都可以用MQ来解决</p>
-<p>小猛昨天听了明哥对MQ这个东西的一番解释之后，已经有了一个基本的概念了，他回到家里仔细的想了想，发现似乎订单系统面临的很多问题都可以用MQ来解决！</p>
-<p>举个例子，支付订单流程中步骤过多，导致性能很差。这个问题可以用MQ来解决，让订单系统仅仅完成最核心的一些步骤和调用，然后发送消息到MQ，比如仓储系统之类的就可以从MQ里获取消息，然后慢慢的执行一些很耗时的步骤。</p>
+          <p>领导的要求：</p><p>你来对 Kafka、RabbitMQ 以及 RocketMQ 进行技术选型调研</p><p>1、小猛的顿悟：订单系统的很多问题都可以用MQ来解决</p><p>小猛昨天听了明哥对MQ这个东西的一番解释之后，已经有了一个基本的概念了，他回到家里仔细的想了想，发现似乎订单系统面临的很多问题都可以用MQ来解决！</p><p>举个例子，支付订单流程中步骤过多，导致性能很差。这个问题可以用MQ来解决，让订单系统仅仅完成最核心的一些步骤和调用，然后发送消息到MQ，比如仓储系统之类的就可以从MQ里获取消息，然后慢慢的执行一些很耗时的步骤。</p><a id="more"></a>
+
+
+
+
 <p>还有比如订单系统在退款的时候，可能会遇到第三方支付系统退款失败的问题，从而影响整个退款流程的失败，这个问题也可以用MQ解决。可以让订单系统在退款的时候完成公司内部各个系统的流程，然后发送消息到MQ，由一个专门的服务去负责调用第三方支付系统，处理可能出现的失败。</p>
 <p>在双11大促活动的时候，也可以让瞬间涌入的大量下单请求到MQ里去排队，然后让订单系统在后台慢慢的获取订单，以数据库可以接受的速率完成操作，避免瞬间请求量过大击垮数据库。</p>
 <p>小猛想着觉得很兴奋，订单系统的诸多问题似乎都可以基于MQ来解决啊！</p>
@@ -351,20 +351,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -383,7 +383,7 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="http://www.baidu.com/" title="http:&#x2F;&#x2F;www.baidu.com" rel="noopener" target="_blank">百度</a>
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
         </li>
     </ul>
   </div>
@@ -410,6 +410,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">97k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:28</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>

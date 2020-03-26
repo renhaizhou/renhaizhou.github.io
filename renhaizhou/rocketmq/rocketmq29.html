@@ -50,12 +50,12 @@
   };
 </script>
 
-  <meta name="description" content="1、小猛在压测前突然有一个困惑 现在RocketMQ集群如何部署都已经知道了，小猛原计划就应该要开始着手优化生产机器上的os内核参数和RocketMQ的jvm参数了，这些参数优化好了，才能正式在高配置机器上启动RocketMQ，让他把性能发挥到最高，接着压测才有意义。 但是小猛在做这些事儿之前突然产生了一个困惑，他在想一个事，如果RocketMQ集群参数正式优化好了然后启动了集群，接着用几台机器跑">
+  <meta name="description" content="1、小猛在压测前突然有一个困惑现在RocketMQ集群如何部署都已经知道了，小猛原计划就应该要开始着手优化生产机器上的os内核参数和RocketMQ的jvm参数了，这些参数优化好了，才能正式在高配置机器上启动RocketMQ，让他把性能发挥到最高，接着压测才有意义。但是小猛在做这些事儿之前突然产生了一个困惑，他在想一个事，如果RocketMQ集群参数正式优化好了然后启动了集群，接着用几台机器跑生产">
 <meta property="og:type" content="website">
 <meta property="og:title" content="29 生产运维：如何对RocketMQ集群进行可视化的监控和管理？">
 <meta property="og:url" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq29.html">
 <meta property="og:site_name" content="书山有路勤为径">
-<meta property="og:description" content="1、小猛在压测前突然有一个困惑 现在RocketMQ集群如何部署都已经知道了，小猛原计划就应该要开始着手优化生产机器上的os内核参数和RocketMQ的jvm参数了，这些参数优化好了，才能正式在高配置机器上启动RocketMQ，让他把性能发挥到最高，接着压测才有意义。 但是小猛在做这些事儿之前突然产生了一个困惑，他在想一个事，如果RocketMQ集群参数正式优化好了然后启动了集群，接着用几台机器跑">
+<meta property="og:description" content="1、小猛在压测前突然有一个困惑现在RocketMQ集群如何部署都已经知道了，小猛原计划就应该要开始着手优化生产机器上的os内核参数和RocketMQ的jvm参数了，这些参数优化好了，才能正式在高配置机器上启动RocketMQ，让他把性能发挥到最高，接着压测才有意义。但是小猛在做这些事儿之前突然产生了一个困惑，他在想一个事，如果RocketMQ集群参数正式优化好了然后启动了集群，接着用几台机器跑生产">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq29-1.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq29-2.jpg">
@@ -231,9 +231,9 @@
       
       
       <div class="post-body">
-          <p>1、小猛在压测前突然有一个困惑</p>
-<p>现在RocketMQ集群如何部署都已经知道了，小猛原计划就应该要开始着手优化生产机器上的os内核参数和RocketMQ的jvm参数了，这些参数优化好了，才能正式在高配置机器上启动RocketMQ，让他把性能发挥到最高，接着压测才有意义。</p>
-<p>但是小猛在做这些事儿之前突然产生了一个困惑，他在想一个事，如果RocketMQ集群参数正式优化好了然后启动了集群，接着用几台机器跑生产者和消费者去压测，那么压测完了到底要看什么呢？</p>
+          <p>1、小猛在压测前突然有一个困惑</p><p>现在RocketMQ集群如何部署都已经知道了，小猛原计划就应该要开始着手优化生产机器上的os内核参数和RocketMQ的jvm参数了，这些参数优化好了，才能正式在高配置机器上启动RocketMQ，让他把性能发挥到最高，接着压测才有意义。</p><p>但是小猛在做这些事儿之前突然产生了一个困惑，他在想一个事，如果RocketMQ集群参数正式优化好了然后启动了集群，接着用几台机器跑生产者和消费者去压测，那么压测完了到底要看什么呢？</p><a id="more"></a>
+
+
 <p>他想了想，觉得既然是压测，那么必然是要看RocketMQ集群能承载的最高QPS，同时在承载这个QPS的同时，各个机器的CPU、IO、磁盘、网络、内存的负载情况，要看机器资源的使用率，还要看JVM的GC情况，等等。</p>
 <p>但是现在有一个问题来了，到底怎么看这些东西呢？</p>
 <p>小猛突然发现自己在压测之前还少了一个步骤，那就是应该研究一下RocketMQ集群的监控、管理和运维</p>
@@ -341,20 +341,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -373,7 +373,7 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="http://www.baidu.com/" title="http:&#x2F;&#x2F;www.baidu.com" rel="noopener" target="_blank">百度</a>
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
         </li>
     </ul>
   </div>
@@ -400,6 +400,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">97k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:28</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>

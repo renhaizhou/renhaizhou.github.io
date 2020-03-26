@@ -50,12 +50,12 @@
   };
 </script>
 
-  <meta name="description" content="今天的授人以渔环节，希望大家能够结合学习到的MQ生产部署架构的知识来思考下面问题： 在你们公司里有用MQ吗？ 如果有的话是什么MQ？ 你们的MQ在生产环境的部署架构是怎么做的？ 路由中心、MQ集群、生产者和消费者分别是怎么部署的？为什么要那样部署？ 那样部署可以实现高并发、海量消息、高可用和线性可伸缩吗？ 希望大家可以结合自己之前查阅资料了解到的知识思考下，RabbitMQ和Kafka他们两个是如">
+  <meta name="description" content="今天的授人以渔环节，希望大家能够结合学习到的MQ生产部署架构的知识来思考下面问题：在你们公司里有用MQ吗？如果有的话是什么MQ？你们的MQ在生产环境的部署架构是怎么做的？路由中心、MQ集群、生产者和消费者分别是怎么部署的？为什么要那样部署？那样部署可以实现高并发、海量消息、高可用和线性可伸缩吗？希望大家可以结合自己之前查阅资料了解到的知识思考下，RabbitMQ和Kafka他们两个是如何实现生产架">
 <meta property="og:type" content="website">
 <meta property="og:title" content="26 授人以渔：你们公司的消息中间件生产环境如何部署的？">
 <meta property="og:url" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq26.html">
 <meta property="og:site_name" content="书山有路勤为径">
-<meta property="og:description" content="今天的授人以渔环节，希望大家能够结合学习到的MQ生产部署架构的知识来思考下面问题： 在你们公司里有用MQ吗？ 如果有的话是什么MQ？ 你们的MQ在生产环境的部署架构是怎么做的？ 路由中心、MQ集群、生产者和消费者分别是怎么部署的？为什么要那样部署？ 那样部署可以实现高并发、海量消息、高可用和线性可伸缩吗？ 希望大家可以结合自己之前查阅资料了解到的知识思考下，RabbitMQ和Kafka他们两个是如">
+<meta property="og:description" content="今天的授人以渔环节，希望大家能够结合学习到的MQ生产部署架构的知识来思考下面问题：在你们公司里有用MQ吗？如果有的话是什么MQ？你们的MQ在生产环境的部署架构是怎么做的？路由中心、MQ集群、生产者和消费者分别是怎么部署的？为什么要那样部署？那样部署可以实现高并发、海量消息、高可用和线性可伸缩吗？希望大家可以结合自己之前查阅资料了解到的知识思考下，RabbitMQ和Kafka他们两个是如何实现生产架">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-28T05:57:17.293Z">
 <meta name="twitter:card" content="summary">
@@ -225,13 +225,13 @@
       
       
       <div class="post-body">
-          <p>今天的授人以渔环节，希望大家能够结合学习到的MQ生产部署架构的知识来思考下面问题：</p>
-<p>在你们公司里有用MQ吗？</p>
-<p>如果有的话是什么MQ？</p>
-<p>你们的MQ在生产环境的部署架构是怎么做的？</p>
-<p>路由中心、MQ集群、生产者和消费者分别是怎么部署的？为什么要那样部署？</p>
-<p>那样部署可以实现高并发、海量消息、高可用和线性可伸缩吗？</p>
-<p>希望大家可以结合自己之前查阅资料了解到的知识思考下，RabbitMQ和Kafka他们两个是如何实现生产架构部署，来支撑高并发、海量消息、高可用和可伸缩的呢？他们能实现这些吗？</p>
+          <p>今天的授人以渔环节，希望大家能够结合学习到的MQ生产部署架构的知识来思考下面问题：</p><p>在你们公司里有用MQ吗？</p><p>如果有的话是什么MQ？</p><p>你们的MQ在生产环境的部署架构是怎么做的？</p><p>路由中心、MQ集群、生产者和消费者分别是怎么部署的？为什么要那样部署？</p><p>那样部署可以实现高并发、海量消息、高可用和线性可伸缩吗？</p><p>希望大家可以结合自己之前查阅资料了解到的知识思考下，RabbitMQ和Kafka他们两个是如何实现生产架构部署，来支撑高并发、海量消息、高可用和可伸缩的呢？他们能实现这些吗？</p><a id="more"></a>
+
+
+
+
+
+
 <p>希望大家好好思考这两个授人以渔的问题，然后再评论区里给出你的回答，分享给大家，一起共同进步。</p>
 
       </div>
@@ -295,20 +295,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -327,7 +327,7 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="http://www.baidu.com/" title="http:&#x2F;&#x2F;www.baidu.com" rel="noopener" target="_blank">百度</a>
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
         </li>
     </ul>
   </div>
@@ -354,6 +354,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">97k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:28</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>

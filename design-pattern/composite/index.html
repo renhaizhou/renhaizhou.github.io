@@ -50,12 +50,12 @@
   };
 </script>
 
-  <meta name="description" content="组合模式树形结构不论在生活中或者是开发中都是一种非常常见的结构，一个容器对象（如文件夹）下可以存放多种不同的叶子对象或者容器对象，容器对象与叶子对象之间属性差别可能非常大。 由于容器对象和叶子对象在功能上的区别，在使用这些对象的代码中必须有区别地对待容器对象和叶子对象，而实际上大多数情况下我们希望一致地处理它们，因为对于这些对象的区别对待将会使得程序非常复杂。 组合模式为解决此类问题而诞生，它可以">
+  <meta name="description" content="组合模式树形结构不论在生活中或者是开发中都是一种非常常见的结构，一个容器对象（如文件夹）下可以存放多种不同的叶子对象或者容器对象，容器对象与叶子对象之间属性差别可能非常大。由于容器对象和叶子对象在功能上的区别，在使用这些对象的代码中必须有区别地对待容器对象和叶子对象，而实际上大多数情况下我们希望一致地处理它们，因为对于这些对象的区别对待将会使得程序非常复杂。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="组合设计模式">
 <meta property="og:url" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;design-pattern&#x2F;composite&#x2F;index.html">
 <meta property="og:site_name" content="书山有路勤为径">
-<meta property="og:description" content="组合模式树形结构不论在生活中或者是开发中都是一种非常常见的结构，一个容器对象（如文件夹）下可以存放多种不同的叶子对象或者容器对象，容器对象与叶子对象之间属性差别可能非常大。 由于容器对象和叶子对象在功能上的区别，在使用这些对象的代码中必须有区别地对待容器对象和叶子对象，而实际上大多数情况下我们希望一致地处理它们，因为对于这些对象的区别对待将会使得程序非常复杂。 组合模式为解决此类问题而诞生，它可以">
+<meta property="og:description" content="组合模式树形结构不论在生活中或者是开发中都是一种非常常见的结构，一个容器对象（如文件夹）下可以存放多种不同的叶子对象或者容器对象，容器对象与叶子对象之间属性差别可能非常大。由于容器对象和叶子对象在功能上的区别，在使用这些对象的代码中必须有区别地对待容器对象和叶子对象，而实际上大多数情况下我们希望一致地处理它们，因为对于这些对象的区别对待将会使得程序非常复杂。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;composite1-3.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;composite1-2.jpg">
@@ -230,7 +230,21 @@
               <time title="创建时间：2020-01-17 16:11:04 / 修改时间：16:33:22" itemprop="dateCreated datePublished" datetime="2020-01-17T16:11:04+08:00">2020-01-17</time>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -241,8 +255,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h1><p>树形结构不论在生活中或者是开发中都是一种非常常见的结构，一个容器对象（如文件夹）下可以存放多种不同的叶子对象或者容器对象，容器对象与叶子对象之间属性差别可能非常大。</p>
-<p>由于容器对象和叶子对象在功能上的区别，在使用这些对象的代码中必须有区别地对待容器对象和叶子对象，而实际上大多数情况下我们希望一致地处理它们，因为对于这些对象的区别对待将会使得程序非常复杂。</p>
+        <h1 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h1><p>树形结构不论在生活中或者是开发中都是一种非常常见的结构，一个容器对象（如文件夹）下可以存放多种不同的叶子对象或者容器对象，容器对象与叶子对象之间属性差别可能非常大。</p><p>由于容器对象和叶子对象在功能上的区别，在使用这些对象的代码中必须有区别地对待容器对象和叶子对象，而实际上大多数情况下我们希望一致地处理它们，因为对于这些对象的区别对待将会使得程序非常复杂。</p><a id="more"></a>
+
 <p>组合模式为解决此类问题而诞生，它可以让叶子对象和容器对象的使用具有一致性。</p>
 <p>组合模式(Composite Pattern)：组合多个对象形成树形结构以表示具有 “整体—部分” 关系的层次结构。组合模式对单个对象（即叶子对象）和组合对象（即容器对象）的使用具有一致性，组合模式又可以称为 “整体—部分”(Part-Whole) 模式，它是一种对象结构型模式。</p>
 <p>由于在软件开发中存在大量的树形结构，因此组合模式是一种使用频率较高的结构型设计模式，Java SE中的AWT和Swing包的设计就基于组合模式。</p>
@@ -253,7 +267,7 @@
 <p>组合模式的关键是定义了一个抽象构件类，它既可以代表叶子，又可以代表容器，而客户端针对该抽象构件类进行编程，无须知道它到底表示的是叶子还是容器，可以对其进行统一处理。同时容器对象与抽象构件类之间还建立一个聚合关联关系，在容器对象中既可以包含叶子，也可以包含容器，以此实现递归组合，形成一个树形结构。</p>
 <h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>我们来实现一个简单的目录树，有文件夹和文件两种类型，首先需要一个抽象构件类，声明了文件夹类和文件类需要的方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持获取名称操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Component component)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持添加操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Component component)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持删除操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持打印操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getContent</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"不支持获取内容操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>实现一个文件夹类 Folder，继承 Component，定义一个 List<Component> 类型的componentList属性，用来存储该文件夹下的文件和子文件夹，并实现 getName、add、remove、print等方法</p>
+<p>实现一个文件夹类 Folder，继承 Component，定义一个 List<component> 类型的componentList属性，用来存储该文件夹下的文件和子文件夹，并实现 getName、add、remove、print等方法</component></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Folder</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Component&gt; componentList = <span class="keyword">new</span> ArrayList&lt;Component&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Folder</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Component component)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.componentList.add(component);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Component component)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.componentList.remove(component);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">this</span>.getName());</span><br><span class="line">        <span class="keyword">for</span> (Component component : <span class="keyword">this</span>.componentList) &#123;</span><br><span class="line">            component.print();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>文件类 File，继承Component父类，实现 getName、print、getContent等方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">File</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String content;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">File</span><span class="params">(String name, String content)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.content = content;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">this</span>.getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getContent</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.content;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -327,15 +341,15 @@
 <p>apply 是 SQLNode 接口中定义的唯一方法，该方法会根据用户传入的实参，参数解析该SQLNode所记录的动态SQL节点，并调用 DynamicContext.appendSql() 方法将解析后的SQL片段追加到 DynamicContext.sqlBuilder 中保存，当SQL节点下所有的 SqlNode 完成解析后，我们就可以从 DynamicContext 中获取一条动态生产的、完整的SQL语句</p>
 <p>然后来看 MixedSqlNode 类的源码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MixedSqlNode</span> <span class="keyword">implements</span> <span class="title">SqlNode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> List&lt;SqlNode&gt; contents;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">MixedSqlNode</span><span class="params">(List&lt;SqlNode&gt; contents)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.contents = contents;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">apply</span><span class="params">(DynamicContext context)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (SqlNode sqlNode : contents) &#123;</span><br><span class="line">      sqlNode.apply(context);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>MixedSqlNode 维护了一个 List<SqlNode> 类型的列表，用于存储 SqlNode 对象，apply 方法通过 for循环 遍历 contents 并调用其中对象的 apply 方法，这里跟我们的示例中的 Folder 类中的 print 方法非常类似，很明显 MixedSqlNode 扮演了容器构件角色</p>
+<p>MixedSqlNode 维护了一个 List<sqlnode> 类型的列表，用于存储 SqlNode 对象，apply 方法通过 for循环 遍历 contents 并调用其中对象的 apply 方法，这里跟我们的示例中的 Folder 类中的 print 方法非常类似，很明显 MixedSqlNode 扮演了容器构件角色</sqlnode></p>
 <p>对于其他SqlNode子类的功能，稍微概括如下：</p>
 <ul>
 <li>TextSqlNode：表示包含 ${} 占位符的动态SQL节点，其 apply 方法会使用 GenericTokenParser 解析 ${} 占位符，并直接替换成用户给定的实际参数值</li>
-<li>IfSqlNode：对应的是动态SQL节点 <If> 节点，其 apply 方法首先通过 ExpressionEvaluator.evaluateBoolean() 方法检测其 test 表达式是否为 true，然后根据 test 表达式的结果，决定是否执行其子节点的 apply() 方法</li>
+<li>IfSqlNode：对应的是动态SQL节点 <if> 节点，其 apply 方法首先通过 ExpressionEvaluator.evaluateBoolean() 方法检测其 test 表达式是否为 true，然后根据 test 表达式的结果，决定是否执行其子节点的 apply() 方法</if></li>
 <li>TrimSqlNode ：会根据子节点的解析结果，添加或删除相应的前缀或后缀。</li>
 <li>WhereSqlNode 和 SetSqlNode 都继承了 TrimSqlNode</li>
-<li>ForeachSqlNode：对应 <foreach> 标签，对集合进行迭代</li>
-<li>动态SQL中的 <choose>、<when>、<otherwise> 分别解析成 ChooseSqlNode、IfSqlNode、MixedSqlNode</li>
+<li>ForeachSqlNode：对应 <foreach> 标签，对集合进行迭代</foreach></li>
+<li>动态SQL中的 <choose>、<when>、<otherwise> 分别解析成 ChooseSqlNode、IfSqlNode、MixedSqlNode</otherwise></when></choose></li>
 </ul>
 <p>综上，SqlNode 接口有多个实现类，每个实现类对应一个动态SQL节点，其中 SqlNode 扮演抽象构件角色，MixedSqlNode 扮演容器构件角色，其它一般是叶子构件角色</p>
 
@@ -428,20 +442,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -460,7 +474,7 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="http://www.baidu.com/" title="http:&#x2F;&#x2F;www.baidu.com" rel="noopener" target="_blank">百度</a>
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
         </li>
     </ul>
   </div>
@@ -487,6 +501,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">97k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:28</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>

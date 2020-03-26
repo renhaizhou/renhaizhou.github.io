@@ -50,12 +50,12 @@
   };
 </script>
 
-  <meta name="description" content="1、MQ生产部署架构的设计任务 经过上一次的技术分享，小猛基本上把RocketMQ的核心工作原理都搞明白了，接着下一步明哥给他的任务就是基于RocketMQ的核心原理，去设计一套RocketMQ的生产部署架构出来。 在这套生产部署架构中，需要着重考虑到高可用的问题，要保证整个系统运行过程中任何一个环节宕机都不能影响系统的整体运行。 小猛在接受了这个任务之后，就开始埋头设计起了MQ的生产部署架构，几">
+  <meta name="description" content="1、MQ生产部署架构的设计任务经过上一次的技术分享，小猛基本上把RocketMQ的核心工作原理都搞明白了，接着下一步明哥给他的任务就是基于RocketMQ的核心原理，去设计一套RocketMQ的生产部署架构出来。在这套生产部署架构中，需要着重考虑到高可用的问题，要保证整个系统运行过程中任何一个环节宕机都不能影响系统的整体运行。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="25 落地第一步：设计一套高可用的消息中间件生产部署架构">
 <meta property="og:url" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq25.html">
 <meta property="og:site_name" content="书山有路勤为径">
-<meta property="og:description" content="1、MQ生产部署架构的设计任务 经过上一次的技术分享，小猛基本上把RocketMQ的核心工作原理都搞明白了，接着下一步明哥给他的任务就是基于RocketMQ的核心原理，去设计一套RocketMQ的生产部署架构出来。 在这套生产部署架构中，需要着重考虑到高可用的问题，要保证整个系统运行过程中任何一个环节宕机都不能影响系统的整体运行。 小猛在接受了这个任务之后，就开始埋头设计起了MQ的生产部署架构，几">
+<meta property="og:description" content="1、MQ生产部署架构的设计任务经过上一次的技术分享，小猛基本上把RocketMQ的核心工作原理都搞明白了，接着下一步明哥给他的任务就是基于RocketMQ的核心原理，去设计一套RocketMQ的生产部署架构出来。在这套生产部署架构中，需要着重考虑到高可用的问题，要保证整个系统运行过程中任何一个环节宕机都不能影响系统的整体运行。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq25-1.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq25-2.jpg">
@@ -235,9 +235,9 @@
       
       
       <div class="post-body">
-          <p>1、MQ生产部署架构的设计任务</p>
-<p>经过上一次的技术分享，小猛基本上把RocketMQ的核心工作原理都搞明白了，接着下一步明哥给他的任务就是基于RocketMQ的核心原理，去设计一套RocketMQ的生产部署架构出来。</p>
-<p>在这套生产部署架构中，需要着重考虑到高可用的问题，要保证整个系统运行过程中任何一个环节宕机都不能影响系统的整体运行。</p>
+          <p>1、MQ生产部署架构的设计任务</p><p>经过上一次的技术分享，小猛基本上把RocketMQ的核心工作原理都搞明白了，接着下一步明哥给他的任务就是基于RocketMQ的核心原理，去设计一套RocketMQ的生产部署架构出来。</p><p>在这套生产部署架构中，需要着重考虑到高可用的问题，要保证整个系统运行过程中任何一个环节宕机都不能影响系统的整体运行。</p><a id="more"></a>
+
+
 <p>小猛在接受了这个任务之后，就开始埋头设计起了MQ的生产部署架构，几天之后就搞定了这套架构设计，然后他找明哥单独到一个小会议室里，开始给明哥讲他构思的这套MQ的生产部署架构。</p>
 <p>2、NameServer集群化部署，保证高可用性</p>
 <p>首先第一步，我们要让NameServer集群化部署，我建议可以部署在三台机器上，这样可以充分保证NameServer作为路由中心的可用性，哪怕是挂掉两台机器，只要有一个NameServer还在运行，就能保证MQ系统的稳定性。</p>
@@ -391,20 +391,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -423,7 +423,7 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="http://www.baidu.com/" title="http:&#x2F;&#x2F;www.baidu.com" rel="noopener" target="_blank">百度</a>
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
         </li>
     </ul>
   </div>
@@ -450,6 +450,16 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">97k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:28</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>
