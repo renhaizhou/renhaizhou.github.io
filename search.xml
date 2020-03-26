@@ -8,7 +8,7 @@
       <link href="/springcloud/hystrix/"/>
       <url>/springcloud/hystrix/</url>
       
-        <content type="html"><![CDATA[<p><img src="../../images/hystrix-command-flow-chart.png" alt="Hystrix流程图"></p><p><img src="http://assets.processon.com/chart_image/5e7c3617e4b027d999cdf93a.png" alt="Hystrix源码"></p>]]></content>
+        <content type="html"><![CDATA[<p><img src="../../images/hystrix-command-flow-chart.png" alt="Hystrix流程图"></p><p><img src="../../images/hystrix%E6%BA%90%E7%A0%81.png" alt="Hystrix源码"></p>]]></content>
       
       
       <categories>
@@ -33,7 +33,7 @@
       <link href="/springcloud/eureka/"/>
       <url>/springcloud/eureka/</url>
       
-        <content type="html"><![CDATA[<p><img src="../../images/eureka%E6%BA%90%E7%A0%81.svg" alt="Eureka源码"></p>]]></content>
+        <content type="html"><![CDATA[<p><img src="../../images/eureka%E6%BA%90%E7%A0%81.png" alt="Eureka源码"></p>]]></content>
       
       
       <categories>
