@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.renhz.fun/distributed-protocol/paxos/</loc>
+    
+    <lastmod>2020-03-27T03:26:38.041Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
     
     <lastmod>2020-03-26T09:48:47.269Z</lastmod>
@@ -198,13 +205,6 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq05.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.867Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq10.html</loc>
     
     <lastmod>2019-11-28T05:56:05.867Z</lastmod>
@@ -226,13 +226,6 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq04.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.867Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq20.html</loc>
     
     <lastmod>2019-11-28T05:56:05.867Z</lastmod>
@@ -240,42 +233,21 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq11.html</loc>
+    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq05.html</loc>
     
-    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq19.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
+    <lastmod>2019-11-28T05:56:05.867Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq13.html</loc>
+    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq04.html</loc>
     
-    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq03.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
+    <lastmod>2019-11-28T05:56:05.867Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq18.html</loc>
-    
-    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq01.html</loc>
     
     <lastmod>2019-11-28T05:56:05.866Z</lastmod>
     
@@ -296,9 +268,37 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq06.html</loc>
+    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq11.html</loc>
     
-    <lastmod>2019-11-28T05:56:05.865Z</lastmod>
+    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq13.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq03.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq19.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq01.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.866Z</lastmod>
     
   </url>
   
@@ -310,7 +310,14 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq16.html</loc>
+    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq06.html</loc>
+    
+    <lastmod>2019-11-28T05:56:05.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq07.html</loc>
     
     <lastmod>2019-11-28T05:56:05.865Z</lastmod>
     
@@ -324,7 +331,7 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq02.html</loc>
+    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq16.html</loc>
     
     <lastmod>2019-11-28T05:56:05.865Z</lastmod>
     
@@ -345,7 +352,7 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq07.html</loc>
+    <loc>http://www.renhz.fun/renhaizhou/rocketmq/rocketmq02.html</loc>
     
     <lastmod>2019-11-28T05:56:05.865Z</lastmod>
     

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>paxos</title>
+    <url>/distributed-protocol/paxos/</url>
+    <content><![CDATA[<p><img src="../../images/paxos01.png" alt="paxos算法概述"><br><img src="../../images/paxos02.png" alt="paxos过半承诺机制"><br><img src="../../images/paxos03.png" alt="paxos活锁问题"><br><img src="../../images/paxos04.png" alt="paxos过半接受机制"><br><img src="../../images/paxos05.png" alt="paxos实际案例"></p>]]></content>
+      <categories>
+        <category>分布式协议</category>
+      </categories>
+      <tags>
+        <tag>distributed-protocol</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mysql</title>
     <url>/mysql/mysql/</url>
     <content><![CDATA[<p><img src="../../images/mysql01.png" alt="sql语句执行步骤"><br><img src="../../images/mysql02.png" alt="InnoDB存储引擎架构"><br><img src="../../images/mysql03.png" alt="Buffer Pool内存结构"></p>]]></content>
