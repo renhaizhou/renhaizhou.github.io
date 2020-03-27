@@ -11,7 +11,7 @@
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
   <link rel="alternate" href="/atom.xml" title="书山有路勤为径" type="application/atom+xml">
   <meta name="google-site-verification" content="true">
-  <meta name="baidu-site-verification" content="BSa1e8VuaX">
+  <meta name="baidu-site-verification" content="NjxSGWWluq">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -23,7 +23,7 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://www.abce.xyz').hostname,
+    hostname: new URL('http://www.renhz.fun').hostname,
     root: '/',
     scheme: 'Pisces',
     version: '7.5.0',
@@ -53,22 +53,22 @@
   <meta name="description" content="1、将目光从 NameServer 转移到 Broker小猛上次的NameServer技术分享做的非常成功，大家都通过分享学到了更多的东西，尤其对RocketMQ集群运作的原理，有了更进一步的认识不过好多人都想对Broker的原理有更多的了解，毕竟最终实现MQ功能的就是Broker。因此小猛也将自己研究RocketMQ的目光从NameServer转移到了Broker上，他花了一些时间对Broker">
 <meta property="og:type" content="website">
 <meta property="og:title" content="23 设计生产架构之前的功课：Broker的主从架构原理是什么？">
-<meta property="og:url" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq23.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;renhaizhou&#x2F;rocketmq&#x2F;rocketmq23.html">
 <meta property="og:site_name" content="书山有路勤为径">
 <meta property="og:description" content="1、将目光从 NameServer 转移到 Broker小猛上次的NameServer技术分享做的非常成功，大家都通过分享学到了更多的东西，尤其对RocketMQ集群运作的原理，有了更进一步的认识不过好多人都想对Broker的原理有更多的了解，毕竟最终实现MQ功能的就是Broker。因此小猛也将自己研究RocketMQ的目光从NameServer转移到了Broker上，他花了一些时间对Broker">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq23-1.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq23-2.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq23-3.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq23-4.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq23-5.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq23-6.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq23-7.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;mq23-1.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;mq23-2.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;mq23-3.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;mq23-4.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;mq23-5.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;mq23-6.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;mq23-7.jpg">
 <meta property="og:updated_time" content="2019-11-28T05:58:15.740Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;www.abce.xyz&#x2F;images&#x2F;mq23-1.jpg">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;mq23-1.jpg">
 
-<link rel="canonical" href="https://www.abce.xyz/renhaizhou/rocketmq/rocketmq23">
+<link rel="canonical" href="http://www.renhz.fun/renhaizhou/rocketmq/rocketmq23">
 
 
 <script id="page-configurations">
@@ -167,19 +167,9 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
-
-  </li>
         <li class="menu-item menu-item-sitemap">
 
     <a href="/baidusitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -469,6 +459,100 @@
 
 
 
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+              leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=VMKjGQyu0uo7TXTlVQRUkgC6-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'VMKjGQyu0uo7TXTlVQRUkgC6-gzGzoHsz',
+            'X-LC-Key': 'GVb48WETzU7GPEQJ8ibpf9kX',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
 
 
         
