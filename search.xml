@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ribbon</title>
+    <url>/springcloud/ribbon/</url>
+    <content><![CDATA[<p><img src="http://assets.processon.com/chart_image/5e7d9fafe4b092510f7ac3de.png" alt="ribbon"></p>]]></content>
+      <categories>
+        <category>微服务</category>
+      </categories>
+      <tags>
+        <tag>springcloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>feign</title>
+    <url>/springcloud/feign/</url>
+    <content><![CDATA[<p><img src="http://assets.processon.com/chart_image/5e7d8b55e4b08b61573df913.png" alt="feign"></p>]]></content>
+      <categories>
+        <category>微服务</category>
+      </categories>
+      <tags>
+        <tag>springcloud</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>paxos</title>
     <url>/distributed-protocol/paxos/</url>
     <content><![CDATA[<p><img src="../../images/paxos01.png" alt="paxos算法概述"><br><img src="../../images/paxos02.png" alt="paxos过半承诺机制"><br><img src="../../images/paxos03.png" alt="paxos活锁问题"><br><img src="../../images/paxos04.png" alt="paxos过半接受机制"><br><img src="../../images/paxos05.png" alt="paxos实际案例"></p>]]></content>
