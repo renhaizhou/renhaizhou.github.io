@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>日志</title>
+    <title>混乱的JAVA日志体系</title>
     <url>/log/log/</url>
     <content><![CDATA[<h1 id="Log日志体系"><a href="#Log日志体系" class="headerlink" title="Log日志体系"></a>Log日志体系</h1><p>commons-logging.jar、log4j.jar、sl4j-api.jar、logback.jar</p><h1 id="背景-发展史"><a href="#背景-发展史" class="headerlink" title="背景/发展史"></a>背景/发展史</h1><ul>
 <li>log4j（作者Ceki Gülcü）出来时就等到了广泛的应用（注意这里是直接使用），是Java日志事实上的标准，并成为了Apache的项目</li>
