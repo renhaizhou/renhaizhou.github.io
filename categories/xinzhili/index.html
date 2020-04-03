@@ -49,23 +49,16 @@
   };
 </script>
 
-  <meta name="description" content="一探究竟：我们的Java代码到底是如何运行起来的？本文是我们正式开始讲解JVM的第一篇文章。第一周我们不会讲解太多过于深奥的原理知识，那样会让很多原本对JVM不太了解的同学难以平滑的入门。第一周的内容主要是高屋建瓴的把JVM运行机制的整体脉络梳理清楚，而很多原本对JVM就有一定了解的同学，可以耐下心来，就当做是复习梳理一下。">
+  <meta name="description" content="以梦为马不负韶华">
 <meta property="og:type" content="website">
-<meta property="og:title" content="002、一探究竟：我们写的Java代码到底是如何运行起来的？">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;renhaizhou&#x2F;jvm&#x2F;jvm002.html">
+<meta property="og:title" content="学海无涯苦作舟">
+<meta property="og:url" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;categories&#x2F;xinzhili&#x2F;index.html">
 <meta property="og:site_name" content="学海无涯苦作舟">
-<meta property="og:description" content="一探究竟：我们的Java代码到底是如何运行起来的？本文是我们正式开始讲解JVM的第一篇文章。第一周我们不会讲解太多过于深奥的原理知识，那样会让很多原本对JVM不太了解的同学难以平滑的入门。第一周的内容主要是高屋建瓴的把JVM运行机制的整体脉络梳理清楚，而很多原本对JVM就有一定了解的同学，可以耐下心来，就当做是复习梳理一下。">
+<meta property="og:description" content="以梦为马不负韶华">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;jvm1-1.jpg">
-<meta property="og:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;jvm1-2.jpg">
-<meta property="og:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;jvm1-3.jpg">
-<meta property="og:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;jvm1-4.jpg">
-<meta property="og:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;jvm1-5.jpg">
-<meta property="og:updated_time" content="2019-11-28T05:56:05.865Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;images&#x2F;jvm1-1.jpg">
 
-<link rel="canonical" href="http://www.renhz.fun/renhaizhou/jvm/jvm002">
+<link rel="canonical" href="http://www.renhz.fun/categories/xinzhili/">
 
 
 <script id="page-configurations">
@@ -74,13 +67,12 @@
     sidebar: "",
     isHome: false,
     isPost: false,
-    isPage: true,
+    isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>002、一探究竟：我们写的Java代码到底是如何运行起来的？ | 学海无涯苦作舟
-  </title>
+  <title>分类: xinzhili | 学海无涯苦作舟</title>
   
 
 
@@ -206,116 +198,54 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
-  <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="zh-CN">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">002、一探究竟：我们写的Java代码到底是如何运行起来的？
-</h1>
-
-<div class="post-meta">
   
-  <ul class="breadcrumb">
-          
-            <li><a href="/renhaizhou/">RENHAIZHOU</a></li>
-            <li><a href="/renhaizhou/jvm/">JVM</a></li>
-            <li>JVM002</li>
-          
-  </ul>
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <p><strong>一探究竟：</strong></p><p><strong>我们的Java代码到底是如何运行起来的？</strong></p><p>本文是我们正式开始讲解JVM的第一篇文章。</p><p>第一周我们不会讲解太多过于深奥的原理知识，那样会让很多原本对JVM不太了解的同学难以平滑的入门。</p><p>第一周的内容主要是高屋建瓴的把JVM运行机制的整体脉络梳理清楚，而很多原本对JVM就有一定了解的同学，可以耐下心来，就当做是复习梳理一下。</p><a id="more"></a>
-
-
-
-
-<p>要研究JVM技术，先得搞明白一个问题：</p>
-<p>我们平时写的Java代码，到底是怎么运行起来的？</p>
-<p>针对这个问题，我们来一步一步的分析。</p>
-<p>首先假设咱们写好了一份Java代码，那这份Java代码中，是不是会包含很多的“.java”为后缀的代码文件？</p>
-<p>比如User.java，OrderService.java，CustomerManager.java</p>
-<p>其实咱们Java程序员平时在Eclipse、Intellij IDEA等开发工具中，就有很多类似这样的Java源代码文件。</p>
-<p>那么大家现在思考一下，当我们写好这些“.java”后缀的代码文件之后，接下来你要部署到线上的机器上去运行，你会怎么做？</p>
-<p>一般来说，都是把代码给打成“.jar”后缀的jar包，或者是“.war”后缀的war包，是不是？</p>
-<p>然后呢，就是把你打包好的jar包或者是war包给放到线上机器去部署。</p>
-<p>这个部署就有很多种途径了，但是最基本的一种方式，就是通过Tomcat这类容器来部署代码，也可以是你自己手动通过“java”命令来运行一个jar包中的代码。</p>
-<p>咱们先用下面这张图，回忆一下这个顺序。</p>
-<p><img src="../../images/jvm1-1.jpg" alt="jvm1-1"></p>
-<p>但是实际上这里有一个非常关键的步骤，那就是“编译”</p>
-<p>也就是说，在我们写好的“.java”代码打包的过程中，一般就会把代码编译成“.class”后缀的字节码文件，比如“User.class”，“Hello.class”，”Customer.class“。</p>
-<p>然后这个“.class”后缀的字节码文件，他才是可以被运行起来的！</p>
-<p>所以首先，无论大家对JVM机制是否熟悉，咱们都先来回顾一下这个编译的过程，以及“.class”字节码文件的概念。</p>
-<p>来看看下图，一起来感受一下：</p>
-<p><img src="../../images/jvm1-2.jpg" alt="jvm1-2"></p>
-<p>接着我们可能就要思考下一个问题：</p>
-<p>对于编译好的这些“.class”字节码，是怎么让他们运行起来的呢？</p>
-<p>这个时候就需要使用诸如“java -jar”之类的命令来运行我们写好的代码了。</p>
-<p>此时一旦你采用“java”命令，实际上此时就会启动一个JVM进程。</p>
-<p>这个JVM就会来负责运行这些“.class”字节码文件，也就相当于是负责运行我们写好的系统。</p>
-<p>所以平时我们写好的某个系统在一台机器上部署的时候，你一旦启动这个系统，其实就是启动了一个JVM，由它来负责运行这台机器上运行的这个系统。</p>
-<p>对这个概念，大家一定要先搞清楚。</p>
-<p>我们还是用一张图来展示一下，相信大家图文结合，会理解的更好。</p>
-<p><img src="../../images/jvm1-3.jpg" alt="jvm1-3"></p>
-<p>接着下一步，JVM要运行这些“.class”字节码文件中的代码，那是不是首先得把这些“.class”文件中包含的各种类给加载进来？</p>
-<p>这些“.class”文件不就是我们写好的一个一个的类吗？对不对？</p>
-<p>此时就会有一个“类加载器”的概念。</p>
-<p>此时会采用类加载器把编译好的那些“.class”字节码文件给加载到JVM中，然后供后续代码运行来使用。</p>
-<p>我们再看下图。</p>
-<p><img src="../../images/jvm1-4.jpg" alt="jvm1-4"></p>
-<p>接着，最后一步，JVM就会基于自己的字节码执行引擎，来执行加载到内存里的我们写好的那些类了</p>
-<p>比如你的代码中有一个“main()”方法，那么JVM就会从这个“main()”方法开始执行里面的代码。</p>
-<p>他需要哪个类的时候，就会使用类加载器来加载对应的类，反正对应的类就在“.class”文件中。</p>
-<p>大家最后看看下面的图。</p>
-<p><img src="../../images/jvm1-5.jpg" alt="jvm1-5"></p>
-<p>好，最后我们来对本文小结一下：</p>
-<p>无论是对JVM了解或者是不了解的同学，我们都希望通过第一周的基本原理知识讲解，降低学习后面JVM优化实战技术的门槛。</p>
-<p>对于了解JVM的同学权当复习梳理，而且鼓励大家在底部评论发言，说说自己的理解和看法。</p>
-<p>对于不太了解JVM的小白同学，也可以抄底门槛迅速入门，无缝衔接后续的知识学习。</p>
-<p>所以本文从我们平时写“.java”后缀的源代码开始，一步一步梳理了以下的流程：</p>
-<p>写好的代码编译成“.class”后缀的字节码文件</p>
-<p>JVM是个什么东西</p>
-<p>JVM跟我们平时运行在机器上的系统之间是什么关系</p>
-<p>类加载器的概念</p>
-<p>针对加载进内存的类进行代码的执行</p>
-<p>这就是本文讲解的内容总结，希望大家对这部分内容高屋建瓴的先有一个认识。</p>
-<p>另外，最后我给大家留一个思考题：既然“.java”文件可以编译成“.class”文件再运行，那么也肯定可以将“.class”文件反编译成“.java”文件。</p>
-<p>但是这样的话，如果你们公司的系统代码编译好之后，都是“.class”的格式，但是被别人拿到了，反编译回来不就可以窃取你们公司的核心系统的源代码了？对这个问题，大家觉得应该怎么解决呢？</p>
-<p>大家可以思考思考，踊跃提问和发言，明天的文章里，在末尾我会跟大家探讨一下这个问题。</p>
-
+  
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <h1 class="collection-header">xinzhili
+          <small>分类</small>
+        </h1>
       </div>
-      
-      
-      
-    </div>
-    
-  <ul class="breadcrumb">
-          
-            <li><a href="/renhaizhou/">RENHAIZHOU</a></li>
-            <li><a href="/renhaizhou/jvm/">JVM</a></li>
-            <li>JVM002</li>
-          
-  </ul>
 
-    
-    
-    
+      
+    <div class="collection-year">
+      <h1 class="collection-header">2020</h1>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-04-03T12:09:22+08:00"
+              content="2020-04-03">
+          04-03
+        </time>
+      </div>
+
+      <h2 class="post-title">
+          <a class="post-title-link" href="/xinzhili/xinzhili/" itemprop="url">
+            <span itemprop="name">心之力</span>
+          </a>
+      </h2>
+
+    </header>
+  </article>
+
+    </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -359,20 +289,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
