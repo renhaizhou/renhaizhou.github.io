@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.renhz.fun/design-pattern/visitor/</loc>
+    
+    <lastmod>2020-04-07T07:52:41.652Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/command/</loc>
+    
+    <lastmod>2020-04-07T07:42:18.717Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/chain/</loc>
+    
+    <lastmod>2020-04-07T07:29:53.037Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/template-method/</loc>
+    
+    <lastmod>2020-04-07T07:16:36.157Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/design-pattern/strategy/</loc>
     
     <lastmod>2020-04-07T06:54:19.314Z</lastmod>
@@ -16,7 +44,7 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/rx/rxjava/</loc>
+    <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
     
     <lastmod>2020-04-07T06:37:40.353Z</lastmod>
     
@@ -30,7 +58,7 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
+    <loc>http://www.renhz.fun/rx/rxjava/</loc>
     
     <lastmod>2020-04-07T06:37:40.353Z</lastmod>
     
@@ -44,14 +72,14 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/mysql/mysql/</loc>
+    <loc>http://www.renhz.fun/jvm/jvm/</loc>
     
     <lastmod>2020-04-07T06:37:40.352Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/jvm/jvm/</loc>
+    <loc>http://www.renhz.fun/mysql/mysql/</loc>
     
     <lastmod>2020-04-07T06:37:40.352Z</lastmod>
     
@@ -79,6 +107,13 @@
   </url>
   
   <url>
+    <loc>http://www.renhz.fun/design-pattern/proxy/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.350Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/distributed-protocol/paxos/</loc>
     
     <lastmod>2020-04-07T06:37:40.350Z</lastmod>
@@ -93,14 +128,7 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/proxy/</loc>
-    
-    <lastmod>2020-04-07T06:37:40.350Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/design-pattern/prototype/</loc>
+    <loc>http://www.renhz.fun/design-pattern/factory-method/</loc>
     
     <lastmod>2020-04-07T06:37:40.349Z</lastmod>
     
@@ -114,7 +142,7 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/factory-method/</loc>
+    <loc>http://www.renhz.fun/design-pattern/prototype/</loc>
     
     <lastmod>2020-04-07T06:37:40.349Z</lastmod>
     
@@ -142,14 +170,14 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/composite/</loc>
+    <loc>http://www.renhz.fun/design-pattern/factory-kit/</loc>
     
     <lastmod>2020-04-07T06:37:40.348Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/factory-kit/</loc>
+    <loc>http://www.renhz.fun/design-pattern/composite/</loc>
     
     <lastmod>2020-04-07T06:37:40.348Z</lastmod>
     
@@ -191,14 +219,14 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/cache/cache/</loc>
+    <loc>http://www.renhz.fun/design-pattern/23/</loc>
     
     <lastmod>2020-04-07T06:37:40.346Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/23/</loc>
+    <loc>http://www.renhz.fun/cache/cache/</loc>
     
     <lastmod>2020-04-07T06:37:40.346Z</lastmod>
     
@@ -212,14 +240,14 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/algorithms/sort/</loc>
+    <loc>http://www.renhz.fun/algorithms/list/</loc>
     
     <lastmod>2020-04-07T06:37:40.345Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/algorithms/list/</loc>
+    <loc>http://www.renhz.fun/algorithms/sort/</loc>
     
     <lastmod>2020-04-07T06:37:40.345Z</lastmod>
     
@@ -247,14 +275,14 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/springcloud/feign/</loc>
+    <loc>http://www.renhz.fun/spring/spring-source/</loc>
     
     <lastmod>2020-03-30T02:30:39.073Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/spring/spring-source/</loc>
+    <loc>http://www.renhz.fun/springcloud/feign/</loc>
     
     <lastmod>2020-03-30T02:30:39.073Z</lastmod>
     
