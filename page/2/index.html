@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 
 <script id="hexo-configurations">
@@ -28,9 +30,9 @@
     version: '7.5.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"default"},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#FF00FF","save":"manual"},
     fancybox: true,
     mediumzoom: false,
     lazyload: false,
@@ -155,11 +157,6 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/baidusitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -192,6 +189,8 @@
     </header>
 
     
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -207,7 +206,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/rx/rxjava/">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/flyweight/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/xxx.jpg">
@@ -221,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/rx/rxjava/" class="post-title-link" itemprop="url">RxJava</a>
+            <a href="/design-pattern/flyweight/" class="post-title-link" itemprop="url">享元模式</a>
         </h1>
 
         <div class="post-meta">
@@ -233,14 +232,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-27 21:40:32" itemprop="dateCreated datePublished" datetime="2020-03-27T21:40:32+08:00">2020-03-27</time>
+              <time title="创建时间：2020-04-04 17:35:33" itemprop="dateCreated datePublished" datetime="2020-04-04T17:35:33+08:00">2020-04-04</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,14 +247,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxJava/" itemprop="url" rel="index">
-                    <span itemprop="name">RxJava</span>
+                  <a href="/categories/designpattern/" itemprop="url" rel="index">
+                    <span itemprop="name">designpattern</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/rx/rxjava/" class="post-meta-item leancloud_visitors" data-flag-title="RxJava" title="阅读次数">
+            <span id="/design-pattern/flyweight/" class="post-meta-item leancloud_visitors" data-flag-title="享元模式" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -272,10 +271,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="观察者模式实现"><a href="#观察者模式实现" class="headerlink" title="观察者模式实现"></a>观察者模式实现</h1><p>Observable：被观察者类，这个类就是观察者模式中的被观察对象。当触发某些事件后，就可以向观察者推送通知<br>Observer：观察者接口，当订阅了 Observable，Observable 就可以调用 Observer 接口函数对其进行通知<br>现在用 RxJava 实现一个简单的观察者模式<br>首先创建一个被观察者对象：</p>
+          <h1 id="享元设计模式UML类图"><a href="#享元设计模式UML类图" class="headerlink" title="享元设计模式UML类图"></a>享元设计模式UML类图</h1><p><img src="../../images/plantuml/flyweight.urm/flyweight.urm.png" alt="适配器设计模式UML类图"></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/rx/rxjava/#more" rel="contents">
+              <a class="btn" href="/design-pattern/flyweight/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -299,7 +298,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/nio/mmap/">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/decorate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/xxx.jpg">
@@ -313,7 +312,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/nio/mmap/" class="post-title-link" itemprop="url">mmap</a>
+            <a href="/design-pattern/decorate/" class="post-title-link" itemprop="url">装饰者模式</a>
         </h1>
 
         <div class="post-meta">
@@ -325,14 +324,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-27 16:40:24" itemprop="dateCreated datePublished" datetime="2020-03-27T16:40:24+08:00">2020-03-27</time>
+              <time title="创建时间：2020-04-04 16:37:16" itemprop="dateCreated datePublished" datetime="2020-04-04T16:37:16+08:00">2020-04-04</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -340,14 +339,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mmap/" itemprop="url" rel="index">
-                    <span itemprop="name">mmap</span>
+                  <a href="/categories/designpattern/" itemprop="url" rel="index">
+                    <span itemprop="name">designpattern</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/nio/mmap/" class="post-meta-item leancloud_visitors" data-flag-title="mmap" title="阅读次数">
+            <span id="/design-pattern/decorate/" class="post-meta-item leancloud_visitors" data-flag-title="装饰者模式" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -364,10 +363,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>RocketMQ使用mmap提高读写效率</p><h1 id="mmap"><a href="#mmap" class="headerlink" title="mmap"></a>mmap</h1><p>mmap是一个系统调用。它的作用是将一个文件或者其它对象的一部分内容映射到进程的地址空间。这样进程就可以直接读写这一段内存，而系统会自动回写脏页面到对应的文件磁盘上，即完成了对文件的操作而不必再调用read,write等系统调用函数。相反，内核空间对这段区域的修改也直接反映用户空间。通过mmap也可以实现不同进程间的共享内存。</p>
+          <h1 id="装饰者设计模式UML类图"><a href="#装饰者设计模式UML类图" class="headerlink" title="装饰者设计模式UML类图"></a>装饰者设计模式UML类图</h1><p><img src="../../images/plantuml/decorator.urm/decorator.urm.png" alt="装饰者模式UML类图"></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/nio/mmap/#more" rel="contents">
+              <a class="btn" href="/design-pattern/decorate/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -391,7 +390,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/springcloud/ribbon/">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/proxy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/xxx.jpg">
@@ -405,7 +404,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/springcloud/ribbon/" class="post-title-link" itemprop="url">ribbon</a>
+            <a href="/design-pattern/proxy/" class="post-title-link" itemprop="url">代理模式</a>
         </h1>
 
         <div class="post-meta">
@@ -417,14 +416,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-27 15:53:35" itemprop="dateCreated datePublished" datetime="2020-03-27T15:53:35+08:00">2020-03-27</time>
+              <time title="创建时间：2020-04-04 16:32:52" itemprop="dateCreated datePublished" datetime="2020-04-04T16:32:52+08:00">2020-04-04</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -432,14 +431,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springcloud/" itemprop="url" rel="index">
-                    <span itemprop="name">springcloud</span>
+                  <a href="/categories/designpattern/" itemprop="url" rel="index">
+                    <span itemprop="name">designpattern</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/springcloud/ribbon/" class="post-meta-item leancloud_visitors" data-flag-title="ribbon" title="阅读次数">
+            <span id="/design-pattern/proxy/" class="post-meta-item leancloud_visitors" data-flag-title="代理模式" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -456,603 +455,709 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="http://assets.processon.com/chart_image/5e7d9fafe4b092510f7ac3de.png" alt="ribbon"></p>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/springcloud/feign/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/xxx.jpg">
-      <meta itemprop="name" content="shadow">
-      <meta itemprop="description" content="以梦为马不负韶华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学海无涯苦作舟">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/springcloud/feign/" class="post-title-link" itemprop="url">feign</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-27 15:53:22" itemprop="dateCreated datePublished" datetime="2020-03-27T15:53:22+08:00">2020-03-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springcloud/" itemprop="url" rel="index">
-                    <span itemprop="name">springcloud</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/springcloud/feign/" class="post-meta-item leancloud_visitors" data-flag-title="feign" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="http://assets.processon.com/chart_image/5e7d8b55e4b08b61573df913.png" alt="feign"></p>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/distributed-protocol/paxos/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/xxx.jpg">
-      <meta itemprop="name" content="shadow">
-      <meta itemprop="description" content="以梦为马不负韶华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学海无涯苦作舟">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/distributed-protocol/paxos/" class="post-title-link" itemprop="url">paxos</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-27 11:20:09" itemprop="dateCreated datePublished" datetime="2020-03-27T11:20:09+08:00">2020-03-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/distributed-protocol/" itemprop="url" rel="index">
-                    <span itemprop="name">distributed-protocol</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/distributed-protocol/paxos/" class="post-meta-item leancloud_visitors" data-flag-title="paxos" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="../../images/paxos01.png" alt="paxos算法概述"><br><img src="../../images/paxos02.png" alt="paxos过半承诺机制"><br><img src="../../images/paxos03.png" alt="paxos活锁问题"><br><img src="../../images/paxos04.png" alt="paxos过半接受机制"><br><img src="../../images/paxos05.png" alt="paxos实际案例"></p>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/mysql/mysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/xxx.jpg">
-      <meta itemprop="name" content="shadow">
-      <meta itemprop="description" content="以梦为马不负韶华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学海无涯苦作舟">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/mysql/mysql/" class="post-title-link" itemprop="url">mysql</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-26 15:47:26" itemprop="dateCreated datePublished" datetime="2020-03-26T15:47:26+08:00">2020-03-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/mysql/mysql/" class="post-meta-item leancloud_visitors" data-flag-title="mysql" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="../../images/mysql01.png" alt="sql语句执行步骤"><br><img src="../../images/mysql02.png" alt="InnoDB存储引擎架构"><br><img src="../../images/mysql03.png" alt="Buffer Pool内存结构"></p>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/springcloud/hystrix/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/xxx.jpg">
-      <meta itemprop="name" content="shadow">
-      <meta itemprop="description" content="以梦为马不负韶华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学海无涯苦作舟">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/springcloud/hystrix/" class="post-title-link" itemprop="url">hystrix</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-26 14:52:51" itemprop="dateCreated datePublished" datetime="2020-03-26T14:52:51+08:00">2020-03-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springcloud/" itemprop="url" rel="index">
-                    <span itemprop="name">springcloud</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/springcloud/hystrix/" class="post-meta-item leancloud_visitors" data-flag-title="hystrix" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="../../images/hystrix-command-flow-chart.png" alt="Hystrix流程图"></p><p><img src="../../images/hystrix%E6%BA%90%E7%A0%81.png" alt="Hystrix源码"></p>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/springcloud/eureka/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/xxx.jpg">
-      <meta itemprop="name" content="shadow">
-      <meta itemprop="description" content="以梦为马不负韶华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学海无涯苦作舟">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/springcloud/eureka/" class="post-title-link" itemprop="url">eureka</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-25 23:18:57" itemprop="dateCreated datePublished" datetime="2020-03-25T23:18:57+08:00">2020-03-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springcloud/" itemprop="url" rel="index">
-                    <span itemprop="name">springcloud</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/springcloud/eureka/" class="post-meta-item leancloud_visitors" data-flag-title="eureka" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="../../images/eureka%E6%BA%90%E7%A0%81.png" alt="Eureka源码"></p>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/jvm/jvm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/xxx.jpg">
-      <meta itemprop="name" content="shadow">
-      <meta itemprop="description" content="以梦为马不负韶华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学海无涯苦作舟">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/jvm/jvm/" class="post-title-link" itemprop="url">jvm</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-25 23:10:21" itemprop="dateCreated datePublished" datetime="2020-03-25T23:10:21+08:00">2020-03-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/jvm/" itemprop="url" rel="index">
-                    <span itemprop="name">jvm</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/jvm/jvm/" class="post-meta-item leancloud_visitors" data-flag-title="jvm" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="../../images/jvm01.png" alt="jvm触发Minor GC时机"><br><img src="../../images/jvm02.png" alt="jvm触发Full GC时机"><br><img src="../../images/jvm03.png" alt="存活对象进入老年代时机"><br><img src="../../images/jvm04.png" alt="CMS垃圾回收器参数"><br><img src="../../images/jvm05.png" alt="G1垃圾回收器参数"><br><img src="../../images/jvm06.png" alt="类加载器步骤"><br><img src="../../images/jvm07.png" alt="jvm内存结构"></p>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/interview/java-interview/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/xxx.jpg">
-      <meta itemprop="name" content="shadow">
-      <meta itemprop="description" content="以梦为马不负韶华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学海无涯苦作舟">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/interview/java-interview/" class="post-title-link" itemprop="url">JAVA分布式</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-05 16:34:15" itemprop="dateCreated datePublished" datetime="2020-03-05T16:34:15+08:00">2020-03-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-03 12:14:17" itemprop="dateModified" datetime="2020-04-03T12:14:17+08:00">2020-04-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/distributed-problem/" itemprop="url" rel="index">
-                    <span itemprop="name">distributed-problem</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/interview/java-interview/" class="post-meta-item leancloud_visitors" data-flag-title="JAVA分布式" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="多线程、并发包"><a href="#多线程、并发包" class="headerlink" title="多线程、并发包"></a>多线程、并发包</h1><h2 id="JDK-8中对hash算法和寻址算法是如何优化的？"><a href="#JDK-8中对hash算法和寻址算法是如何优化的？" class="headerlink" title="JDK 8中对hash算法和寻址算法是如何优化的？"></a>JDK 8中对hash算法和寻址算法是如何优化的？</h2><h2 id="你知道HashMap是如何解决hash碰撞问题的吗？"><a href="#你知道HashMap是如何解决hash碰撞问题的吗？" class="headerlink" title="你知道HashMap是如何解决hash碰撞问题的吗？"></a>你知道HashMap是如何解决hash碰撞问题的吗？</h2><h2 id="说说HashMap是如何进行扩容的可以吗？"><a href="#说说HashMap是如何进行扩容的可以吗？" class="headerlink" title="说说HashMap是如何进行扩容的可以吗？"></a>说说HashMap是如何进行扩容的可以吗？</h2><h2 id="说说synchronized关键字的底层原理是什么？（基础篇）"><a href="#说说synchronized关键字的底层原理是什么？（基础篇）" class="headerlink" title="说说synchronized关键字的底层原理是什么？（基础篇）"></a>说说synchronized关键字的底层原理是什么？（基础篇）</h2><h2 id="能聊聊你对CAS的理解以及其底层实现原理可以吗？（基础篇）"><a href="#能聊聊你对CAS的理解以及其底层实现原理可以吗？（基础篇）" class="headerlink" title="能聊聊你对CAS的理解以及其底层实现原理可以吗？（基础篇）"></a>能聊聊你对CAS的理解以及其底层实现原理可以吗？（基础篇）</h2><h2 id="ConcurrentHashMap实现线程安全的底层原理到底是什么？"><a href="#ConcurrentHashMap实现线程安全的底层原理到底是什么？" class="headerlink" title="ConcurrentHashMap实现线程安全的底层原理到底是什么？"></a>ConcurrentHashMap实现线程安全的底层原理到底是什么？</h2>
+          <h1 id="代理设计模式UML类图"><a href="#代理设计模式UML类图" class="headerlink" title="代理设计模式UML类图"></a>代理设计模式UML类图</h1><p><img src="../../images/plantuml/proxy.urm/proxy.urm.png" alt="代理设计模式UML类图"></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/interview/java-interview/#more" rel="contents">
+              <a class="btn" href="/design-pattern/proxy/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/composite/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/design-pattern/composite/" class="post-title-link" itemprop="url">组合模式</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-03 23:35:04" itemprop="dateCreated datePublished" datetime="2020-04-03T23:35:04+08:00">2020-04-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/designpattern/" itemprop="url" rel="index">
+                    <span itemprop="name">designpattern</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/design-pattern/composite/" class="post-meta-item leancloud_visitors" data-flag-title="组合模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="组合设计模式UML类图"><a href="#组合设计模式UML类图" class="headerlink" title="组合设计模式UML类图"></a>组合设计模式UML类图</h1><p><img src="../../images/plantuml/composite.urm/composite.urm.png" alt="组合设计模式UML类图"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/design-pattern/composite/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/adapter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/design-pattern/adapter/" class="post-title-link" itemprop="url">适配器模式</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-03 17:27:57" itemprop="dateCreated datePublished" datetime="2020-04-03T17:27:57+08:00">2020-04-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/designpattern/" itemprop="url" rel="index">
+                    <span itemprop="name">designpattern</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/design-pattern/adapter/" class="post-meta-item leancloud_visitors" data-flag-title="适配器模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="菜鸟教程笔记-计算机读取SD卡例子"><a href="#菜鸟教程笔记-计算机读取SD卡例子" class="headerlink" title="菜鸟教程笔记-计算机读取SD卡例子"></a>菜鸟教程笔记-计算机读取SD卡例子</h1><h2 id="先模拟计算机读取SD卡："><a href="#先模拟计算机读取SD卡：" class="headerlink" title="先模拟计算机读取SD卡："></a>先模拟计算机读取SD卡：</h2><p>1、先创建一个SD卡的接口：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SDCard</span> </span>&#123;</span><br><span class="line">    <span class="comment">//读取SD卡方法</span></span><br><span class="line">    <span class="function">String <span class="title">readSD</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//写入SD卡功能</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、创建SD卡接口的实现类，模拟SD卡的功能：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SDCardImpl</span> <span class="keyword">implements</span> <span class="title">SDCard</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String msg = <span class="string">"sdcard read a msg :hello word SD"</span>;</span><br><span class="line">        <span class="keyword">return</span> msg;  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span> </span>&#123;      </span><br><span class="line">        System.out.println(<span class="string">"sd card write msg : "</span> + msg);    </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、创建计算机接口，计算机提供读取SD卡方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Computer</span> </span>&#123;    </span><br><span class="line">    <span class="function">String <span class="title">readSD</span><span class="params">(SDCard sdCard)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、创建一个计算机实例，实现计算机接口，并实现其读取SD卡方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThinkpadComputer</span> <span class="keyword">implements</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">(SDCard sdCard)</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">if</span>(sdCard == <span class="keyword">null</span>)<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"sd card null"</span>);        </span><br><span class="line">        <span class="keyword">return</span> sdCard.readSD();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5、这时候就可以模拟计算机读取SD卡功能：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerReadDemo</span> </span>&#123;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        </span><br><span class="line">        Computer computer = <span class="keyword">new</span> ThinkpadComputer();        </span><br><span class="line">        SDCard sdCard = <span class="keyword">new</span> SDCardImpl();       </span><br><span class="line">        System.out.println(computer.readSD(sdCard));    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/design-pattern/adapter/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/observer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/design-pattern/observer/" class="post-title-link" itemprop="url">观察者模式</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-03 16:25:54" itemprop="dateCreated datePublished" datetime="2020-04-03T16:25:54+08:00">2020-04-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/designpattern/" itemprop="url" rel="index">
+                    <span itemprop="name">designpattern</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/design-pattern/observer/" class="post-meta-item leancloud_visitors" data-flag-title="观察者模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="观察者设计模式UML类图"><a href="#观察者设计模式UML类图" class="headerlink" title="观察者设计模式UML类图"></a>观察者设计模式UML类图</h1><p><img src="../../images/plantuml/observer.urm/observer.urm.png" alt="观察者UML类图"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/design-pattern/observer/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/xinzhili/xinzhili/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/xinzhili/xinzhili/" class="post-title-link" itemprop="url">心之力</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-03 12:09:22 / 修改时间：17:04:55" itemprop="dateCreated datePublished" datetime="2020-04-03T12:09:22+08:00">2020-04-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/xinzhili/" itemprop="url" rel="index">
+                    <span itemprop="name">xinzhili</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/xinzhili/xinzhili/" class="post-meta-item leancloud_visitors" data-flag-title="心之力" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="../../images/xinzhili.png" alt="表结构设计"></p>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/log/log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/log/log/" class="post-title-link" itemprop="url">混乱的JAVA日志体系</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-01 09:43:48" itemprop="dateCreated datePublished" datetime="2020-04-01T09:43:48+08:00">2020-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/log/" itemprop="url" rel="index">
+                    <span itemprop="name">log</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/log/log/" class="post-meta-item leancloud_visitors" data-flag-title="混乱的JAVA日志体系" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Log日志体系"><a href="#Log日志体系" class="headerlink" title="Log日志体系"></a>Log日志体系</h1><p>commons-logging.jar、log4j.jar、sl4j-api.jar、logback.jar</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/log/log/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/algorithms/sort/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/algorithms/sort/" class="post-title-link" itemprop="url">排序算法</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-30 15:24:53" itemprop="dateCreated datePublished" datetime="2020-03-30T15:24:53+08:00">2020-03-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithms</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/algorithms/sort/" class="post-meta-item leancloud_visitors" data-flag-title="排序算法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="排序算法对比"><a href="#排序算法对比" class="headerlink" title="排序算法对比"></a>排序算法对比</h1><table>
+<thead>
+<tr>
+<th>算法</th>
+<th>时间复杂度</th>
+<th>是稳定排序？</th>
+<th>是原地排序？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>冒泡排序</td>
+<td>o(n2)</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>插入排序</td>
+<td>o(n2)</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>选择排序</td>
+<td>o(n2)</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>o(nlog(n))</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>归并排序</td>
+<td>o(nlog(n))</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>桶排序</td>
+<td>o(n+k) k是数据范围</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>计数排序</td>
+<td>o(n)</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>基数排序</td>
+<td>o(dn)  d是维度</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>堆排序</td>
+<td>O(nlogn)</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/algorithms/sort/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/springcloud/zuul/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/springcloud/zuul/" class="post-title-link" itemprop="url">网关</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-29 18:59:47" itemprop="dateCreated datePublished" datetime="2020-03-29T18:59:47+08:00">2020-03-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springcloud/" itemprop="url" rel="index">
+                    <span itemprop="name">springcloud</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/springcloud/zuul/" class="post-meta-item leancloud_visitors" data-flag-title="网关" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="http://assets.processon.com/chart_image/5e80796ce4b092510f7f5d33.png" alt="Zuul"></p>
       
     </div>
 
@@ -1071,7 +1176,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1117,7 +1222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1175,12 +1280,7 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">shadow</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
-  </div>
+</div><script color="255,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -1291,6 +1391,7 @@
   </div>
 
   
+  <script color='255,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
@@ -1298,7 +1399,7 @@
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
 

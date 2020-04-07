@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 
 <script id="hexo-configurations">
@@ -28,9 +30,9 @@
     version: '7.5.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"default"},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#FF00FF","save":"manual"},
     fancybox: true,
     mediumzoom: false,
     lazyload: false,
@@ -155,11 +157,6 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/baidusitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -192,6 +189,8 @@
     </header>
 
     
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -207,7 +206,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/tomcat/tomcat-source/">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/algorithms/list/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/xxx.jpg">
@@ -221,7 +220,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/tomcat/tomcat-source/" class="post-title-link" itemprop="url">tomcat源码</a>
+            <a href="/algorithms/list/" class="post-title-link" itemprop="url">链表</a>
         </h1>
 
         <div class="post-meta">
@@ -233,14 +232,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-02-12 22:07:08" itemprop="dateCreated datePublished" datetime="2020-02-12T22:07:08+08:00">2020-02-12</time>
+              <time title="创建时间：2020-03-29 17:46:51" itemprop="dateCreated datePublished" datetime="2020-03-29T17:46:51+08:00">2020-03-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,14 +247,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index">
-                    <span itemprop="name">tomcat</span>
+                  <a href="/categories/algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithms</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/tomcat/tomcat-source/" class="post-meta-item leancloud_visitors" data-flag-title="tomcat源码" title="阅读次数">
+            <span id="/algorithms/list/" class="post-meta-item leancloud_visitors" data-flag-title="链表" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -272,262 +271,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="../../images/tomcat.svg" alt="tomcat源码UML类图"><br><img src="../../images/plantuml/tomcat_sequence/tomcat_sequence.png" alt="tomcat源码UML时序图"><br><img src="../../images/plantuml/tomcat_request_seq/tomcat_request_seq.png" alt="tomcat源码Request请求UML时序图"></p>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/spring/spring-source/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/xxx.jpg">
-      <meta itemprop="name" content="shadow">
-      <meta itemprop="description" content="以梦为马不负韶华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学海无涯苦作舟">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/spring/spring-source/" class="post-title-link" itemprop="url">spring源码</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-19 15:40:41" itemprop="dateCreated datePublished" datetime="2020-01-19T15:40:41+08:00">2020-01-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spring/" itemprop="url" rel="index">
-                    <span itemprop="name">spring</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/spring/spring-source/" class="post-meta-item leancloud_visitors" data-flag-title="spring源码" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="../../images/spring.svg" alt="AnnotationConfigApplicationContext源码架构图"></p>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/composite/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/xxx.jpg">
-      <meta itemprop="name" content="shadow">
-      <meta itemprop="description" content="以梦为马不负韶华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学海无涯苦作舟">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/design-pattern/composite/" class="post-title-link" itemprop="url">组合设计模式</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-17 16:11:04" itemprop="dateCreated datePublished" datetime="2020-01-17T16:11:04+08:00">2020-01-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-03 18:26:40" itemprop="dateModified" datetime="2020-04-03T18:26:40+08:00">2020-04-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/designpattern/" itemprop="url" rel="index">
-                    <span itemprop="name">designpattern</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/design-pattern/composite/" class="post-meta-item leancloud_visitors" data-flag-title="组合设计模式" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="组合设计模式UML类图"><a href="#组合设计模式UML类图" class="headerlink" title="组合设计模式UML类图"></a>组合设计模式UML类图</h1><p><img src="../../images/plantuml/composite.urm/composite.urm.png" alt="组合设计模式UML类图"></p><h1 id="组合设计模式java代码实现"><a href="#组合设计模式java代码实现" class="headerlink" title="组合设计模式java代码实现"></a>组合设计模式java代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Word.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Word</span> <span class="keyword">extends</span> <span class="title">LetterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Constructor.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Word</span><span class="params">(List&lt;Letter&gt; letters)</span> </span>&#123;</span><br><span class="line">    letters.forEach(<span class="keyword">this</span>::add);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Constructor.</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> letters to include</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Word</span><span class="params">(<span class="keyword">char</span>... letters)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> letter : letters) &#123;</span><br><span class="line">      <span class="keyword">this</span>.add(<span class="keyword">new</span> Letter(letter));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">printThisBefore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.print(<span class="string">" "</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Sentence.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sentence</span> <span class="keyword">extends</span> <span class="title">LetterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Constructor.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Sentence</span><span class="params">(List&lt;Word&gt; words)</span> </span>&#123;</span><br><span class="line">    words.forEach(<span class="keyword">this</span>::add);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">printThisAfter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.print(<span class="string">"."</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Letter.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Letter</span> <span class="keyword">extends</span> <span class="title">LetterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">char</span> character;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Letter</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.character = c;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">printThisBefore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.print(character);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Composite interface.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">LetterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> List&lt;LetterComposite&gt; children = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(LetterComposite letter)</span> </span>&#123;</span><br><span class="line">    children.add(letter);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> children.size();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">printThisBefore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">printThisAfter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Print.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    printThisBefore();</span><br><span class="line">    children.forEach(LetterComposite::print);</span><br><span class="line">    printThisAfter();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Messenger.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Messenger</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function">LetterComposite <span class="title">messageFromOrcs</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> words = List.of(</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'W'</span>, <span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'r'</span>, <span class="string">'e'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'t'</span>, <span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'r'</span>, <span class="string">'e'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'i'</span>, <span class="string">'s'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'a'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'w'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'p'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'t'</span>, <span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'r'</span>, <span class="string">'e'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'i'</span>, <span class="string">'s'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'a'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'w'</span>, <span class="string">'a'</span>, <span class="string">'y'</span>)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Sentence(words);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function">LetterComposite <span class="title">messageFromElves</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> words = List.of(</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'M'</span>, <span class="string">'u'</span>, <span class="string">'c'</span>, <span class="string">'h'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'w'</span>, <span class="string">'i'</span>, <span class="string">'n'</span>, <span class="string">'d'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'p'</span>, <span class="string">'o'</span>, <span class="string">'u'</span>, <span class="string">'r'</span>, <span class="string">'s'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'f'</span>, <span class="string">'r'</span>, <span class="string">'o'</span>, <span class="string">'m'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'y'</span>, <span class="string">'o'</span>, <span class="string">'u'</span>, <span class="string">'r'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'m'</span>, <span class="string">'o'</span>, <span class="string">'u'</span>, <span class="string">'t'</span>, <span class="string">'h'</span>)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Sentence(words);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The Composite pattern is a partitioning design pattern. The Composite pattern describes that a</span></span><br><span class="line"><span class="comment"> * group of objects is to be treated in the same way as a single instance of an object. The intent</span></span><br><span class="line"><span class="comment"> * of a composite is to "compose" objects into tree structures to represent part-whole hierarchies.</span></span><br><span class="line"><span class="comment"> * Implementing the Composite pattern lets clients treat individual objects and compositions</span></span><br><span class="line"><span class="comment"> * uniformly.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;In this example we have sentences composed of words composed of letters. All of the objects</span></span><br><span class="line"><span class="comment"> * can be treated through the same interface (&#123;<span class="doctag">@link</span> LetterComposite&#125;).</span></span><br><span class="line"><span class="comment"> Composite模式是一种分区设计模式。 复合模式描述了要以与对象的单个实例相同的方式对待一组对象。 </span></span><br><span class="line"><span class="comment"> 组合的目的是将对象“组合”为树状结构，以表示整个部分的层次结构。实施“组合”模式可使客户统一对待各个对象和组合。</span></span><br><span class="line"><span class="comment">&lt;p&gt;在此示例中，我们具有由字母组成的单词组成的句子。 所有对象可以通过相同的界面（&#123;<span class="doctag">@link</span> LetterComposite&#125;）进行处理。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(App<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Program entry point.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> args command line args</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"Message from the orcs: "</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> orcMessage = <span class="keyword">new</span> Messenger().messageFromOrcs();</span><br><span class="line">    orcMessage.print();</span><br><span class="line"></span><br><span class="line">    LOGGER.info(<span class="string">"\nMessage from the elves: "</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> elfMessage = <span class="keyword">new</span> Messenger().messageFromElves();</span><br><span class="line">    elfMessage.print();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/flyweight/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/xxx.jpg">
-      <meta itemprop="name" content="shadow">
-      <meta itemprop="description" content="以梦为马不负韶华">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学海无涯苦作舟">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/design-pattern/flyweight/" class="post-title-link" itemprop="url">享元设计模式</a>
-        </h1>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-17 13:32:32" itemprop="dateCreated datePublished" datetime="2020-01-17T13:32:32+08:00">2020-01-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/designpattern/" itemprop="url" rel="index">
-                    <span itemprop="name">designpattern</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/design-pattern/flyweight/" class="post-meta-item leancloud_visitors" data-flag-title="享元设计模式" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><p>享元模式(Flyweight Pattern)：运用共享技术有效地支持大量细粒度对象的复用。系统只使用少量的对象，而这些对象都很相似，状态变化很小，可以实现对象的多次复用。由于享元模式要求能够共享的对象必须是细粒度对象，因此它又称为轻量级模式，它是一种对象结构型模式。享元模式结构较为复杂，一般结合工厂模式一起使用。</p>
+          <h1 id="链表种类"><a href="#链表种类" class="headerlink" title="链表种类"></a>链表种类</h1><p>单链表、循环链表、双链表、双向循环链表</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/design-pattern/flyweight/#more" rel="contents">
+              <a class="btn" href="/algorithms/list/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -551,7 +298,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/factory/">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/algorithms/array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/xxx.jpg">
@@ -565,7 +312,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/design-pattern/factory/" class="post-title-link" itemprop="url">工厂模式</a>
+            <a href="/algorithms/array/" class="post-title-link" itemprop="url">数组</a>
         </h1>
 
         <div class="post-meta">
@@ -577,14 +324,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-01-14 16:27:36" itemprop="dateCreated datePublished" datetime="2020-01-14T16:27:36+08:00">2020-01-14</time>
+              <time title="创建时间：2020-03-29 17:46:35" itemprop="dateCreated datePublished" datetime="2020-03-29T17:46:35+08:00">2020-03-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -592,14 +339,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/designpattern/" itemprop="url" rel="index">
-                    <span itemprop="name">designpattern</span>
+                  <a href="/categories/algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithms</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/design-pattern/factory/" class="post-meta-item leancloud_visitors" data-flag-title="工厂模式" title="阅读次数">
+            <span id="/algorithms/array/" class="post-meta-item leancloud_visitors" data-flag-title="数组" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -616,10 +363,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="工厂模式及典型应用"><a href="#工厂模式及典型应用" class="headerlink" title="工厂模式及典型应用"></a>工厂模式及典型应用</h1><h2 id="设计模式-简单工厂模式及典型应用"><a href="#设计模式-简单工厂模式及典型应用" class="headerlink" title="设计模式 | 简单工厂模式及典型应用"></a>设计模式 | 简单工厂模式及典型应用</h2><h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><p>工厂模式是最常用的一类创建型设计模式，包括 抽象工厂模式，工厂方法模式和简单工厂模式 这三种，简单工厂模式是其中最简单的一种<br>简单工厂模式(Simple Factory Pattern)：定义一个工厂类，它可以根据参数的不同返回不同类的实例，被创建的实例通常都具有共同的父类。<br>因为在简单工厂模式中用于创建实例的方法是静态(static)方法，因此简单工厂模式又被称为静态工厂方法(Static Factory Method)模式，它属于类创建型模式，但不属于GOF23种设计模式</p>
+          <h1 id="如何实现随机访问？"><a href="#如何实现随机访问？" class="headerlink" title="如何实现随机访问？"></a>如何实现随机访问？</h1><p>数组（Array）是一种线性表数据结构。它用一组连续的内存空间，来存储一组具有相同类型的数据。<br>第一是线性表（Linear List）。<br>第二个是连续的内存空间和相同类型的数据。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/design-pattern/factory/#more" rel="contents">
+              <a class="btn" href="/algorithms/array/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -643,7 +390,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/decorate/">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/algorithms/time-complexity/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/xxx.jpg">
@@ -657,7 +404,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/design-pattern/decorate/" class="post-title-link" itemprop="url">装饰者模式</a>
+            <a href="/algorithms/time-complexity/" class="post-title-link" itemprop="url">时间复杂度</a>
         </h1>
 
         <div class="post-meta">
@@ -669,14 +416,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-01-14 09:37:16" itemprop="dateCreated datePublished" datetime="2020-01-14T09:37:16+08:00">2020-01-14</time>
+              <time title="创建时间：2020-03-28 16:47:09" itemprop="dateCreated datePublished" datetime="2020-03-28T16:47:09+08:00">2020-03-28</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -684,14 +431,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/designpattern/" itemprop="url" rel="index">
-                    <span itemprop="name">designpattern</span>
+                  <a href="/categories/algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithms</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/design-pattern/decorate/" class="post-meta-item leancloud_visitors" data-flag-title="装饰者模式" title="阅读次数">
+            <span id="/algorithms/time-complexity/" class="post-meta-item leancloud_visitors" data-flag-title="时间复杂度" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -708,10 +455,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h1><p><strong>动态的将责任附加到对象上，若要扩展功能，装饰者提供了比继承更有弹性的替代方案</strong></p><p>装饰器模式<br>装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。</p><p>这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。</p>
+          <h1 id="大-O-复杂度表示法"><a href="#大-O-复杂度表示法" class="headerlink" title="大 O 复杂度表示法"></a>大 O 复杂度表示法</h1><p>大 O 时间复杂度实际上并不具体表示代码真正的执行时间，而是表示代码执行时间随数据规模增长的变化趋势，所以，也叫作渐进时间复杂度（asymptotic time complexity），简称时间复杂度。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/design-pattern/decorate/#more" rel="contents">
+              <a class="btn" href="/algorithms/time-complexity/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -735,7 +482,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/hashmap/">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/rx/rxjava/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/xxx.jpg">
@@ -749,7 +496,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/hashmap/" class="post-title-link" itemprop="url">hashmap深入分析</a>
+            <a href="/rx/rxjava/" class="post-title-link" itemprop="url">RxJava</a>
         </h1>
 
         <div class="post-meta">
@@ -761,14 +508,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-12-30 16:20:01" itemprop="dateCreated datePublished" datetime="2019-12-30T16:20:01+08:00">2019-12-30</time>
+              <time title="创建时间：2020-03-27 21:40:32" itemprop="dateCreated datePublished" datetime="2020-03-27T21:40:32+08:00">2020-03-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-03 14:48:49" itemprop="dateModified" datetime="2020-04-03T14:48:49+08:00">2020-04-03</time>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -776,14 +523,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hashmap/" itemprop="url" rel="index">
-                    <span itemprop="name">hashmap</span>
+                  <a href="/categories/RxJava/" itemprop="url" rel="index">
+                    <span itemprop="name">RxJava</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/hashmap/" class="post-meta-item leancloud_visitors" data-flag-title="hashmap深入分析" title="阅读次数">
+            <span id="/rx/rxjava/" class="post-meta-item leancloud_visitors" data-flag-title="RxJava" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -800,10 +547,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="hashmap底层数据结构"><a href="#hashmap底层数据结构" class="headerlink" title="hashmap底层数据结构"></a>hashmap底层数据结构</h1><p><img src="../images/hashMap%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84.png" alt="hashmap-逻辑结构"></p><h2 id="PUT方法"><a href="#PUT方法" class="headerlink" title="PUT方法"></a>PUT方法</h2><p><img src="../images/hashmap-put%E6%96%B9%E6%B3%95.png" alt="hashmap-put方法"></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> putVal(hash(key), key, value, <span class="keyword">false</span>, <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">boolean</span> onlyIfAbsent,</span></span></span><br><span class="line"><span class="function"><span class="params">                   <span class="keyword">boolean</span> evict)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//table全局变量,存储链表头节点数组</span></span><br><span class="line">        Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="keyword">int</span> n, i;</span><br><span class="line">        <span class="comment">//如果table数组是空的，则创建一个头结点数据，默认长度是16</span></span><br><span class="line">        <span class="keyword">if</span> ((tab = table) == <span class="keyword">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">            n = (tab = resize()).length;</span><br><span class="line">        <span class="comment">//n是table长度,根据数组长度和key的哈希值，定位当前key在table中的下标位置,如果为空则新建一个node。不为空走else</span></span><br><span class="line">        <span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="keyword">null</span>)</span><br><span class="line">            tab[i] = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            Node&lt;K,V&gt; e; K k;</span><br><span class="line">            <span class="comment">// 如果新的key与table中索引处取出的头节点的key相等，且hash值一致，则把新的node替换掉旧的node</span></span><br><span class="line">            <span class="keyword">if</span> (p.hash == hash &amp;&amp;</span><br><span class="line">                ((k = p.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">                e = p;</span><br><span class="line">            <span class="comment">//如果头节点不是空，且头节点的类型是树节点类型，则把当前节点插入当前头节点所在的树中(红黑树，防止链表过长，1.8的优化)</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (p <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">                e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(<span class="keyword">this</span>, tab, hash, key, value);</span><br><span class="line">            <span class="comment">//map的数据结构处理</span></span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//遍历链表</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> binCount = <span class="number">0</span>; ; ++binCount) &#123;</span><br><span class="line">                    <span class="keyword">if</span> ((e = p.next) == <span class="keyword">null</span>) &#123;</span><br><span class="line">                        p.next = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">                        <span class="comment">//如果链表长度大于或等于8，则把链表转化为红黑树，重点转化方法(treeifyBin)</span></span><br><span class="line">                        <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="number">1</span>) <span class="comment">// -1 for 1st</span></span><br><span class="line">                            <span class="comment">//此方法构建红黑树</span></span><br><span class="line">                            treeifyBin(tab, hash);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//如果当前节点的key和hash均和待插入的节点相等，则退出循环，(注意此时e的值在前一个if时赋值过，因此当前的e值，就是链表中的当前节点值)</span></span><br><span class="line">                    <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                        ((k = e.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    p = e;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果老节点不是空，则将老节点的值替换为新值，并返回老的值</span></span><br><span class="line">            <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123; <span class="comment">// existing mapping for key</span></span><br><span class="line">                V oldValue = e.value;</span><br><span class="line">                <span class="keyword">if</span> (!onlyIfAbsent || oldValue == <span class="keyword">null</span>)</span><br><span class="line">                    e.value = value;</span><br><span class="line">                <span class="comment">//此方法实现的逻辑,是把入参的节点放置在链表的尾部，但在HashMap中是空实现，在LinkedHashMap中有具体实现</span></span><br><span class="line">                afterNodeAccess(e);</span><br><span class="line">                <span class="keyword">return</span> oldValue;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//保证并发访问时，若HashMap内部结构发生变化，快速响应失败</span></span><br><span class="line">        ++modCount;</span><br><span class="line">        <span class="comment">//当table[]长度大于临界阈值，调用resize方法进行扩容</span></span><br><span class="line">        <span class="keyword">if</span> (++size &gt; threshold)</span><br><span class="line">            resize();</span><br><span class="line">        <span class="comment">//此方法在HashMap中是空方法，在LinkedHashMap中有实现</span></span><br><span class="line">        afterNodeInsertion(evict);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="观察者模式实现"><a href="#观察者模式实现" class="headerlink" title="观察者模式实现"></a>观察者模式实现</h1><p>Observable：被观察者类，这个类就是观察者模式中的被观察对象。当触发某些事件后，就可以向观察者推送通知<br>Observer：观察者接口，当订阅了 Observable，Observable 就可以调用 Observer 接口函数对其进行通知<br>现在用 RxJava 实现一个简单的观察者模式</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/hashmap/#more" rel="contents">
+              <a class="btn" href="/rx/rxjava/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -827,7 +574,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/git/git/">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/nio/mmap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/xxx.jpg">
@@ -841,7 +588,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/git/git/" class="post-title-link" itemprop="url">git命令</a>
+            <a href="/nio/mmap/" class="post-title-link" itemprop="url">mmap</a>
         </h1>
 
         <div class="post-meta">
@@ -853,14 +600,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-11-29 14:01:07" itemprop="dateCreated datePublished" datetime="2019-11-29T14:01:07+08:00">2019-11-29</time>
+              <time title="创建时间：2020-03-27 16:40:24" itemprop="dateCreated datePublished" datetime="2020-03-27T16:40:24+08:00">2020-03-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -868,14 +615,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/mmap/" itemprop="url" rel="index">
+                    <span itemprop="name">mmap</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/git/git/" class="post-meta-item leancloud_visitors" data-flag-title="git命令" title="阅读次数">
+            <span id="/nio/mmap/" class="post-meta-item leancloud_visitors" data-flag-title="mmap" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -892,55 +639,454 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>git命令</strong></p><h1 id="git-revert-流程"><a href="#git-revert-流程" class="headerlink" title="git revert 流程"></a>git revert 流程</h1><p><img src="../../images/git-revert.svg" alt="git-revert-流程"></p><h1 id="git-基本命令"><a href="#git-基本命令" class="headerlink" title="git 基本命令"></a>git 基本命令</h1><ol>
-<li>在现有目录中初始化仓库 <code>git init</code></li>
-<li>如果你是在一个已经存在文件的文件夹（而不是空文件夹）中初始化 Git 仓库来进行版本控制的话，你应该开始跟踪这些文件并提交。 你可通过 <code>git add</code> 命令来实现对指定文件的跟踪，然后执行 <code>git commit</code> 提交</li>
-<li>Git 克隆的是该 Git 仓库服务器上的几乎所有数据，而不是仅仅复制完成你的工作所需要文件。 当你执行 <code>git clone</code> 命令的时候，默认配置下远程 Git 仓库中的每一个文件的每一个版本都将被拉取下来。</li>
-<li>检查当前文件状态 <code>git status</code></li>
-<li>跟踪新文件 <code>git add README</code></li>
-<li>暂存已修改文件 <code>git add README</code></li>
-<li>状态简览 <code>git status -s</code> 或者 <code>git status --short</code></li>
-<li>忽略文件 <code>cat .gitignore</code></li>
-<li>工作目录中当前文件和暂存区域快照之间的差异， 也就是修改之后还没有暂存起来的变化内容 <code>git diff</code></li>
-<li>若要查看已暂存的将要添加到下次提交里的内容，可以用 git <code>diff --cached</code> 或 <code>git diff --staged</code></li>
-<li>提交更新 <code>git commit</code></li>
-<li>Git 提供了一个跳过使用暂存区域的方式， 只要在提交的时候，给 git commit 加上 -a 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 git add 步骤</li>
-<li>移除文件 <code>git rm</code></li>
-<li>我们想把文件从 Git 仓库中删除（亦即从暂存区域移除），但仍然希望保留在当前工作目录中。 换句话说，你想让文件保留在磁盘，但是并不想让 Git 继续跟踪。 当你忘记添加 .gitignore 文件，不小心把一个很大的日志文件或一堆 .a 这样的编译生成文件添加到暂存区时，这一做法尤其有用。 为达到这一目的，使用 –cached 选项 <code>git rm --cached README</code></li>
-<li>移动文件 <code>git mv file_from file_to</code></li>
-<li>查看提交历史 <code>git log</code> 一个常用的选项是 -p，用来显示每次提交的内容差异。 你也可以加上 -2 来仅显示最近两次提交</li>
-<li>你想看到每次提交的简略的统计信息，你可以使用 –stat 选项 <code>git log --stat</code></li>
-<li>–pretty。 这个选项可以指定使用不同于默认格式的方式展示提交历史。 这个选项有一些内建的子选项供你使用。 比如用 oneline 将每个提交放在一行显示，查看的提交数很大时非常有用 <code>git log --pretty=oneline</code></li>
-<li>format，可以定制要显示的记录格式。 这样的输出对后期提取分析格外有用 — 因为你知道输出的格式不会随着 Git 的更新而发生改变 <code>git log --pretty=format:&quot;%h - %an, %ar : %s&quot;</code></li>
-<li>–graph 结合使用时尤其有用。 这个选项添加了一些 ASCII 字符串来形象地展示你的分支、合并历史 <code>git log --pretty=format:&quot;%h %s&quot; --graph</code></li>
-<li>按照时间作限制的选项，比如 –since 和 –until 也很有用。 例如，下面的命令列出所有最近两周内的提交：<code>git log --since=2.weeks</code></li>
-<li>–author 选项显示指定作者的提交，用 –grep 选项搜索提交说明中的关键字。</li>
-<li>另一个非常有用的筛选选项是 -S，可以列出那些添加或移除了某些字符串的提交。 比如说，你想找出添加或移除了某一个特定函数的引用的提交，你可以这样使用：<code>git log -Sfunction_name</code></li>
-<li>来看一个实际的例子，如果要查看 Git 仓库中，2008 年 10 月期间，Junio Hamano 提交的但未合并的测试文件，可以用下面的查询命令：<code>git log --pretty=&quot;%h - %s&quot; --author=gitster --since=&quot;2008-10-01&quot; --before=&quot;2008-11-01&quot; --no-merges -- t/</code></li>
-<li>撤消操作 有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 <code>git commit --amend</code></li>
-<li>取消暂存的文件 <code>git reset HEAD CONTRIBUTING.md</code></li>
-<li>撤消对文件的修改 <code>git checkout -- CONTRIBUTING.md</code></li>
-<li>如果想查看你已经配置的远程仓库服务器，可以运行 <code>git remote</code> 命令</li>
-<li>你也可以指定选项 -v <code>git remote -v</code>，会显示需要读写远程仓库使用的 Git 保存的简写与其对应的 URL。</li>
-<li>添加远程仓库 <code>git remote add &lt;shortname&gt; &lt;url&gt;</code> 添加一个新的远程 Git 仓库，同时指定一个你可以轻松引用的简写</li>
-<li>从远程仓库中抓取与拉取 <code>git fetch [remote-name]</code></li>
-<li>运行 <code>git pull</code> 通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。</li>
-<li>推送到远程仓库 <code>git push [remote-name] [branch-name]</code></li>
-<li>查看某个远程仓库 可以使用 <code>git remote show [remote-name]</code> 命令</li>
-<li>远程仓库的移除与重命名 <code>git remote rename</code> 去修改一个远程仓库的简写名 <code>git remote rm</code> 移除一个远程仓库</li>
-<li>列出标签 <code>git tag</code></li>
-<li>附注标签 创建标签 在 Git 中创建一个附注标签是很简单的。 最简单的方式是当你在运行 tag 命令时指定 -a 选项： <code>git tag -a v1.4 -m &quot;my version 1.4&quot;</code></li>
-<li>附注标签 通过使用 git show 命令可以看到标签信息与对应的提交信息：<code>git show v1.4</code></li>
-<li>轻量标签 创建轻量标签，不需要使用 -a、-s 或 -m 选项，只需要提供标签名字 <code>git tag v1.4-lw</code> <code>git show v1.4-lw</code></li>
-<li>后期打标签 <code>git tag -a v1.2 9fceb02</code></li>
-<li>共享标签  在创建完标签后你必须显式地推送标签到共享服务器上。 这个过程就像共享远程分支一样——你可以运行 <code>git push origin [tagname]</code></li>
-<li>如果想要一次性推送很多标签，也可以使用带有 –tags 选项的 git push 命令。 这将会把所有不在远程仓库服务器上的标签全部传送到那里。 <code>git push origin --tags</code></li>
-<li>删除标签 要删除掉你本地仓库上的标签，可以使用命令 <code>git tag -d &lt;tagname&gt;</code> 应该注意的是上述命令并不会从任何远程仓库中移除这个标签，你必须使用 <code>git push &lt;remote&gt; :refs/tags/&lt;tagname&gt;</code> 来更新你的远程仓库：<code>git push origin :refs/tags/v1.4-lw</code></li>
-<li>检出标签 如果你想查看某个标签所指向的文件版本，可以使用 git checkout 命令 <code>git checkout 2.0.0</code></li>
-</ol>
+          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>RocketMQ使用mmap提高读写效率</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/git/git/#more" rel="contents">
+              <a class="btn" href="/nio/mmap/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/springcloud/ribbon/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/springcloud/ribbon/" class="post-title-link" itemprop="url">ribbon</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-27 15:53:35" itemprop="dateCreated datePublished" datetime="2020-03-27T15:53:35+08:00">2020-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springcloud/" itemprop="url" rel="index">
+                    <span itemprop="name">springcloud</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/springcloud/ribbon/" class="post-meta-item leancloud_visitors" data-flag-title="ribbon" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="http://assets.processon.com/chart_image/5e7d9fafe4b092510f7ac3de.png" alt="ribbon"></p>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/springcloud/feign/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/springcloud/feign/" class="post-title-link" itemprop="url">feign</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-27 15:53:22" itemprop="dateCreated datePublished" datetime="2020-03-27T15:53:22+08:00">2020-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springcloud/" itemprop="url" rel="index">
+                    <span itemprop="name">springcloud</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/springcloud/feign/" class="post-meta-item leancloud_visitors" data-flag-title="feign" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="http://assets.processon.com/chart_image/5e7d8b55e4b08b61573df913.png" alt="feign"></p>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/distributed-protocol/paxos/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/distributed-protocol/paxos/" class="post-title-link" itemprop="url">paxos</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-27 11:20:09" itemprop="dateCreated datePublished" datetime="2020-03-27T11:20:09+08:00">2020-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/distributed-protocol/" itemprop="url" rel="index">
+                    <span itemprop="name">distributed-protocol</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/distributed-protocol/paxos/" class="post-meta-item leancloud_visitors" data-flag-title="paxos" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="../../images/paxos01.png" alt="paxos算法概述"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/distributed-protocol/paxos/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/mysql/mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/mysql/mysql/" class="post-title-link" itemprop="url">mysql</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-26 15:47:26" itemprop="dateCreated datePublished" datetime="2020-03-26T15:47:26+08:00">2020-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/mysql/mysql/" class="post-meta-item leancloud_visitors" data-flag-title="mysql" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="../../images/mysql01.png" alt="sql语句执行步骤"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/mysql/mysql/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/springcloud/hystrix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/springcloud/hystrix/" class="post-title-link" itemprop="url">hystrix</a>
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-26 14:52:51" itemprop="dateCreated datePublished" datetime="2020-03-26T14:52:51+08:00">2020-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springcloud/" itemprop="url" rel="index">
+                    <span itemprop="name">springcloud</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/springcloud/hystrix/" class="post-meta-item leancloud_visitors" data-flag-title="hystrix" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="../../images/hystrix-command-flow-chart.png" alt="Hystrix流程图"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/springcloud/hystrix/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -964,7 +1110,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1010,7 +1156,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1068,12 +1214,7 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">shadow</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
-  </div>
+</div><script color="255,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -1184,6 +1325,7 @@
   </div>
 
   
+  <script color='255,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
@@ -1191,7 +1333,7 @@
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
 

@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 
 <script id="hexo-configurations">
@@ -28,9 +30,9 @@
     version: '7.5.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":true,"show_result":true,"style":"default"},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#FF00FF","save":"manual"},
     fancybox: true,
     mediumzoom: false,
     lazyload: false,
@@ -49,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="背景RocketMQ使用mmap提高读写效率mmapmmap是一个系统调用。它的作用是将一个文件或者其它对象的一部分内容映射到进程的地址空间。这样进程就可以直接读写这一段内存，而系统会自动回写脏页面到对应的文件磁盘上，即完成了对文件的操作而不必再调用read,write等系统调用函数。相反，内核空间对这段区域的修改也直接反映用户空间。通过mmap也可以实现不同进程间的共享内存。">
+  <meta name="description" content="背景RocketMQ使用mmap提高读写效率">
 <meta name="keywords" content="内存映射">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mmap">
 <meta property="og:url" content="http:&#x2F;&#x2F;www.renhz.fun&#x2F;nio&#x2F;mmap&#x2F;index.html">
 <meta property="og:site_name" content="学海无涯苦作舟">
-<meta property="og:description" content="背景RocketMQ使用mmap提高读写效率mmapmmap是一个系统调用。它的作用是将一个文件或者其它对象的一部分内容映射到进程的地址空间。这样进程就可以直接读写这一段内存，而系统会自动回写脏页面到对应的文件磁盘上，即完成了对文件的操作而不必再调用read,write等系统调用函数。相反，内核空间对这段区域的修改也直接反映用户空间。通过mmap也可以实现不同进程间的共享内存。">
+<meta property="og:description" content="背景RocketMQ使用mmap提高读写效率">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-30T02:30:39.072Z">
+<meta property="og:updated_time" content="2020-04-07T06:37:40.353Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.renhz.fun/nio/mmap/">
@@ -157,11 +159,6 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/baidusitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
-
-  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -194,6 +191,8 @@
     </header>
 
     
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -241,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-30 10:30:39" itemprop="dateModified" datetime="2020-03-30T10:30:39+08:00">2020-03-30</time>
+                <time title="修改时间：2020-04-07 14:37:40" itemprop="dateModified" datetime="2020-04-07T14:37:40+08:00">2020-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,10 +272,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>RocketMQ使用mmap提高读写效率</p><h1 id="mmap"><a href="#mmap" class="headerlink" title="mmap"></a>mmap</h1><p>mmap是一个系统调用。它的作用是将一个文件或者其它对象的一部分内容映射到进程的地址空间。这样进程就可以直接读写这一段内存，而系统会自动回写脏页面到对应的文件磁盘上，即完成了对文件的操作而不必再调用read,write等系统调用函数。相反，内核空间对这段区域的修改也直接反映用户空间。通过mmap也可以实现不同进程间的共享内存。</p><a id="more"></a>
-
-<h1 id="Java中如何使用mmap"><a href="#Java中如何使用mmap" class="headerlink" title="Java中如何使用mmap"></a>Java中如何使用mmap</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TEN_MB = <span class="number">1024</span> * <span class="number">1024</span> * <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    RandomAccessFile  raf = <span class="keyword">new</span> RandomAccessFile(<span class="string">"/Users/jiexiu/a.txt"</span>, <span class="string">"rw"</span>);</span><br><span class="line">    MappedByteBuffer mappedByteBuffer = raf.getChannel().map(FileChannel.MapMode.READ_WRITE, <span class="number">0</span>, TEN_MB);</span><br><span class="line">    raf.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="FileChannel-map方法详解"><a href="#FileChannel-map方法详解" class="headerlink" title="FileChannel.map方法详解"></a>FileChannel.map方法详解</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> MappedByteBuffer <span class="title">map</span><span class="params">(MapMode mode,</span></span></span><br><span class="line"><span class="function"><span class="params">                                         <span class="keyword">long</span> position, <span class="keyword">long</span> size)</span></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> IOException</span>;</span><br></pre></td></tr></table></figure>
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>RocketMQ使用mmap提高读写效率</p>
+<a id="more"></a>
+<h1 id="mmap"><a href="#mmap" class="headerlink" title="mmap"></a>mmap</h1><p>mmap是一个系统调用。它的作用是将一个文件或者其它对象的一部分内容映射到进程的地址空间。这样进程就可以直接读写这一段内存，而系统会自动回写脏页面到对应的文件磁盘上，即完成了对文件的操作而不必再调用read,write等系统调用函数。相反，内核空间对这段区域的修改也直接反映用户空间。通过mmap也可以实现不同进程间的共享内存。</p>
+<h1 id="Java中如何使用mmap"><a href="#Java中如何使用mmap" class="headerlink" title="Java中如何使用mmap"></a>Java中如何使用mmap</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TEN_MB = <span class="number">1024</span> * <span class="number">1024</span> * <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    RandomAccessFile  raf = <span class="keyword">new</span> RandomAccessFile(<span class="string">"/Users/jiexiu/a.txt"</span>, <span class="string">"rw"</span>);</span><br><span class="line">    MappedByteBuffer mappedByteBuffer = raf.getChannel().map(FileChannel.MapMode.READ_WRITE, <span class="number">0</span>, TEN_MB);</span><br><span class="line">    raf.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="FileChannel-map方法详解"><a href="#FileChannel-map方法详解" class="headerlink" title="FileChannel.map方法详解"></a>FileChannel.map方法详解</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> MappedByteBuffer <span class="title">map</span><span class="params">(MapMode mode,</span></span></span><br><span class="line"><span class="function"><span class="params">                                         <span class="keyword">long</span> position, <span class="keyword">long</span> size)</span></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> IOException</span>;</span><br></pre></td></tr></table></figure>
 <ol>
 <li>将FileChannle对于的文件的一部分直接映射到内存。（这里的内存是堆外内存）</li>
 <li>映射模式可以是MapMode.READ_ONLY(只读)，MapMode.READ_WRITE(读写)，MapMode.PRIVATE（私有，写时复制）</li>
@@ -284,8 +284,8 @@
 <li>方法返回的MappedByteBuffer的position是0，limit 和 capacity的值是参数size的值。</li>
 <li>一旦映射完成，那么该MappedByteBuffer就和创建它的FileChannel无关。关闭FileChannel不会影响该MappedByteBuffer。</li>
 <li>该方法的底层实现依赖于具体操作系统中mmap系统调用的实现逻辑。不同的操作系统可能表现不同。例如：程序修改了MappedByteBuffer的内容，操作系统何时将变更写入到磁盘，这个是不确定的。</li>
-<li>对大多数操作系统来说该方法都是一个昂贵的操作，如果仅仅是映射很小范围，那么不建议使用。针对大文件推荐使用该操作。<h1 id="MappedByteBuffer"><a href="#MappedByteBuffer" class="headerlink" title="MappedByteBuffer"></a>MappedByteBuffer</h1>MappedByteBuffer本质上是一块对外内存，也就是DirectByteBuffer。通过FileChannel.map来创建，直到被GC才结束它的生命。<br>它有两个非常重要的方法，分别是load和force<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 加载该缓存的内容到物理内存中。这是因为mapp完成后，OS并没有直接读取文件的内容，当真正要访问的时候，通过缺页异常来进行读磁盘操作。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> MappedByteBuffer <span class="title">load</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 强制将修改后的的内容写入到存储设备上。</span></span><br><span class="line"><span class="comment"> * 需要注意的是：如果是本地设备，那么该方法返回时，确保自从该缓存区创建后或该方法最后一次调用后，变更的内容一定写入了设备，如果是网络文件则没有该保证。</span></span><br><span class="line"><span class="comment"> * 如果不是通过`MapMode.READ_WRITE`模式映射的，调用该方法没有任何影响。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> MappedByteBuffer <span class="title">force</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-关于force方法多说一点：即使我们不手动调动该方法写缓存区的更改写入底层设备，操作系统底层也会定时将变更的脏页刷到设备上，不过时间不确定。<br>MappedByteBuffer 在我们关闭FileChannel和文件后如果还没有被GC，那么对于文件也是无法删除的，因为底层的文件句柄还没有释放。在RocketMQ中有专门针对该问题编写的代码。具体如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">clean</span><span class="params">(<span class="keyword">final</span> ByteBuffer buffer)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (buffer == <span class="keyword">null</span> || !buffer.isDirect() || buffer.capacity() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    invoke(invoke(viewed(buffer), <span class="string">"cleaner"</span>), <span class="string">"clean"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>对大多数操作系统来说该方法都是一个昂贵的操作，如果仅仅是映射很小范围，那么不建议使用。针对大文件推荐使用该操作。<h1 id="MappedByteBuffer"><a href="#MappedByteBuffer" class="headerlink" title="MappedByteBuffer"></a>MappedByteBuffer</h1>MappedByteBuffer本质上是一块对外内存，也就是DirectByteBuffer。通过FileChannel.map来创建，直到被GC才结束它的生命。<br>它有两个非常重要的方法，分别是load和force<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 加载该缓存的内容到物理内存中。这是因为mapp完成后，OS并没有直接读取文件的内容，当真正要访问的时候，通过缺页异常来进行读磁盘操作。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> MappedByteBuffer <span class="title">load</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 强制将修改后的的内容写入到存储设备上。</span></span><br><span class="line"><span class="comment"> * 需要注意的是：如果是本地设备，那么该方法返回时，确保自从该缓存区创建后或该方法最后一次调用后，变更的内容一定写入了设备，如果是网络文件则没有该保证。</span></span><br><span class="line"><span class="comment"> * 如果不是通过`MapMode.READ_WRITE`模式映射的，调用该方法没有任何影响。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> MappedByteBuffer <span class="title">force</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+关于force方法多说一点：即使我们不手动调动该方法写缓存区的更改写入底层设备，操作系统底层也会定时将变更的脏页刷到设备上，不过时间不确定。<br>MappedByteBuffer 在我们关闭FileChannel和文件后如果还没有被GC，那么对于文件也是无法删除的，因为底层的文件句柄还没有释放。在RocketMQ中有专门针对该问题编写的代码。具体如下：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">clean</span><span class="params">(<span class="keyword">final</span> ByteBuffer buffer)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (buffer == <span class="keyword">null</span> || !buffer.isDirect() || buffer.capacity() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    invoke(invoke(viewed(buffer), <span class="string">"cleaner"</span>), <span class="string">"clean"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 作用是获取DirectByteBuffer中的Cleaner，然后调用它的clean方法来回收该DirectByteBuffer，也就是MappedByteBuffer。<br>Cleaner底层是通过unsafe.freeMemory(address);来释放内存的。</li>
 </ol>
 
@@ -296,8 +296,9 @@
     
 
       <footer class="post-footer">
+          
           <div class="post-tags">
-              <a href="/tags/%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84/" rel="tag"># 内存映射</a>
+              <a href="/tags/%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84/" rel="tag"><i class="fa fa-tag"></i> 内存映射</a>
           </div>
 
         
@@ -366,7 +367,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -424,12 +425,7 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">shadow</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
-  </div>
+</div><script color="255,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -540,6 +536,7 @@
   </div>
 
   
+  <script color='255,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
@@ -547,7 +544,7 @@
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
 

@@ -2,23 +2,219 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/composite/</loc>
+    <loc>http://www.renhz.fun/tomcat/tomcat-source/</loc>
     
-    <lastmod>2020-04-03T10:26:40.746Z</lastmod>
+    <lastmod>2020-04-07T06:37:40.354Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/adapter/</loc>
+    <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
     
-    <lastmod>2020-04-03T09:27:49.281Z</lastmod>
+    <lastmod>2020-04-07T06:37:40.353Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/rx/rxjava/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.353Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/nio/mmap/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.353Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/mysql/mysql/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.352Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/jvm/jvm/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.352Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/log/log/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.352Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/hashmap/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.351Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/interview/java-interview/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.351Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/git/git/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.350Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/distributed-protocol/paxos/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.350Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/singleton/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.350Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/proxy/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.350Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.renhz.fun/design-pattern/observer/</loc>
     
-    <lastmod>2020-04-03T09:22:31.415Z</lastmod>
+    <lastmod>2020-04-07T06:37:40.349Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/flyweight/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.349Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/factory-method/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.349Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/prototype/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.349Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/facade/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.348Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/composite/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.348Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/factory-kit/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.348Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/decorate/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.348Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/builder/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.347Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/abstract-factory/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.347Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/bridge/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.347Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/adapter/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.347Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/23/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.346Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/algorithms/time-complexity/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.346Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/cache/cache/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.346Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/algorithms/sort/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.345Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/algorithms/array/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.345Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/algorithms/list/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.345Z</lastmod>
     
   </url>
   
@@ -26,48 +222,6 @@
     <loc>http://www.renhz.fun/xinzhili/xinzhili/</loc>
     
     <lastmod>2020-04-03T09:04:55.435Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/hashmap/</loc>
-    
-    <lastmod>2020-04-03T06:48:49.861Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/interview/java-interview/</loc>
-    
-    <lastmod>2020-04-03T04:14:17.204Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/cache/cache/</loc>
-    
-    <lastmod>2020-04-03T04:01:41.787Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/log/log/</loc>
-    
-    <lastmod>2020-04-01T05:34:09.500Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/algorithms/sort/</loc>
-    
-    <lastmod>2020-03-31T09:41:43.393Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/tomcat/tomcat-source/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.074Z</lastmod>
     
   </url>
   
@@ -86,20 +240,6 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/springcloud/feign/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.073Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.073Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.renhz.fun/spring/spring-source/</loc>
     
     <lastmod>2020-03-30T02:30:39.073Z</lastmod>
@@ -114,86 +254,9 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/rx/rxjava/</loc>
+    <loc>http://www.renhz.fun/springcloud/feign/</loc>
     
-    <lastmod>2020-03-30T02:30:39.072Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/nio/mmap/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.072Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/jvm/jvm/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.071Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/mysql/mysql/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.071Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/git/git/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.070Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/distributed-protocol/paxos/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.070Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/design-pattern/flyweight/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.069Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/design-pattern/factory/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.068Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/design-pattern/decorate/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.068Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/algorithms/list/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.066Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/algorithms/time-complexity/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.066Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/algorithms/array/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.065Z</lastmod>
+    <lastmod>2020-03-30T02:30:39.073Z</lastmod>
     
   </url>
   
