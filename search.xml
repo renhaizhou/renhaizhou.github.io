@@ -1071,7 +1071,7 @@
       <link href="/tomcat/tomcat-source/"/>
       <url>/tomcat/tomcat-source/</url>
       
-        <content type="html"><![CDATA[<p><img src="../../images/tomcat.svg" alt="tomcat源码UML类图"></p><a id="more"></a><p><img src="../../images/plantuml/tomcat_sequence/tomcat_sequence.png" alt="tomcat源码UML时序图"><br><img src="../../images/plantuml/tomcat_request_seq/tomcat_request_seq.png" alt="tomcat源码Request请求UML时序图"></p>]]></content>
+        <content type="html"><![CDATA[<p><img src="../../images/tomcat.svg" alt="tomcat源码UML类图"></p><a id="more"></a><p><img src="../../images/plantuml/tomcat_sequence.png" alt="tomcat源码UML时序图"><br><img src="../../images/plantuml/tomcat_request_seq.png" alt="tomcat源码Request请求UML时序图"></p>]]></content>
       
       
       <categories>
