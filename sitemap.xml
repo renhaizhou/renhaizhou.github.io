@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.renhz.fun/tomcat/tomcat-source/</loc>
+    <loc>http://www.renhz.fun/design-pattern/strategy/</loc>
     
-    <lastmod>2020-04-07T06:37:40.354Z</lastmod>
+    <lastmod>2020-04-07T06:54:19.314Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
+    <loc>http://www.renhz.fun/tomcat/tomcat-source/</loc>
     
-    <lastmod>2020-04-07T06:37:40.353Z</lastmod>
+    <lastmod>2020-04-07T06:37:40.354Z</lastmod>
     
   </url>
   
@@ -30,6 +30,20 @@
   </url>
   
   <url>
+    <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.353Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/log/log/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.352Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/mysql/mysql/</loc>
     
     <lastmod>2020-04-07T06:37:40.352Z</lastmod>
@@ -38,13 +52,6 @@
   
   <url>
     <loc>http://www.renhz.fun/jvm/jvm/</loc>
-    
-    <lastmod>2020-04-07T06:37:40.352Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/log/log/</loc>
     
     <lastmod>2020-04-07T06:37:40.352Z</lastmod>
     
@@ -93,7 +100,7 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/observer/</loc>
+    <loc>http://www.renhz.fun/design-pattern/prototype/</loc>
     
     <lastmod>2020-04-07T06:37:40.349Z</lastmod>
     
@@ -114,7 +121,7 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/prototype/</loc>
+    <loc>http://www.renhz.fun/design-pattern/observer/</loc>
     
     <lastmod>2020-04-07T06:37:40.349Z</lastmod>
     
@@ -122,6 +129,13 @@
   
   <url>
     <loc>http://www.renhz.fun/design-pattern/facade/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.348Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/decorate/</loc>
     
     <lastmod>2020-04-07T06:37:40.348Z</lastmod>
     
@@ -142,21 +156,7 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/decorate/</loc>
-    
-    <lastmod>2020-04-07T06:37:40.348Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.renhz.fun/design-pattern/builder/</loc>
-    
-    <lastmod>2020-04-07T06:37:40.347Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/design-pattern/abstract-factory/</loc>
     
     <lastmod>2020-04-07T06:37:40.347Z</lastmod>
     
@@ -177,9 +177,9 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/23/</loc>
+    <loc>http://www.renhz.fun/design-pattern/abstract-factory/</loc>
     
-    <lastmod>2020-04-07T06:37:40.346Z</lastmod>
+    <lastmod>2020-04-07T06:37:40.347Z</lastmod>
     
   </url>
   
@@ -198,14 +198,21 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/algorithms/sort/</loc>
+    <loc>http://www.renhz.fun/design-pattern/23/</loc>
+    
+    <lastmod>2020-04-07T06:37:40.346Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/algorithms/array/</loc>
     
     <lastmod>2020-04-07T06:37:40.345Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/algorithms/array/</loc>
+    <loc>http://www.renhz.fun/algorithms/sort/</loc>
     
     <lastmod>2020-04-07T06:37:40.345Z</lastmod>
     
@@ -240,6 +247,13 @@
   </url>
   
   <url>
+    <loc>http://www.renhz.fun/springcloud/feign/</loc>
+    
+    <lastmod>2020-03-30T02:30:39.073Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/spring/spring-source/</loc>
     
     <lastmod>2020-03-30T02:30:39.073Z</lastmod>
@@ -248,13 +262,6 @@
   
   <url>
     <loc>http://www.renhz.fun/springcloud/eureka/</loc>
-    
-    <lastmod>2020-03-30T02:30:39.073Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/springcloud/feign/</loc>
     
     <lastmod>2020-03-30T02:30:39.073Z</lastmod>
     
