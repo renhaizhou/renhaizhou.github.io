@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.renhz.fun/springcloud/zuul/</loc>
+    <lastmod>2020-04-08</lastmod>
+  </url>  <url>
+    <loc>http://www.renhz.fun/springcloud/ribbon/</loc>
+    <lastmod>2020-04-08</lastmod>
+  </url>  <url>
+    <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
+    <lastmod>2020-04-08</lastmod>
+  </url>  <url>
+    <loc>http://www.renhz.fun/springcloud/feign/</loc>
+    <lastmod>2020-04-08</lastmod>
+  </url>  <url>
+    <loc>http://www.renhz.fun/springcloud/eureka/</loc>
+    <lastmod>2020-04-08</lastmod>
+  </url>  <url>
     <loc>http://www.renhz.fun/hashmap/</loc>
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
@@ -29,21 +44,6 @@
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/tomcat/tomcat-source/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/springcloud/eureka/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/springcloud/feign/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/springcloud/ribbon/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/springcloud/zuul/</loc>
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/spring/spring-source/</loc>

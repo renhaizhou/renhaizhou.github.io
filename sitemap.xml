@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.renhz.fun/springcloud/zuul/</loc>
+    
+    <lastmod>2020-04-08T09:13:19.863Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/springcloud/ribbon/</loc>
+    
+    <lastmod>2020-04-08T09:13:15.085Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
+    
+    <lastmod>2020-04-08T09:13:08.308Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/springcloud/feign/</loc>
+    
+    <lastmod>2020-04-08T09:13:04.149Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/springcloud/eureka/</loc>
+    
+    <lastmod>2020-04-08T09:12:59.428Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/hashmap/</loc>
     
     <lastmod>2020-04-08T08:42:08.894Z</lastmod>
@@ -68,41 +103,6 @@
     <loc>http://www.renhz.fun/tomcat/tomcat-source/</loc>
     
     <lastmod>2020-04-08T08:25:45.559Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/springcloud/eureka/</loc>
-    
-    <lastmod>2020-04-08T08:23:09.054Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/springcloud/feign/</loc>
-    
-    <lastmod>2020-04-08T08:22:38.477Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
-    
-    <lastmod>2020-04-08T08:22:33.610Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/springcloud/ribbon/</loc>
-    
-    <lastmod>2020-04-08T08:22:28.124Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/springcloud/zuul/</loc>
-    
-    <lastmod>2020-04-08T08:22:18.301Z</lastmod>
     
   </url>
   
@@ -338,14 +338,14 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/categories/index.html</loc>
+    <loc>http://www.renhz.fun/tags/index.html</loc>
     
     <lastmod>2019-11-25T01:21:44.386Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/tags/index.html</loc>
+    <loc>http://www.renhz.fun/categories/index.html</loc>
     
     <lastmod>2019-11-25T01:21:44.386Z</lastmod>
     
