@@ -218,24 +218,80 @@
     </div>
 
   <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    <header class="my-post-header">
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
+      <div class="my-post-meta">
+        <time class="my-post-time" itemprop="dateCreated"
               datetime="2020-01-19T15:40:41+08:00"
               content="2020-01-19">
           01-19
         </time>
       </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/spring/spring-source/" itemprop="url">
+      <h2 class="my-post-title">
+          <a class="my-post-title-link" href="/spring/spring-source/" itemprop="url">
             <span itemprop="name">spring源码</span>
           </a>
       </h2>
 
     </header>
   </article>
+<style>
+a.my-post-title-link:before{
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  content: "📚";
+  margin-right: 5px;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 15px;
+  line-height: 18px;
+}
+a.my-post-title-link{
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 400;
+  mobile() {
+    font-size: 14px;
+  }
+}
+.my-post-title{
+  display: block;
+  margin-left: 4.5rem;
+  color: #4c4948;
+  text-decoration: none;
+  font-size: .8rem;
+  cursor: pointer;
+  mobile() {
+    //margin-left: 4rem;
+  }
+}
+.my-my-post-meta{
+  position: absolute;
+  color: #99a9bf;
+  width: 80px;
+  color: #114142;
+}
+.my-post-header{
+  position: top;
+  margin-bottom: 1rem;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+.my-post-time{
+  font-size: 11px;
+  position: absolute;
+  color: #fff;
+  background-color: #49b1f5;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 15px;
+}
+</style>
 
     </div>
   </div>
