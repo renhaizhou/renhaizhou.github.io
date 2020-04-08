@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.renhz.fun/hashmap/</loc>
+    
+    <lastmod>2020-04-08T08:42:08.894Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/distributed-protocol/paxos/</loc>
+    
+    <lastmod>2020-04-08T08:41:39.657Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/interview/java-interview/</loc>
     
     <lastmod>2020-04-08T08:37:51.406Z</lastmod>
@@ -320,20 +334,6 @@
     <loc>http://www.renhz.fun/bigdata/storm/</loc>
     
     <lastmod>2020-04-08T07:38:21.344Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/hashmap/</loc>
-    
-    <lastmod>2020-04-07T06:37:40.351Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/distributed-protocol/paxos/</loc>
-    
-    <lastmod>2020-04-07T06:37:40.350Z</lastmod>
     
   </url>
   
