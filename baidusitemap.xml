@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.renhz.fun/interview/java-interview/</loc>
+    <lastmod>2020-04-08</lastmod>
+  </url>  <url>
     <loc>http://www.renhz.fun/algorithms/time-complexity/</loc>
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
@@ -50,9 +53,6 @@
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/jvm/jvm/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/interview/java-interview/</loc>
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/git/git/</loc>
