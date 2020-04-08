@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.renhz.fun/design-pattern/command/</loc>
+    
+    <lastmod>2020-04-08T10:17:39.148Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/springcloud/zuul/</loc>
     
     <lastmod>2020-04-08T09:13:19.863Z</lastmod>
@@ -282,13 +289,6 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/command/</loc>
-    
-    <lastmod>2020-04-08T07:41:49.706Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.renhz.fun/design-pattern/chain/</loc>
     
     <lastmod>2020-04-08T07:41:28.325Z</lastmod>
@@ -338,14 +338,14 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/tags/index.html</loc>
+    <loc>http://www.renhz.fun/categories/index.html</loc>
     
     <lastmod>2019-11-25T01:21:44.386Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/categories/index.html</loc>
+    <loc>http://www.renhz.fun/tags/index.html</loc>
     
     <lastmod>2019-11-25T01:21:44.386Z</lastmod>
     
