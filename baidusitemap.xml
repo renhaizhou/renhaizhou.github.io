@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.renhz.fun/design-pattern/template-method/</loc>
+    <lastmod>2020-04-10</lastmod>
+  </url>  <url>
+    <loc>http://www.renhz.fun/design-pattern/strategy/</loc>
+    <lastmod>2020-04-10</lastmod>
+  </url>  <url>
+    <loc>http://www.renhz.fun/design-pattern/state/</loc>
+    <lastmod>2020-04-10</lastmod>
+  </url>  <url>
+    <loc>http://www.renhz.fun/design-pattern/observer/</loc>
+    <lastmod>2020-04-10</lastmod>
+  </url>  <url>
+    <loc>http://www.renhz.fun/design-pattern/chain/</loc>
+    <lastmod>2020-04-10</lastmod>
+  </url>  <url>
+    <loc>http://www.renhz.fun/algorithms/heap-sort/</loc>
+    <lastmod>2020-04-10</lastmod>
+  </url>  <url>
     <loc>http://www.renhz.fun/design-pattern/command/</loc>
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
@@ -82,22 +100,10 @@
     <loc>http://www.renhz.fun/design-pattern/visitor/</loc>
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
-    <loc>http://www.renhz.fun/design-pattern/template-method/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/design-pattern/strategy/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/design-pattern/state/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
     <loc>http://www.renhz.fun/design-pattern/singleton/</loc>
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/design-pattern/prototype/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/design-pattern/observer/</loc>
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/design-pattern/memento/</loc>
@@ -122,9 +128,6 @@
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/design-pattern/composite/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/design-pattern/chain/</loc>
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/design-pattern/builder/</loc>

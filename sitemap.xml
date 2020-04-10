@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.renhz.fun/design-pattern/template-method/</loc>
+    
+    <lastmod>2020-04-10T04:09:54.684Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/strategy/</loc>
+    
+    <lastmod>2020-04-10T04:09:54.683Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/state/</loc>
+    
+    <lastmod>2020-04-10T04:09:54.682Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/observer/</loc>
+    
+    <lastmod>2020-04-10T04:09:54.681Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/design-pattern/chain/</loc>
+    
+    <lastmod>2020-04-10T04:09:54.680Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/algorithms/heap-sort/</loc>
+    
+    <lastmod>2020-04-10T04:08:46.582Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/design-pattern/command/</loc>
     
     <lastmod>2020-04-08T10:17:39.148Z</lastmod>
@@ -191,27 +233,6 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/design-pattern/template-method/</loc>
-    
-    <lastmod>2020-04-08T07:47:29.892Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/design-pattern/strategy/</loc>
-    
-    <lastmod>2020-04-08T07:46:18.355Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/design-pattern/state/</loc>
-    
-    <lastmod>2020-04-08T07:46:03.985Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.renhz.fun/design-pattern/singleton/</loc>
     
     <lastmod>2020-04-08T07:45:50.016Z</lastmod>
@@ -222,13 +243,6 @@
     <loc>http://www.renhz.fun/design-pattern/prototype/</loc>
     
     <lastmod>2020-04-08T07:45:20.014Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/design-pattern/observer/</loc>
-    
-    <lastmod>2020-04-08T07:45:08.326Z</lastmod>
     
   </url>
   
@@ -285,13 +299,6 @@
     <loc>http://www.renhz.fun/design-pattern/composite/</loc>
     
     <lastmod>2020-04-08T07:42:07.123Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/design-pattern/chain/</loc>
-    
-    <lastmod>2020-04-08T07:41:28.325Z</lastmod>
     
   </url>
   
