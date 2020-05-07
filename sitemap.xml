@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.renhz.fun/design-pattern/state/</loc>
+    
+    <lastmod>2020-05-07T04:53:50.772Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/algorithms/heap-sort/</loc>
     
     <lastmod>2020-04-10T05:49:34.585Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://www.renhz.fun/design-pattern/strategy/</loc>
     
     <lastmod>2020-04-10T04:09:54.683Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/design-pattern/state/</loc>
-    
-    <lastmod>2020-04-10T04:09:54.682Z</lastmod>
     
   </url>
   
