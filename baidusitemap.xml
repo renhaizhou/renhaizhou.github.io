@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.renhz.fun/interview/review-summary/</loc>
+    <lastmod>2020-05-12</lastmod>
+  </url>  <url>
+    <loc>http://www.renhz.fun/design-pattern/visitor/</loc>
+    <lastmod>2020-05-07</lastmod>
+  </url>  <url>
     <loc>http://www.renhz.fun/design-pattern/state/</loc>
     <lastmod>2020-05-07</lastmod>
   </url>  <url>
@@ -95,9 +101,6 @@
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/design-pattern/facade/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/design-pattern/visitor/</loc>
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/design-pattern/singleton/</loc>
