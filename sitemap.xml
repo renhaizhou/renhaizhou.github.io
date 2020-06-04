@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.renhz.fun/algorithms/dp/</loc>
+    
+    <lastmod>2020-06-04T03:59:41.712Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/interview/review-summary/</loc>
     
-    <lastmod>2020-05-12T03:13:12.153Z</lastmod>
+    <lastmod>2020-06-04T03:52:34.317Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/algorithms/sort/</loc>
+    
+    <lastmod>2020-06-04T03:52:34.316Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.renhz.fun/interview/jvm/</loc>
+    
+    <lastmod>2020-06-04T03:52:34.316Z</lastmod>
     
   </url>
   
@@ -124,13 +145,6 @@
     <loc>http://www.renhz.fun/algorithms/time-complexity/</loc>
     
     <lastmod>2020-04-08T08:29:38.513Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/algorithms/sort/</loc>
-    
-    <lastmod>2020-04-08T08:29:15.500Z</lastmod>
     
   </url>
   
