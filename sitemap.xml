@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.renhz.fun/mysql/index/</loc>
+    
+    <lastmod>2020-06-05T02:27:59.561Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/algorithms/dp/</loc>
     
-    <lastmod>2020-06-04T06:57:03.112Z</lastmod>
+    <lastmod>2020-06-05T02:25:10.605Z</lastmod>
     
   </url>
   
@@ -366,14 +373,14 @@
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/tags/index.html</loc>
+    <loc>http://www.renhz.fun/categories/index.html</loc>
     
     <lastmod>2019-11-25T01:21:44.386Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.renhz.fun/categories/index.html</loc>
+    <loc>http://www.renhz.fun/tags/index.html</loc>
     
     <lastmod>2019-11-25T01:21:44.386Z</lastmod>
     
