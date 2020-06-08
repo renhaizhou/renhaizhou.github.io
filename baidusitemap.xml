@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.renhz.fun/algorithms/time-complexity/</loc>
+    <lastmod>2020-06-08</lastmod>
+  </url>  <url>
+    <loc>http://www.renhz.fun/interview/java-interview/</loc>
+    <lastmod>2020-06-05</lastmod>
+  </url>  <url>
     <loc>http://www.renhz.fun/mysql/index/</loc>
     <lastmod>2020-06-05</lastmod>
   </url>  <url>
@@ -13,10 +19,10 @@
     <loc>http://www.renhz.fun/interview/review-summary/</loc>
     <lastmod>2020-06-04</lastmod>
   </url>  <url>
-    <loc>http://www.renhz.fun/interview/jvm/</loc>
+    <loc>http://www.renhz.fun/algorithms/sort/</loc>
     <lastmod>2020-06-04</lastmod>
   </url>  <url>
-    <loc>http://www.renhz.fun/algorithms/sort/</loc>
+    <loc>http://www.renhz.fun/interview/jvm/</loc>
     <lastmod>2020-06-04</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/design-pattern/visitor/</loc>
@@ -62,12 +68,6 @@
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/distributed-protocol/paxos/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/interview/java-interview/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
-    <loc>http://www.renhz.fun/algorithms/time-complexity/</loc>
     <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/algorithms/list/</loc>
