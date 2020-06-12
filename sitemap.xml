@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.renhz.fun/interview/shadow/</loc>
+    
+    <lastmod>2020-06-12T06:47:35.018Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.renhz.fun/algorithms/sort/</loc>
     
     <lastmod>2020-06-09T06:18:13.979Z</lastmod>
@@ -215,13 +222,6 @@
     <loc>http://www.renhz.fun/log/log/</loc>
     
     <lastmod>2020-04-08T08:14:57.946Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.renhz.fun/jvm/jvm/</loc>
-    
-    <lastmod>2020-04-08T08:14:37.140Z</lastmod>
     
   </url>
   
