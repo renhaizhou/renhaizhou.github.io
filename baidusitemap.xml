@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://www.renhz.fun/interview/redis/</loc>
+    <loc>http://www.renhz.fun/interview/zookeeper/</loc>
     <lastmod>2020-07-03</lastmod>
   </url>  <url>
-    <loc>http://www.renhz.fun/interview/zookeeper/</loc>
+    <loc>http://www.renhz.fun/interview/redis/</loc>
     <lastmod>2020-07-03</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/interview/spring/</loc>
@@ -40,10 +40,10 @@
     <loc>http://www.renhz.fun/springcloud/ribbon/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
-    <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
+    <loc>http://www.renhz.fun/springcloud/feign/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
-    <loc>http://www.renhz.fun/springcloud/feign/</loc>
+    <loc>http://www.renhz.fun/springcloud/hystrix/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/springcloud/eureka/</loc>
@@ -58,10 +58,10 @@
     <loc>http://www.renhz.fun/mysql/mysql/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
-    <loc>http://www.renhz.fun/mysql/index/</loc>
+    <loc>http://www.renhz.fun/log/log/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
-    <loc>http://www.renhz.fun/log/log/</loc>
+    <loc>http://www.renhz.fun/mysql/index/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/interview/java-interview/</loc>
@@ -79,10 +79,10 @@
     <loc>http://www.renhz.fun/bigdata/storm/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
-    <loc>http://www.renhz.fun/algorithms/sort/</loc>
+    <loc>http://www.renhz.fun/algorithms/time-complexity/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
-    <loc>http://www.renhz.fun/algorithms/time-complexity/</loc>
+    <loc>http://www.renhz.fun/algorithms/sort/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
     <loc>http://www.renhz.fun/algorithms/list/</loc>
