@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+  <meta name="baidu-site-verification" content="NjxSGWWluq">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://www.renhz.fun').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#FF00FF","save":"manual"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="组合设计模式UML类图">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组合模式">
+<meta property="og:url" content="http://www.renhz.fun/design-pattern/composite/index.html">
+<meta property="og:site_name" content="学海无涯苦作舟">
+<meta property="og:description" content="组合设计模式UML类图">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.renhz.fun/images/plantuml/composite.urm.png">
+<meta property="og:image" content="http://www.renhz.fun/images/swing.png">
+<meta property="og:image" content="http://www.renhz.fun/images/component.png">
+<meta property="og:image" content="http://www.renhz.fun/images/sqlnode.png">
+<meta property="og:updated_time" content="2021-12-06T05:43:58.692Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.renhz.fun/images/plantuml/composite.urm.png">
+
+<link rel="canonical" href="http://www.renhz.fun/design-pattern/composite/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>组合模式 | 学海无涯苦作舟</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学海无涯苦作舟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/composite/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          组合模式
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-03 23:35:04" itemprop="dateCreated datePublished" datetime="2020-04-03T23:35:04+08:00">2020-04-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-06 13:43:58" itemprop="dateModified" datetime="2021-12-06T13:43:58+08:00">2021-12-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">结构型模式</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/design-pattern/composite/" class="post-meta-item leancloud_visitors" data-flag-title="组合模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="组合设计模式UML类图"><a href="#组合设计模式UML类图" class="headerlink" title="组合设计模式UML类图"></a>组合设计模式UML类图</h1><p><img src="../../images/plantuml/composite.urm.png" alt="组合设计模式UML类图"></p>
+<a id="more"></a>
+<h1 id="组合设计模式java代码实现"><a href="#组合设计模式java代码实现" class="headerlink" title="组合设计模式java代码实现"></a>组合设计模式java代码实现</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Word.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Word</span> <span class="keyword">extends</span> <span class="title">LetterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Constructor.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Word</span><span class="params">(List&lt;Letter&gt; letters)</span> </span>&#123;</span><br><span class="line">    letters.forEach(<span class="keyword">this</span>::add);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Constructor.</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> letters to include</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Word</span><span class="params">(<span class="keyword">char</span>... letters)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> letter : letters) &#123;</span><br><span class="line">      <span class="keyword">this</span>.add(<span class="keyword">new</span> Letter(letter));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">printThisBefore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.print(<span class="string">" "</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Sentence.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sentence</span> <span class="keyword">extends</span> <span class="title">LetterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Constructor.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Sentence</span><span class="params">(List&lt;Word&gt; words)</span> </span>&#123;</span><br><span class="line">    words.forEach(<span class="keyword">this</span>::add);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">printThisAfter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.print(<span class="string">"."</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Letter.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Letter</span> <span class="keyword">extends</span> <span class="title">LetterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">char</span> character;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Letter</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.character = c;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">printThisBefore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.print(character);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Composite interface.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">LetterComposite</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> List&lt;LetterComposite&gt; children = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(LetterComposite letter)</span> </span>&#123;</span><br><span class="line">    children.add(letter);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> children.size();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">printThisBefore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">printThisAfter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Print.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    printThisBefore();</span><br><span class="line">    children.forEach(LetterComposite::print);</span><br><span class="line">    printThisAfter();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Messenger.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Messenger</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function">LetterComposite <span class="title">messageFromOrcs</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> words = List.of(</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'W'</span>, <span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'r'</span>, <span class="string">'e'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'t'</span>, <span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'r'</span>, <span class="string">'e'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'i'</span>, <span class="string">'s'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'a'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'w'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'p'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'t'</span>, <span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'r'</span>, <span class="string">'e'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'i'</span>, <span class="string">'s'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'a'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'w'</span>, <span class="string">'a'</span>, <span class="string">'y'</span>)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Sentence(words);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function">LetterComposite <span class="title">messageFromElves</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> words = List.of(</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'M'</span>, <span class="string">'u'</span>, <span class="string">'c'</span>, <span class="string">'h'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'w'</span>, <span class="string">'i'</span>, <span class="string">'n'</span>, <span class="string">'d'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'p'</span>, <span class="string">'o'</span>, <span class="string">'u'</span>, <span class="string">'r'</span>, <span class="string">'s'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'f'</span>, <span class="string">'r'</span>, <span class="string">'o'</span>, <span class="string">'m'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'y'</span>, <span class="string">'o'</span>, <span class="string">'u'</span>, <span class="string">'r'</span>),</span><br><span class="line">        <span class="keyword">new</span> Word(<span class="string">'m'</span>, <span class="string">'o'</span>, <span class="string">'u'</span>, <span class="string">'t'</span>, <span class="string">'h'</span>)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Sentence(words);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The Composite pattern is a partitioning design pattern. The Composite pattern describes that a</span></span><br><span class="line"><span class="comment"> * group of objects is to be treated in the same way as a single instance of an object. The intent</span></span><br><span class="line"><span class="comment"> * of a composite is to "compose" objects into tree structures to represent part-whole hierarchies.</span></span><br><span class="line"><span class="comment"> * Implementing the Composite pattern lets clients treat individual objects and compositions</span></span><br><span class="line"><span class="comment"> * uniformly.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;In this example we have sentences composed of words composed of letters. All of the objects</span></span><br><span class="line"><span class="comment"> * can be treated through the same interface (&#123;<span class="doctag">@link</span> LetterComposite&#125;).</span></span><br><span class="line"><span class="comment"> Composite模式是一种分区设计模式。 复合模式描述了要以与对象的单个实例相同的方式对待一组对象。 </span></span><br><span class="line"><span class="comment"> 组合的目的是将对象“组合”为树状结构，以表示整个部分的层次结构。实施“组合”模式可使客户统一对待各个对象和组合。</span></span><br><span class="line"><span class="comment">&lt;p&gt;在此示例中，我们具有由字母组成的单词组成的句子。 所有对象可以通过相同的界面（&#123;<span class="doctag">@link</span> LetterComposite&#125;）进行处理。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(App<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Program entry point.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> args command line args</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"Message from the orcs: "</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> orcMessage = <span class="keyword">new</span> Messenger().messageFromOrcs();</span><br><span class="line">    orcMessage.print();</span><br><span class="line"></span><br><span class="line">    LOGGER.info(<span class="string">"\nMessage from the elves: "</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> elfMessage = <span class="keyword">new</span> Messenger().messageFromElves();</span><br><span class="line">    elfMessage.print();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><h2 id="java-awt中的组合模式"><a href="#java-awt中的组合模式" class="headerlink" title="java.awt中的组合模式"></a>java.awt中的组合模式</h2><p>Java GUI分两种：<br>AWT(Abstract Window Toolkit)：抽象窗口工具集，是第一代的Java GUI组件。绘制依赖于底层的操作系统。基本的AWT库处理用户界面元素的方法是把这些元素的创建和行为委托给每个目标平台上（Windows、 Unix、 Macintosh等）的本地GUI工具进行处理。<br>Swing，不依赖于底层细节，是轻量级的组件。现在多是基于Swing来开发。<br>我们来看一个AWT的简单示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.WindowAdapter;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.WindowEvent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFrame</span> <span class="keyword">extends</span> <span class="title">Frame</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyFrame</span><span class="params">(String title)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(title);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyFrame frame = <span class="keyword">new</span> MyFrame(<span class="string">"这是一个 Frame"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 定义三个构件，添加到Frame中去</span></span><br><span class="line">        Button button = <span class="keyword">new</span> Button(<span class="string">"按钮 A"</span>);</span><br><span class="line">        Label label = <span class="keyword">new</span> Label(<span class="string">"这是一个 AWT Label!"</span>);</span><br><span class="line">        TextField textField = <span class="keyword">new</span> TextField(<span class="string">"这是一个 AWT TextField!"</span>);</span><br><span class="line"></span><br><span class="line">        frame.add(button, BorderLayout.EAST);</span><br><span class="line">        frame.add(label, BorderLayout.SOUTH);</span><br><span class="line">        frame.add(textField, BorderLayout.NORTH);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 定义一个 Panel，在Panel中添加三个构件，然后再把Panel添加到Frame中去</span></span><br><span class="line">        Panel panel = <span class="keyword">new</span> Panel();</span><br><span class="line">        panel.setBackground(Color.pink);</span><br><span class="line"></span><br><span class="line">        Label lable1 = <span class="keyword">new</span> Label(<span class="string">"用户名"</span>);</span><br><span class="line">        TextField textField1 = <span class="keyword">new</span> TextField(<span class="string">"请输入用户名："</span>, <span class="number">20</span>);</span><br><span class="line">        Button button1 = <span class="keyword">new</span> Button(<span class="string">"确定"</span>);</span><br><span class="line">        panel.add(lable1);</span><br><span class="line">        panel.add(textField1);</span><br><span class="line">        panel.add(button1);</span><br><span class="line"></span><br><span class="line">        frame.add(panel, BorderLayout.CENTER);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置Frame的属性</span></span><br><span class="line">        frame.setSize(<span class="number">500</span>, <span class="number">300</span>);</span><br><span class="line">        frame.setBackground(Color.orange);</span><br><span class="line">        <span class="comment">// 设置点击关闭事件</span></span><br><span class="line">        frame.addWindowListener(<span class="keyword">new</span> WindowAdapter() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">windowClosing</span><span class="params">(WindowEvent e)</span> </span>&#123;</span><br><span class="line">                System.exit(<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        frame.setVisible(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行后窗体显示如下<br><img src="../../images/swing.png" alt="swing"><br>我们在Frame容器中添加了三个不同的构件 Button、Label、TextField，还添加了一个 Panel 容器，Panel 容器中又添加了 Button、Label、TextField 三个构件，为什么容器 Frame 和 Panel 可以添加类型不同的构件和容器呢？<br>我们先来看下AWT Component的类图<br><img src="../../images/component.png" alt="component"><br>GUI组件根据作用可以分为两种：基本组件和容器组件。<br>基本组件又称构件，诸如按钮、文本框之类的图形界面元素。<br>容器是一种比较特殊的组件，可以容纳其他组件，容器如窗口、对话框等。所有的容器类都是 java.awt.Container 的直接或间接子类<br>容器父类 Container 的部分代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Container</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The components in this container.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> #add</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> #getComponents</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> java.util.List&lt;Component&gt; component = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Component <span class="title">add</span><span class="params">(Component comp)</span> </span>&#123;</span><br><span class="line">        addImpl(comp, <span class="keyword">null</span>, -<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> comp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 省略...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>容器父类 Container 内部定义了一个集合用于存储 Component 对象，而容器组件 Container 和 基本组件如 Button、Label、TextField 等都是 Component 的子类，所以可以很清楚的看到这里应用了组合模式<br>Component 类中封装了组件通用的方法和属性，如图形的组件对象、大小、显示位置、前景色和背景色、边界、可见性等，因此许多组件类也就继承了 Component 类的成员方法和成员变量，相应的成员方法包括：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">getComponentAt(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span><br><span class="line">　　　getFont()</span><br><span class="line">　　　getForeground()</span><br><span class="line">　　　getName()</span><br><span class="line">　　　getSize()</span><br><span class="line">　　　paint(Graphics g)</span><br><span class="line">　　　repaint()</span><br><span class="line">　　　update()</span><br><span class="line">　　　setVisible(<span class="keyword">boolean</span> b)</span><br><span class="line">　　　setSize(Dimension d)</span><br><span class="line">　　　setName(String name)</span><br></pre></td></tr></table></figure>
+<h2 id="Java集合中的组合模式"><a href="#Java集合中的组合模式" class="headerlink" title="Java集合中的组合模式"></a>Java集合中的组合模式</h2><p>HashMap 提供 putAll 的方法，可以将另一个 Map 对象放入自己的存储空间中，如果有相同的 key 值则会覆盖之前的 key 值所对应的 value 值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, Integer&gt; map1 = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</span><br><span class="line">        map1.put(<span class="string">"aa"</span>, <span class="number">1</span>);</span><br><span class="line">        map1.put(<span class="string">"bb"</span>, <span class="number">2</span>);</span><br><span class="line">        map1.put(<span class="string">"cc"</span>, <span class="number">3</span>);</span><br><span class="line">        System.out.println(<span class="string">"map1: "</span> + map1);</span><br><span class="line"></span><br><span class="line">        Map&lt;String, Integer&gt; map2 = <span class="keyword">new</span> LinkedMap();</span><br><span class="line">        map2.put(<span class="string">"cc"</span>, <span class="number">4</span>);</span><br><span class="line">        map2.put(<span class="string">"dd"</span>, <span class="number">5</span>);</span><br><span class="line">        System.out.println(<span class="string">"map2: "</span> + map2);</span><br><span class="line"></span><br><span class="line">        map1.putAll(map2);</span><br><span class="line">        System.out.println(<span class="string">"map1.putAll(map2): "</span> + map1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">map1: &#123;aa=<span class="number">1</span>, bb=<span class="number">2</span>, cc=<span class="number">3</span>&#125;</span><br><span class="line">map2: &#123;cc=<span class="number">4</span>, dd=<span class="number">5</span>&#125;</span><br><span class="line">map1.putAll(map2): &#123;aa=<span class="number">1</span>, bb=<span class="number">2</span>, cc=<span class="number">4</span>, dd=<span class="number">5</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>查看 putAll 源码<br>putAll 接收的参数为父类 Map 类型，所以 HashMap 是一个容器类，Map 的子类为叶子类，当然如果 Map 的其他子类也实现了 putAll 方法，那么它们都既是容器类，又都是叶子类<br>同理，ArrayList 中的 addAll(Collection&lt;? extends E&gt; c) 方法也是一个组合模式的应用，在此不做探讨</p>
+<h2 id="Mybatis-SqlNode中的组合模式"><a href="#Mybatis-SqlNode中的组合模式" class="headerlink" title="Mybatis SqlNode中的组合模式"></a>Mybatis SqlNode中的组合模式</h2><p>MyBatis 的强大特性之一便是它的动态SQL，其通过 if, choose, when, otherwise, trim, where, set, foreach 标签，可组合成非常灵活的SQL语句，从而提高开发人员的效率。<br>来几个官方示例：<br>动态SQL – IF</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findActiveBlogLike"</span>  <span class="attr">resultType</span>=<span class="string">"Blog"</span>&gt;</span></span><br><span class="line">  SELECT * FROM BLOG WHERE state = ‘ACTIVE’ </span><br><span class="line">  <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"title != null"</span>&gt;</span></span><br><span class="line">    AND title like #&#123;title&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"author != null and author.name != null"</span>&gt;</span></span><br><span class="line">    AND author_name like #&#123;author.name&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>动态SQL – choose, when, otherwise</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findActiveBlogLike"</span>  <span class="attr">resultType</span>=<span class="string">"Blog"</span>&gt;</span></span><br><span class="line">  SELECT * FROM BLOG WHERE state = ‘ACTIVE’</span><br><span class="line">  <span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">"title != null"</span>&gt;</span></span><br><span class="line">      AND title like #&#123;title&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">"author != null and author.name != null"</span>&gt;</span></span><br><span class="line">      AND author_name like #&#123;author.name&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">      AND featured = 1</span><br><span class="line">    <span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>动态SQL – where</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findActiveBlogLike"</span>  <span class="attr">resultType</span>=<span class="string">"Blog"</span>&gt;</span></span><br><span class="line">  SELECT * FROM BLOG </span><br><span class="line">  <span class="tag">&lt;<span class="name">where</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"state != null"</span>&gt;</span></span><br><span class="line">         state = #&#123;state&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"title != null"</span>&gt;</span></span><br><span class="line">        AND title like #&#123;title&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"author != null and author.name != null"</span>&gt;</span></span><br><span class="line">        AND author_name like #&#123;author.name&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>动态SQL – foreach</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectPostIn"</span> <span class="attr">resultType</span>=<span class="string">"domain.blog.Post"</span>&gt;</span></span><br><span class="line">  SELECT * FROM POST P WHERE ID in</span><br><span class="line">  <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">collection</span>=<span class="string">"list"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></span><br><span class="line">        #&#123;item&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Mybatis在处理动态SQL节点时，应用到了组合设计模式，Mybatis会将映射配置文件中定义的动态SQL节点、文本节点等解析成对应的 SqlNode 实现，并形成树形结构。<br>SQLNode 的类图如下所示<br><img src="../../images/sqlnode.png" alt="sqlnode"><br>需要先了解 DynamicContext 类的作用：主要用于记录解析动态SQL语句之后产生的SQL语句片段，可以认为它是一个用于记录动态SQL语句解析结果的容器<br>抽象构件为 SqlNode 接口，源码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SqlNode</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">apply</span><span class="params">(DynamicContext context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>apply 是 SQLNode 接口中定义的唯一方法，该方法会根据用户传入的实参，参数解析该SQLNode所记录的动态SQL节点，并调用 DynamicContext.appendSql() 方法将解析后的SQL片段追加到 DynamicContext.sqlBuilder 中保存，当SQL节点下所有的 SqlNode 完成解析后，我们就可以从 DynamicContext 中获取一条动态生产的、完整的SQL语句<br>然后来看 MixedSqlNode 类的源码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MixedSqlNode</span> <span class="keyword">implements</span> <span class="title">SqlNode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> List&lt;SqlNode&gt; contents;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">MixedSqlNode</span><span class="params">(List&lt;SqlNode&gt; contents)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.contents = contents;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">apply</span><span class="params">(DynamicContext context)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (SqlNode sqlNode : contents) &#123;</span><br><span class="line">      sqlNode.apply(context);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>MixedSqlNode 维护了一个 List<SqlNode> 类型的列表，用于存储 SqlNode 对象，apply 方法通过 for循环 遍历 contents 并调用其中对象的 apply 方法，这里跟我们的示例中的 Folder 类中的 print 方法非常类似，很明显 MixedSqlNode 扮演了容器构件角色<br>对于其他SqlNode子类的功能，稍微概括如下：</p>
+<ul>
+<li>TextSqlNode：表示包含 ${} 占位符的动态SQL节点，其 apply 方法会使用 GenericTokenParser 解析 ${} 占位符，并直接替换成用户给定的实际参数值</li>
+<li>IfSqlNode：对应的是动态SQL节点 <If> 节点，其 apply 方法首先通过 ExpressionEvaluator.evaluateBoolean() 方法检测其 test 表达式是否为 true，然后根据 test 表达式的结果，决定是否执行其子节点的 apply() 方法</li>
+<li>TrimSqlNode ：会根据子节点的解析结果，添加或删除相应的前缀或后缀。</li>
+<li>WhereSqlNode 和 SetSqlNode 都继承了 TrimSqlNode</li>
+<li>ForeachSqlNode：对应 <foreach> 标签，对集合进行迭代</li>
+<li>动态SQL中的 <choose>、<when>、<otherwise> 分别解析成 ChooseSqlNode、IfSqlNode、MixedSqlNode</li>
+</ul>
+<p>综上，SqlNode 接口有多个实现类，每个实现类对应一个动态SQL节点，其中 SqlNode 扮演抽象构件角色，MixedSqlNode 扮演容器构件角色，其它一般是叶子构件角色</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/design-pattern/adapter/" rel="prev" title="适配器模式">
+      <i class="fa fa-chevron-left"></i> 适配器模式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/design-pattern/proxy/" rel="next" title="代理模式">
+      代理模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#组合设计模式UML类图"><span class="nav-number">1.</span> <span class="nav-text">组合设计模式UML类图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合设计模式java代码实现"><span class="nav-number">2.</span> <span class="nav-text">组合设计模式java代码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用场景"><span class="nav-number">3.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#java-awt中的组合模式"><span class="nav-number">3.1.</span> <span class="nav-text">java.awt中的组合模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java集合中的组合模式"><span class="nav-number">3.2.</span> <span class="nav-text">Java集合中的组合模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-SqlNode中的组合模式"><span class="nav-number">3.3.</span> <span class="nav-text">Mybatis SqlNode中的组合模式</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="shadow"
+      src="/images/xxx.jpg">
+  <p class="site-author-name" itemprop="name">shadow</p>
+  <div class="site-description" itemprop="description">以梦为马不负韶华</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">195k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:58</span>
+</div>
+
+        
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+              leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=VMKjGQyu0uo7TXTlVQRUkgC6-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'VMKjGQyu0uo7TXTlVQRUkgC6-gzGzoHsz',
+            'X-LC-Key': 'GVb48WETzU7GPEQJ8ibpf9kX',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

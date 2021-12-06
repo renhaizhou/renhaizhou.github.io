@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+  <meta name="baidu-site-verification" content="NjxSGWWluq">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://www.renhz.fun').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#FF00FF","save":"manual"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="菜鸟教程笔记-计算机读取SD卡例子先模拟计算机读取SD卡：1、先创建一个SD卡的接口： public interface SDCard &amp;#123;    &#x2F;&#x2F;读取SD卡方法    String readSD();    &#x2F;&#x2F;写入SD卡功能    int writeSD(String msg);&amp;#125; 2、创建SD卡接口的实现类，模拟SD卡的功能： public class SDCardIm">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="适配器模式">
+<meta property="og:url" content="http://www.renhz.fun/design-pattern/adapter/index.html">
+<meta property="og:site_name" content="学海无涯苦作舟">
+<meta property="og:description" content="菜鸟教程笔记-计算机读取SD卡例子先模拟计算机读取SD卡：1、先创建一个SD卡的接口： public interface SDCard &amp;#123;    &#x2F;&#x2F;读取SD卡方法    String readSD();    &#x2F;&#x2F;写入SD卡功能    int writeSD(String msg);&amp;#125; 2、创建SD卡接口的实现类，模拟SD卡的功能： public class SDCardIm">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.renhz.fun/images/plantuml/adapter.urm.png">
+<meta property="og:image" content="http://www.renhz.fun/images/AdvisorAdapter.png">
+<meta property="og:image" content="http://www.renhz.fun/images/Controller.png">
+<meta property="og:image" content="http://www.renhz.fun/images/HandlerAdapter.png">
+<meta property="og:updated_time" content="2021-12-06T05:43:58.651Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.renhz.fun/images/plantuml/adapter.urm.png">
+
+<link rel="canonical" href="http://www.renhz.fun/design-pattern/adapter/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>适配器模式 | 学海无涯苦作舟</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学海无涯苦作舟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/adapter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          适配器模式
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-03 17:27:57" itemprop="dateCreated datePublished" datetime="2020-04-03T17:27:57+08:00">2020-04-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-06 13:43:58" itemprop="dateModified" datetime="2021-12-06T13:43:58+08:00">2021-12-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">结构型模式</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/design-pattern/adapter/" class="post-meta-item leancloud_visitors" data-flag-title="适配器模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>15k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>14 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="菜鸟教程笔记-计算机读取SD卡例子"><a href="#菜鸟教程笔记-计算机读取SD卡例子" class="headerlink" title="菜鸟教程笔记-计算机读取SD卡例子"></a>菜鸟教程笔记-计算机读取SD卡例子</h1><h2 id="先模拟计算机读取SD卡："><a href="#先模拟计算机读取SD卡：" class="headerlink" title="先模拟计算机读取SD卡："></a>先模拟计算机读取SD卡：</h2><p>1、先创建一个SD卡的接口：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SDCard</span> </span>&#123;</span><br><span class="line">    <span class="comment">//读取SD卡方法</span></span><br><span class="line">    <span class="function">String <span class="title">readSD</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//写入SD卡功能</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、创建SD卡接口的实现类，模拟SD卡的功能：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SDCardImpl</span> <span class="keyword">implements</span> <span class="title">SDCard</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String msg = <span class="string">"sdcard read a msg :hello word SD"</span>;</span><br><span class="line">        <span class="keyword">return</span> msg;  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span> </span>&#123;      </span><br><span class="line">        System.out.println(<span class="string">"sd card write msg : "</span> + msg);    </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、创建计算机接口，计算机提供读取SD卡方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Computer</span> </span>&#123;    </span><br><span class="line">    <span class="function">String <span class="title">readSD</span><span class="params">(SDCard sdCard)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、创建一个计算机实例，实现计算机接口，并实现其读取SD卡方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThinkpadComputer</span> <span class="keyword">implements</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">(SDCard sdCard)</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">if</span>(sdCard == <span class="keyword">null</span>)<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"sd card null"</span>);        </span><br><span class="line">        <span class="keyword">return</span> sdCard.readSD();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5、这时候就可以模拟计算机读取SD卡功能：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerReadDemo</span> </span>&#123;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        </span><br><span class="line">        Computer computer = <span class="keyword">new</span> ThinkpadComputer();        </span><br><span class="line">        SDCard sdCard = <span class="keyword">new</span> SDCardImpl();       </span><br><span class="line">        System.out.println(computer.readSD(sdCard));    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡："><a href="#接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡：" class="headerlink" title="接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡："></a>接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡：</h2><p>1、创建TF卡接口：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TFCard</span> </span>&#123;    </span><br><span class="line">    <span class="function">String <span class="title">readTF</span><span class="params">()</span></span>;    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">writeTF</span><span class="params">(String msg)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、创建TF卡实例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TFCardImpl</span> <span class="keyword">implements</span> <span class="title">TFCard</span> </span>&#123;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readTF</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        String msg =<span class="string">"tf card reade msg : hello word tf card"</span>;        </span><br><span class="line">        <span class="keyword">return</span> msg;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeTF</span><span class="params">(String msg)</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">"tf card write a msg : "</span> + msg);        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、创建SD适配TF （也可以说是SD兼容TF，相当于读卡器）：<br>实现SDCard接口，并将要适配的对象作为适配器的属性引入。</p>
+<h3 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SDObjectAdapterTF</span> <span class="keyword">implements</span> <span class="title">SDCard</span> </span>&#123;    </span><br><span class="line">    <span class="keyword">private</span> TFCard tfCard;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SDAdapterTF</span><span class="params">(TFCard tfCard)</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">this</span>.tfCard = tfCard;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">"adapter read tf card "</span>);        </span><br><span class="line">        <span class="keyword">return</span> tfCard.readTF();    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">"adapter write tf card"</span>);        </span><br><span class="line">        <span class="keyword">return</span> tfCard.writeTF(msg);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="类适配器"><a href="#类适配器" class="headerlink" title="类适配器"></a>类适配器</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SDClassAdapterTF</span> <span class="keyword">extends</span> <span class="title">TFCardImpl</span> <span class="keyword">implements</span> <span class="title">SDCard</span> </span>&#123;    </span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">"adapter read tf card "</span>);        </span><br><span class="line">        <span class="keyword">return</span> readTF();    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">"adapter write tf card"</span>);        </span><br><span class="line">        <span class="keyword">return</span> writeTF(msg);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、通过上面的例子测试计算机通过SD读卡器读取TF卡：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerReadDemo</span> </span>&#123;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        </span><br><span class="line">        Computer computer = <span class="keyword">new</span> ThinkpadComputer();        </span><br><span class="line">        SDCard sdCard = <span class="keyword">new</span> SDCardImpl();        </span><br><span class="line">        System.out.println(computer.readSD(sdCard));        </span><br><span class="line">        System.out.println(<span class="string">"===================================="</span>);        </span><br><span class="line">        TFCard tfCard = <span class="keyword">new</span> TFCardImpl();      </span><br><span class="line">        <span class="comment">//对象适配器  </span></span><br><span class="line">        SDCard tfCardObjectAdapterSD = <span class="keyword">new</span> SDObjectAdapterTF(tfCard);  </span><br><span class="line">        System.out.println(computer.readSD(tfCardObjectAdapterSD)); </span><br><span class="line">        <span class="comment">//类适配器</span></span><br><span class="line">        SDCard tfCardClassAdapterSD = <span class="keyword">new</span> SDClassAdapterTF();  </span><br><span class="line">        System.out.println(computer.readSD(tfCardClassAdapterSD));        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">sdcard read a msg :hello word SD</span><br><span class="line">====================================</span><br><span class="line">adapter read tf card </span><br><span class="line">tf card reade msg : hello word tf card</span><br></pre></td></tr></table></figure>
+<p>在这种模式下，计算机并不需要知道具体是什么卡，只需要负责操作接口即可，具体操作的什么类，由适配器决定。</p>
+<h1 id="适配器设计模式UML类图"><a href="#适配器设计模式UML类图" class="headerlink" title="适配器设计模式UML类图"></a>适配器设计模式UML类图</h1><p><img src="../../images/plantuml/adapter.urm.png" alt="适配器设计模式UML类图"></p>
+<h1 id="适配器设计模式java实现"><a href="#适配器设计模式java实现" class="headerlink" title="适配器设计模式java实现"></a>适配器设计模式java实现</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The interface expected by the client.&lt;br&gt; A rowing boat is rowed to move.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RowingBoat</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">row</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The Captain uses &#123;<span class="doctag">@link</span> RowingBoat&#125; to sail. &lt;br&gt; This is the client in the pattern.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Captain</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> RowingBoat rowingBoat;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Captain</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Captain</span><span class="params">(<span class="keyword">final</span> RowingBoat boat)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.rowingBoat = boat;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">setRowingBoat</span><span class="params">(<span class="keyword">final</span> RowingBoat boat)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.rowingBoat = boat;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">row</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    rowingBoat.row();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Device class (adaptee in the pattern). We want to reuse this class. Fishing boat moves by</span></span><br><span class="line"><span class="comment"> * sailing.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">FishingBoat</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = getLogger(FishingBoat<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">sail</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"The fishing boat is sailing"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Adapter class. Adapts the interface of the device (&#123;<span class="doctag">@link</span> FishingBoat&#125;) into &#123;<span class="doctag">@link</span> RowingBoat&#125;</span></span><br><span class="line"><span class="comment"> * interface expected by the client (&#123;<span class="doctag">@link</span> Captain&#125;).</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FishingBoatAdapter</span> <span class="keyword">implements</span> <span class="title">RowingBoat</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> FishingBoat boat;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">FishingBoatAdapter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    boat = <span class="keyword">new</span> FishingBoat();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">row</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    boat.sail();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * An adapter helps two incompatible interfaces to work together. This is the real world definition</span></span><br><span class="line"><span class="comment"> * for an adapter. Interfaces may be incompatible but the inner functionality should suit the need.</span></span><br><span class="line"><span class="comment"> * The Adapter design pattern allows otherwise incompatible classes to work together by converting</span></span><br><span class="line"><span class="comment"> * the interface of one class into an interface expected by the clients.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;There are two variations of the Adapter pattern: The class adapter implements the adaptee's</span></span><br><span class="line"><span class="comment"> * interface whereas the object adapter uses composition to contain the adaptee in the adapter</span></span><br><span class="line"><span class="comment"> * object. This example uses the object adapter approach.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;The Adapter (&#123;<span class="doctag">@link</span> FishingBoatAdapter&#125;) converts the interface of the adaptee class (&#123;<span class="doctag">@link</span></span></span><br><span class="line"><span class="comment"> * FishingBoat&#125;) into a suitable one expected by the client (&#123;<span class="doctag">@link</span> RowingBoat&#125;).</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;The story of this implementation is this. &lt;br&gt; Pirates are coming! we need a &#123;<span class="doctag">@link</span></span></span><br><span class="line"><span class="comment"> * RowingBoat&#125; to flee! We have a &#123;<span class="doctag">@link</span> FishingBoat&#125; and our captain. We have no time to make up a</span></span><br><span class="line"><span class="comment"> * new ship! we need to reuse this &#123;<span class="doctag">@link</span> FishingBoat&#125;. The captain needs a rowing boat which he can</span></span><br><span class="line"><span class="comment"> * operate. The spec is in &#123;<span class="doctag">@link</span> RowingBoat&#125;. We will use the Adapter pattern to reuse &#123;<span class="doctag">@link</span></span></span><br><span class="line"><span class="comment"> * FishingBoat&#125;.</span></span><br><span class="line"><span class="comment"> 适配器可帮助两个不兼容的接口一起工作。这是适配器的真实定义。接口可能不兼容，但内部功能应满足需要。适配器设计模式允许将不兼容的类通过将一个类的接口转换为客户端期望的接口来协同工作。</span></span><br><span class="line"><span class="comment">&lt;p&gt; Adapter模式有两种变体：类适配器实现适配器的接口，而对象适配器使用合成器将适配器包含在适配器中</span></span><br><span class="line"><span class="comment">宾语。本示例使用对象适配器方法。</span></span><br><span class="line"><span class="comment">&lt;p&gt;适配器（&#123;<span class="doctag">@link</span> FishingBoatAdapter&#125;）将适配器类（&#123;<span class="doctag">@link</span> FishingBoat&#125;）的接口转换为客户端期望的合适接口（&#123;<span class="doctag">@link</span> RowingBoat&#125;）。</span></span><br><span class="line"><span class="comment">&lt;p&gt;这个实现的故事是这样的。 &lt;br&gt;海盗来了！我们需要一个&#123;<span class="doctag">@link</span></span></span><br><span class="line"><span class="comment">RowingBoat&#125;逃离！我们有一个&#123;<span class="doctag">@link</span> FishingBoat&#125;和我们的队长。我们没有时间下新船！我们需要重用此&#123;<span class="doctag">@link</span> FishingBoat&#125;。船长需要一艘他可以操作的划艇。规范位于&#123;<span class="doctag">@link</span> RowingBoat&#125;中。我们将使用Adapter模式来重用&#123;<span class="doctag">@link</span> FishingBoat&#125;。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">App</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Program entry point.</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> args command line args</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">final</span> String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// The captain can only operate rowing boats but with adapter he is able to</span></span><br><span class="line">    <span class="comment">// use fishing boats as well</span></span><br><span class="line">    <span class="keyword">var</span> captain = <span class="keyword">new</span> Captain(<span class="keyword">new</span> FishingBoatAdapter());</span><br><span class="line">    captain.row();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><h2 id="spring-AOP中的适配器模式"><a href="#spring-AOP中的适配器模式" class="headerlink" title="spring AOP中的适配器模式"></a>spring AOP中的适配器模式</h2><p>在Spring的Aop中，使用的 Advice（通知） 来增强被代理类的功能。<br>Advice的类型有：MethodBeforeAdvice、AfterReturningAdvice、ThrowsAdvice<br>在每个类型 Advice 都有对应的拦截器，MethodBeforeAdviceInterceptor、AfterReturningAdviceInterceptor、ThrowsAdviceInterceptor<br>Spring需要将每个 Advice 都封装成对应的拦截器类型，返回给容器，所以需要使用适配器模式对 Advice 进行转换<br>三个适配者类 Adaptee 如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MethodBeforeAdvice</span> <span class="keyword">extends</span> <span class="title">BeforeAdvice</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">before</span><span class="params">(Method var1, Object[] var2, @Nullable Object var3)</span> <span class="keyword">throws</span> Throwable</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AfterReturningAdvice</span> <span class="keyword">extends</span> <span class="title">AfterAdvice</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">afterReturning</span><span class="params">(@Nullable Object var1, Method var2, Object[] var3, @Nullable Object var4)</span> <span class="keyword">throws</span> Throwable</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ThrowsAdvice</span> <span class="keyword">extends</span> <span class="title">AfterAdvice</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../../images/AdvisorAdapter.png" alt="AdvisorAdapter"><br>目标接口 Target，有两个方法，一个判断 Advice 类型是否匹配，一个是工厂方法，创建对应类型的 Advice 对应的拦截器</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AdvisorAdapter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">supportsAdvice</span><span class="params">(Advice var1)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">MethodInterceptor <span class="title">getInterceptor</span><span class="params">(Advisor var1)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>三个适配器类 Adapter 分别如下，注意其中的 Advice、Adapter、Interceptor之间的对应关系</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MethodBeforeAdviceAdapter</span> <span class="keyword">implements</span> <span class="title">AdvisorAdapter</span>, <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsAdvice</span><span class="params">(Advice advice)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (advice <span class="keyword">instanceof</span> MethodBeforeAdvice);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> MethodInterceptor <span class="title">getInterceptor</span><span class="params">(Advisor advisor)</span> </span>&#123;</span><br><span class="line">		MethodBeforeAdvice advice = (MethodBeforeAdvice) advisor.getAdvice();</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> MethodBeforeAdviceInterceptor(advice);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"serial"</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AfterReturningAdviceAdapter</span> <span class="keyword">implements</span> <span class="title">AdvisorAdapter</span>, <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsAdvice</span><span class="params">(Advice advice)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (advice <span class="keyword">instanceof</span> AfterReturningAdvice);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> MethodInterceptor <span class="title">getInterceptor</span><span class="params">(Advisor advisor)</span> </span>&#123;</span><br><span class="line">		AfterReturningAdvice advice = (AfterReturningAdvice) advisor.getAdvice();</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> AfterReturningAdviceInterceptor(advice);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThrowsAdviceAdapter</span> <span class="keyword">implements</span> <span class="title">AdvisorAdapter</span>, <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsAdvice</span><span class="params">(Advice advice)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (advice <span class="keyword">instanceof</span> ThrowsAdvice);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> MethodInterceptor <span class="title">getInterceptor</span><span class="params">(Advisor advisor)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ThrowsAdviceInterceptor(advisor.getAdvice());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>客户端 DefaultAdvisorAdapterRegistry</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultAdvisorAdapterRegistry</span> <span class="keyword">implements</span> <span class="title">AdvisorAdapterRegistry</span>, <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> List&lt;AdvisorAdapter&gt; adapters = <span class="keyword">new</span> ArrayList(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DefaultAdvisorAdapterRegistry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 这里注册了适配器</span></span><br><span class="line">        <span class="keyword">this</span>.registerAdvisorAdapter(<span class="keyword">new</span> MethodBeforeAdviceAdapter());</span><br><span class="line">        <span class="keyword">this</span>.registerAdvisorAdapter(<span class="keyword">new</span> AfterReturningAdviceAdapter());</span><br><span class="line">        <span class="keyword">this</span>.registerAdvisorAdapter(<span class="keyword">new</span> ThrowsAdviceAdapter());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> MethodInterceptor[] getInterceptors(Advisor advisor) <span class="keyword">throws</span> UnknownAdviceTypeException &#123;</span><br><span class="line">        List&lt;MethodInterceptor&gt; interceptors = <span class="keyword">new</span> ArrayList(<span class="number">3</span>);</span><br><span class="line">        Advice advice = advisor.getAdvice();</span><br><span class="line">        <span class="keyword">if</span> (advice <span class="keyword">instanceof</span> MethodInterceptor) &#123;</span><br><span class="line">            interceptors.add((MethodInterceptor)advice);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Iterator var4 = <span class="keyword">this</span>.adapters.iterator();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(var4.hasNext()) &#123;</span><br><span class="line">            AdvisorAdapter adapter = (AdvisorAdapter)var4.next();</span><br><span class="line">            <span class="keyword">if</span> (adapter.supportsAdvice(advice)) &#123;   <span class="comment">// 这里调用适配器方法</span></span><br><span class="line">                interceptors.add(adapter.getInterceptor(advisor));  <span class="comment">// 这里调用适配器方法</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (interceptors.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnknownAdviceTypeException(advisor.getAdvice());</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (MethodInterceptor[])interceptors.toArray(<span class="keyword">new</span> MethodInterceptor[<span class="number">0</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...省略...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里看 while 循环里，逐个取出注册的适配器，调用 supportsAdvice() 方法来判断 Advice 对应的类型，然后调用 getInterceptor() 创建对应类型的拦截器<br>这里应该属于对象适配器模式，关键字 instanceof 可看成是 Advice 的方法，不过这里的 Advice 对象是从外部传进来，而不是成员属性</p>
+<h2 id="spring-JPA中的适配器模式"><a href="#spring-JPA中的适配器模式" class="headerlink" title="spring JPA中的适配器模式"></a>spring JPA中的适配器模式</h2><p>在Spring的ORM包中，对于JPA的支持也是采用了适配器模式，首先定义了一个接口的 JpaVendorAdapter，然后不同的持久层框架都实现此接口。<br>jpaVendorAdapter：用于设置实现厂商JPA实现的特定属性，如设置Hibernate的是否自动生成DDL的属性generateDdl；这些属性是厂商特定的，因此最好在这里设置；目前Spring提供 HibernateJpaVendorAdapter、OpenJpaVendorAdapter、EclipseLinkJpaVendorAdapter、TopLinkJpaVendorAdapter 四个实现。其中最重要的属性是 database，用来指定使用的数据库类型，从而能根据数据库类型来决定比如如何将数据库特定异常转换为Spring的一致性异常，目前支持如下数据库（DB2、DERBY、H2、HSQL、INFORMIX、MYSQL、ORACLE、POSTGRESQL、SQL_SERVER、SYBASE）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">JpaVendorAdapter</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  <span class="comment">// 返回一个具体的持久层提供者</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> PersistenceProvider <span class="title">getPersistenceProvider</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 返回持久层提供者的包名</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title">getPersistenceProviderRootPackage</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 返回持久层提供者的属性</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">abstract</span> Map&lt;String, ?&gt; getJpaPropertyMap();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 返回JpaDialect</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> JpaDialect <span class="title">getJpaDialect</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 返回持久层管理器工厂</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">abstract</span> Class&lt;? extends EntityManagerFactory&gt; getEntityManagerFactoryInterface();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 返回持久层管理器</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">abstract</span> Class&lt;? extends EntityManager&gt; getEntityManagerInterface();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 自定义回调方法</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">postProcessEntityManagerFactory</span><span class="params">(EntityManagerFactory paramEntityManagerFactory)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们来看其中一个适配器实现类 HibernateJpaVendorAdapter</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HibernateJpaVendorAdapter</span> <span class="keyword">extends</span> <span class="title">AbstractJpaVendorAdapter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//设定持久层提供者</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> PersistenceProvider persistenceProvider;</span><br><span class="line">    <span class="comment">//设定持久层方言</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> JpaDialect jpaDialect;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HibernateJpaVendorAdapter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.persistenceProvider = <span class="keyword">new</span> HibernatePersistence();</span><br><span class="line">        <span class="keyword">this</span>.jpaDialect = <span class="keyword">new</span> HibernateJpaDialect();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回持久层方言</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> PersistenceProvider <span class="title">getPersistenceProvider</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.persistenceProvider;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回持久层提供者</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPersistenceProviderRootPackage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"org.hibernate"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回JPA的属性</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">getJpaPropertyMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Map jpaProperties = <span class="keyword">new</span> HashMap();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (getDatabasePlatform() != <span class="keyword">null</span>) &#123;</span><br><span class="line">            jpaProperties.put(<span class="string">"hibernate.dialect"</span>, getDatabasePlatform());</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (getDatabase() != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Class databaseDialectClass = determineDatabaseDialectClass(getDatabase());</span><br><span class="line">            <span class="keyword">if</span> (databaseDialectClass != <span class="keyword">null</span>) &#123;</span><br><span class="line">                jpaProperties.put(<span class="string">"hibernate.dialect"</span>,</span><br><span class="line">                        databaseDialectClass.getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (isGenerateDdl()) &#123;</span><br><span class="line">            jpaProperties.put(<span class="string">"hibernate.hbm2ddl.auto"</span>, <span class="string">"update"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (isShowSql()) &#123;</span><br><span class="line">            jpaProperties.put(<span class="string">"hibernate.show_sql"</span>, <span class="string">"true"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> jpaProperties;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设定数据库</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Class <span class="title">determineDatabaseDialectClass</span><span class="params">(Database database)</span>     </span></span><br><span class="line"><span class="function">    </span>&#123;                                                                                       </span><br><span class="line">        <span class="keyword">switch</span> (<span class="number">1</span>.$SwitchMap$org$springframework$orm$jpa$vendor$Database[database.ordinal()]) </span><br><span class="line">        &#123;                                                                                     </span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:                                                                             </span><br><span class="line">          <span class="keyword">return</span> DB2Dialect<span class="class">.<span class="keyword">class</span></span>;                                                            </span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:                                                                               </span><br><span class="line">          <span class="keyword">return</span> DerbyDialect<span class="class">.<span class="keyword">class</span></span>;                                                          </span><br><span class="line">        <span class="keyword">case</span> <span class="number">3</span>:                                                                               </span><br><span class="line">          <span class="keyword">return</span> H2Dialect<span class="class">.<span class="keyword">class</span></span>;                                                             </span><br><span class="line">        <span class="keyword">case</span> <span class="number">4</span>:                                                                               </span><br><span class="line">          <span class="keyword">return</span> HSQLDialect<span class="class">.<span class="keyword">class</span></span>;                                                           </span><br><span class="line">        <span class="keyword">case</span> <span class="number">5</span>:                                                                               </span><br><span class="line">          <span class="keyword">return</span> InformixDialect<span class="class">.<span class="keyword">class</span></span>;                                                       </span><br><span class="line">        <span class="keyword">case</span> <span class="number">6</span>:                                                                               </span><br><span class="line">          <span class="keyword">return</span> MySQLDialect<span class="class">.<span class="keyword">class</span></span>;                                                          </span><br><span class="line">        <span class="keyword">case</span> <span class="number">7</span>:                                                                               </span><br><span class="line">          <span class="keyword">return</span> Oracle9iDialect<span class="class">.<span class="keyword">class</span></span>;                                                       </span><br><span class="line">        <span class="keyword">case</span> <span class="number">8</span>:                                                                               </span><br><span class="line">          <span class="keyword">return</span> PostgreSQLDialect<span class="class">.<span class="keyword">class</span></span>;                                                     </span><br><span class="line">        <span class="keyword">case</span> <span class="number">9</span>:                                                                               </span><br><span class="line">          <span class="keyword">return</span> SQLServerDialect<span class="class">.<span class="keyword">class</span></span>;                                                      </span><br><span class="line">        <span class="keyword">case</span> <span class="number">10</span>:                                                                              </span><br><span class="line">          <span class="keyword">return</span> SybaseDialect<span class="class">.<span class="keyword">class</span></span>; &#125;                                                       </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;              </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回JPA方言</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> JpaDialect <span class="title">getJpaDialect</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.jpaDialect;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回JPA实体管理器工厂</span></span><br><span class="line">    <span class="keyword">public</span> Class&lt;? extends EntityManagerFactory&gt; getEntityManagerFactoryInterface() &#123;</span><br><span class="line">        <span class="keyword">return</span> HibernateEntityManagerFactory<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回JPA实体管理器</span></span><br><span class="line">    <span class="keyword">public</span> Class&lt;? extends EntityManager&gt; getEntityManagerInterface() &#123;</span><br><span class="line">        <span class="keyword">return</span> HibernateEntityManager<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置文件中可以这样指定</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"jpaVendorAdapter"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"</span>&gt; </span><br><span class="line">   &lt;property name=<span class="string">"generateDdl"</span> value=<span class="string">"false"</span> /&gt;  </span><br><span class="line">   &lt;property name=<span class="string">"database"</span> value=<span class="string">"HSQL"</span>/&gt;  </span><br><span class="line">&lt;/bean&gt;  </span><br><span class="line">&lt;bean id=<span class="string">"jpaDialect"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.springframework.orm.jpa.vendor.HibernateJpaDialect"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="spring-MVC中的适配器模式"><a href="#spring-MVC中的适配器模式" class="headerlink" title="spring MVC中的适配器模式"></a>spring MVC中的适配器模式</h2><p>Spring MVC中的适配器模式主要用于执行目标 Controller 中的请求处理方法。<br>在Spring MVC中，DispatcherServlet 作为用户，HandlerAdapter 作为期望接口，具体的适配器实现类用于对目标类进行适配，Controller 作为需要适配的类。<br>为什么要在 Spring MVC 中使用适配器模式？Spring MVC 中的 Controller 种类众多，不同类型的 Controller 通过不同的方法来对请求进行处理。如果不利用适配器模式的话，DispatcherServlet 直接获取对应类型的 Controller，需要的自行来判断，像下面这段代码一样：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mappedHandler.getHandler() <span class="keyword">instanceof</span> MultiActionController)&#123;  </span><br><span class="line">   ((MultiActionController)mappedHandler.getHandler()).xxx  </span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(mappedHandler.getHandler() <span class="keyword">instanceof</span> XXX)&#123;  </span><br><span class="line">    ...  </span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(...)&#123;  </span><br><span class="line">   ...  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样假设如果我们增加一个 HardController,就要在代码中加入一行 if(mappedHandler.getHandler() instanceof HardController)，这种形式就使得程序难以维护，也违反了设计模式中的开闭原则 – 对扩展开放，对修改关闭。<br>我们来看看源码，首先是适配器接口 HandlerAdapter</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HandlerAdapter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">supports</span><span class="params">(Object var1)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">ModelAndView <span class="title">handle</span><span class="params">(HttpServletRequest var1, HttpServletResponse var2, Object var3)</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="title">getLastModified</span><span class="params">(HttpServletRequest var1, Object var2)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现该接口的适配器每一个 Controller 都有一个适配器与之对应，这样的话，每自定义一个 Controller 需要定义一个实现 HandlerAdapter 的适配器。<br>springmvc 中提供的 Controller 实现类有如下<br><img src="../../images/Controller.png" alt="Controller"><br>springmvc 中提供的 HandlerAdapter 实现类如下<br><img src="../../images/HandlerAdapter.png" alt="HandlerAdapter"><br>HttpRequestHandlerAdapter 这个适配器代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpRequestHandlerAdapter</span> <span class="keyword">implements</span> <span class="title">HandlerAdapter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HttpRequestHandlerAdapter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supports</span><span class="params">(Object handler)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> handler <span class="keyword">instanceof</span> HttpRequestHandler;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ((HttpRequestHandler)handler).handleRequest(request, response);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getLastModified</span><span class="params">(HttpServletRequest request, Object handler)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> handler <span class="keyword">instanceof</span> LastModified ? ((LastModified)handler).getLastModified(request) : -<span class="number">1L</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当Spring容器启动后，会将所有定义好的适配器对象存放在一个List集合中，当一个请求来临时，DispatcherServlet 会通过 handler 的类型找到对应适配器，并将该适配器对象返回给用户，然后就可以统一通过适配器的 hanle() 方法来调用 Controller 中的用于处理请求的方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DispatcherServlet</span> <span class="keyword">extends</span> <span class="title">FrameworkServlet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;HandlerAdapter&gt; handlerAdapters;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//初始化handlerAdapters</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initHandlerAdapters</span><span class="params">(ApplicationContext context)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//..省略...</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 遍历所有的 HandlerAdapters，通过 supports 判断找到匹配的适配器</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> HandlerAdapter <span class="title">getHandlerAdapter</span><span class="params">(Object handler)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (HandlerAdapter ha : <span class="keyword">this</span>.handlerAdapters) &#123;</span><br><span class="line">			<span class="keyword">if</span> (logger.isTraceEnabled()) &#123;</span><br><span class="line">				logger.trace(<span class="string">"Testing handler adapter ["</span> + ha + <span class="string">"]"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (ha.supports(handler)) &#123;</span><br><span class="line">				<span class="keyword">return</span> ha;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 分发请求，请求需要找到匹配的适配器来处理</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doDispatch</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		HttpServletRequest processedRequest = request;</span><br><span class="line">		HandlerExecutionChain mappedHandler = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// Determine handler for the current request.</span></span><br><span class="line">		mappedHandler = getHandler(processedRequest);</span><br><span class="line">			</span><br><span class="line">		<span class="comment">// 确定当前请求的匹配的适配器.</span></span><br><span class="line">		HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());</span><br><span class="line"></span><br><span class="line">		ha.getLastModified(request, mappedHandler.getHandler());</span><br><span class="line">					</span><br><span class="line">		mv = ha.handle(processedRequest, response, mappedHandler.getHandler());</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// ...省略...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过适配器模式我们将所有的 controller 统一交给 HandlerAdapter 处理，免去了写大量的 if-else 语句对 Controller 进行判断，也更利于扩展新的 Controller 类型。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/design-pattern/observer/" rel="prev" title="观察者模式">
+      <i class="fa fa-chevron-left"></i> 观察者模式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/design-pattern/composite/" rel="next" title="组合模式">
+      组合模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#菜鸟教程笔记-计算机读取SD卡例子"><span class="nav-number">1.</span> <span class="nav-text">菜鸟教程笔记-计算机读取SD卡例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#先模拟计算机读取SD卡："><span class="nav-number">1.1.</span> <span class="nav-text">先模拟计算机读取SD卡：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡："><span class="nav-number">1.2.</span> <span class="nav-text">接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象适配器"><span class="nav-number">1.2.1.</span> <span class="nav-text">对象适配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类适配器"><span class="nav-number">1.2.2.</span> <span class="nav-text">类适配器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#适配器设计模式UML类图"><span class="nav-number">2.</span> <span class="nav-text">适配器设计模式UML类图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#适配器设计模式java实现"><span class="nav-number">3.</span> <span class="nav-text">适配器设计模式java实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用场景"><span class="nav-number">4.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-AOP中的适配器模式"><span class="nav-number">4.1.</span> <span class="nav-text">spring AOP中的适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-JPA中的适配器模式"><span class="nav-number">4.2.</span> <span class="nav-text">spring JPA中的适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-MVC中的适配器模式"><span class="nav-number">4.3.</span> <span class="nav-text">spring MVC中的适配器模式</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="shadow"
+      src="/images/xxx.jpg">
+  <p class="site-author-name" itemprop="name">shadow</p>
+  <div class="site-description" itemprop="description">以梦为马不负韶华</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">195k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:58</span>
+</div>
+
+        
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+              leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=VMKjGQyu0uo7TXTlVQRUkgC6-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'VMKjGQyu0uo7TXTlVQRUkgC6-gzGzoHsz',
+            'X-LC-Key': 'GVb48WETzU7GPEQJ8ibpf9kX',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

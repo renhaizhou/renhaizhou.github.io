@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+  <meta name="baidu-site-verification" content="NjxSGWWluq">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://www.renhz.fun').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#FF00FF","save":"manual"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Log日志体系commons-logging.jar、log4j.jar、sl4j-api.jar、logback.jar">
+<meta name="keywords" content="框架源码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="混乱的JAVA日志体系">
+<meta property="og:url" content="http://www.renhz.fun/log/log/index.html">
+<meta property="og:site_name" content="学海无涯苦作舟">
+<meta property="og:description" content="Log日志体系commons-logging.jar、log4j.jar、sl4j-api.jar、logback.jar">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.renhz.fun/images/jul.png">
+<meta property="og:image" content="http://www.renhz.fun/images/jcl-log4j.png">
+<meta property="og:image" content="http://www.renhz.fun/images/slf4j-bind.png">
+<meta property="og:image" content="http://www.renhz.fun/images/slf4j-log4j.png">
+<meta property="og:image" content="http://www.renhz.fun/images/slf4j-logback.png">
+<meta property="og:image" content="http://www.renhz.fun/images/slf4j-jul.png">
+<meta property="og:image" content="http://www.renhz.fun/images/slf4j-log4j2.png">
+<meta property="og:image" content="http://www.renhz.fun/images/slf4j-over.png">
+<meta property="og:image" content="http://www.renhz.fun/images/spring-boot-logging%E4%BE%9D%E8%B5%96%E5%8C%85.png">
+<meta property="og:image" content="http://www.renhz.fun/images/spring-boot-log4j%E4%BE%9D%E8%B5%96%E5%8C%85.png">
+<meta property="og:updated_time" content="2021-12-06T05:43:58.917Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.renhz.fun/images/jul.png">
+
+<link rel="canonical" href="http://www.renhz.fun/log/log/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>混乱的JAVA日志体系 | 学海无涯苦作舟</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学海无涯苦作舟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/log/log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          混乱的JAVA日志体系
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-01 09:43:48" itemprop="dateCreated datePublished" datetime="2020-04-01T09:43:48+08:00">2020-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-06 13:43:58" itemprop="dateModified" datetime="2021-12-06T13:43:58+08:00">2021-12-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A0%81/" itemprop="url" rel="index">
+                    <span itemprop="name">框架源码</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/log/log/" class="post-meta-item leancloud_visitors" data-flag-title="混乱的JAVA日志体系" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Log日志体系"><a href="#Log日志体系" class="headerlink" title="Log日志体系"></a>Log日志体系</h1><p>commons-logging.jar、log4j.jar、sl4j-api.jar、logback.jar</p>
+<a id="more"></a>
+<h1 id="背景-发展史"><a href="#背景-发展史" class="headerlink" title="背景/发展史"></a>背景/发展史</h1><ul>
+<li>log4j（作者Ceki Gülcü）出来时就等到了广泛的应用（注意这里是直接使用），是Java日志事实上的标准，并成为了Apache的项目</li>
+<li>Apache要求把log4j并入到JDK，SUN拒绝，并在jdk1.4版本后增加了JUL（java.util.logging）</li>
+<li>毕竟是JDK自带的，JUL也有很多人用。同时还有其他日志组件，如SimpleLog等。这时如果有人想换成其他日志组件，如log4j换成JUL，因为api完全不同，就需- 要改动代码。</li>
+<li>Apache见此，开发了JCL（Jakarta Commons Logging），即commons-logging-xx.jar。它只提供一套通用的日志接口api，并不提供日志的实现。很好的- 设计原则嘛，依赖抽象而非实现。这样应用程序可以在运行时选择自己想要的日志实现组件。</li>
+<li>这样看上去也挺美好的，但是log4j的作者觉得JCL不好用，自己开发出slf4j，它跟JCL类似，本身不替供日志具体实现，只对外提供接口或门面。目的就是为了替- 代JCL。同时，还开发出logback，一个比log4j拥有更高性能的组件，目的是为了替代log4j。</li>
+<li>Apache参考了logback,并做了一系列优化，推出了log4j2</li>
+</ul>
+<h1 id="JUL-jdk原生日志"><a href="#JUL-jdk原生日志" class="headerlink" title="JUL jdk原生日志"></a>JUL jdk原生日志</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.logging.Logger;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * JUL日志 jdk原生自带</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyLog</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> Logger logger = Logger.getLogger(MyLog<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>())</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    logger.info(<span class="string">"jdk原生日志"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../../images/jul.png" alt="jul样例"></p>
+<h1 id="JCL-commons-logging"><a href="#JCL-commons-logging" class="headerlink" title="JCL commons-logging"></a>JCL commons-logging</h1><p>默认的LogFactory实现使用以下发现过程来确定应使用的Log实现类型（在找到第一个肯定匹配项时（按顺序），该过程终止）：</p>
+<ol>
+<li>查找该工厂的名为org.apache.commons.logging.Log的配置属性 （为了向后兼容该API的1.0之前的版本，还请参考org.apache.commons.logging.log属性 ）。<br>可以通过Java代码显式设置配置属性，但是更常见的是通过在类路径中放置一个名为commons-logging.properties的文件来进行设置。当存在这样的文件时，属性文件中的每个条目都将成为LogFactory的“属性”。如果类路径中有多个此类文件，则1.1之前的commons-logging版本仅使用找到的第一个文件。从版本1.1开始，每个文件都可以定义优先级密钥，并且使用优先级最高的文件（没有优先级定义表示优先级为零）。当多个文件具有相同的优先级时，将使用找到的第一个文件。</li>
+</ol>
+<p>建议在commons-logging.properties文件中定义此属性，以明确选择Log实现。</p>
+<ol start="2">
+<li>查找一个名为org.apache.commons.logging.Log的系统属性 （为了向后兼容此API的1.0之前的版本，还请参考系统属性 org.apache.commons.logging.log）。</li>
+<li>如果Log4J日志记录系统在应用程序类路径中可用，请使用相应的包装器类（Log4JLogger）。</li>
+<li>如果应用程序在JDK 1.4系统上执行，请使用相应的包装器类（Jdk14Logger）。</li>
+<li>退回到默认的简单日志记录包装器（SimpleLog）。</li>
+</ol>
+<h2 id="jcl整合log4j"><a href="#jcl整合log4j" class="headerlink" title="jcl整合log4j"></a>jcl整合log4j</h2><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">group:</span> <span class="string">'commons-logging'</span>, <span class="string">name:</span> <span class="string">'commons-logging'</span>, <span class="string">version:</span> <span class="string">'1.2'</span></span><br><span class="line">compile <span class="string">group:</span> <span class="string">'log4j'</span>, <span class="string">name:</span> <span class="string">'log4j'</span>, <span class="string">version:</span> <span class="string">'1.2.17'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.commons.logging.Log;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.logging.LogFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JclLog4j</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> Log logger = LogFactory.getLog(JclLog4j<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    logger.info(<span class="string">"jul整合log4j日志"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../../images/jcl-log4j.png" alt="jcl整合log4j样例"></p>
+<h1 id="Slf4j"><a href="#Slf4j" class="headerlink" title="Slf4j"></a>Slf4j</h1><h2 id="slf4j与其他日志框架动态绑定"><a href="#slf4j与其他日志框架动态绑定" class="headerlink" title="slf4j与其他日志框架动态绑定"></a>slf4j与其他日志框架动态绑定</h2><p><img src="../../images/slf4j-bind.png" alt="slf4j"></p>
+<h2 id="slf4j整合log4j"><a href="#slf4j整合log4j" class="headerlink" title="slf4j整合log4j"></a>slf4j整合log4j</h2><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">group:</span> <span class="string">'org.slf4j'</span>, <span class="string">name:</span> <span class="string">'slf4j-api'</span>, <span class="string">version:</span> <span class="string">'1.7.30'</span></span><br><span class="line">compile <span class="string">group:</span> <span class="string">'org.slf4j'</span>, <span class="string">name:</span> <span class="string">'slf4j-log4j12'</span>, <span class="string">version:</span> <span class="string">'1.7.30'</span></span><br><span class="line">compile <span class="string">group:</span> <span class="string">'log4j'</span>, <span class="string">name:</span> <span class="string">'log4j'</span>, <span class="string">version:</span> <span class="string">'1.2.17'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Slf4jLog4j</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Logger logger = LoggerFactory.getLogger(Slf4jLog4j<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    logger.info(<span class="string">"slf4j整合log4j"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../../images/slf4j-log4j.png" alt="slf4j-log4j"></p>
+<h2 id="slf4j整合logback"><a href="#slf4j整合logback" class="headerlink" title="slf4j整合logback"></a>slf4j整合logback</h2><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">group:</span> <span class="string">'org.slf4j'</span>, <span class="string">name:</span> <span class="string">'slf4j-api'</span>, <span class="string">version:</span> <span class="string">'1.7.30'</span></span><br><span class="line">compile <span class="string">group:</span> <span class="string">'ch.qos.logback'</span>, <span class="string">name:</span> <span class="string">'logback-classic'</span>, <span class="string">version:</span> <span class="string">'1.2.3'</span></span><br><span class="line">compile <span class="string">group:</span> <span class="string">'ch.qos.logback'</span>, <span class="string">name:</span> <span class="string">'logback-core'</span>, <span class="string">version:</span> <span class="string">'1.2.3'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Slf4jLogback</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Logger logger = LoggerFactory.getLogger(Slf4jLogback<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    logger.info(<span class="string">"slf4j整合logback"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../../images/slf4j-logback.png" alt="slf4j-logback"></p>
+<h2 id="slf4j整合jul"><a href="#slf4j整合jul" class="headerlink" title="slf4j整合jul"></a>slf4j整合jul</h2><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">group:</span> <span class="string">'org.slf4j'</span>, <span class="string">name:</span> <span class="string">'slf4j-api'</span>, <span class="string">version:</span> <span class="string">'1.7.30'</span></span><br><span class="line">compile <span class="string">group:</span> <span class="string">'org.slf4j'</span>, <span class="string">name:</span> <span class="string">'slf4j-jdk14'</span>, <span class="string">version:</span> <span class="string">'1.7.30'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Slf4jJul</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Logger logger = LoggerFactory.getLogger(Slf4jJul<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    logger.info(<span class="string">"slf4j整合jul"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../../images/slf4j-jul.png" alt="slf4j-jul"></p>
+<h2 id="slf4j整合log4j2"><a href="#slf4j整合log4j2" class="headerlink" title="slf4j整合log4j2"></a>slf4j整合log4j2</h2><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">group:</span> <span class="string">'org.slf4j'</span>, <span class="string">name:</span> <span class="string">'slf4j-api'</span>, <span class="string">version:</span> <span class="string">'1.7.30'</span></span><br><span class="line">compile <span class="string">group:</span> <span class="string">'org.apache.logging.log4j'</span>, <span class="string">name:</span> <span class="string">'log4j-slf4j-impl'</span>, <span class="string">version:</span> <span class="string">'2.13.1'</span></span><br><span class="line">compile <span class="string">group:</span> <span class="string">'org.apache.logging.log4j'</span>, <span class="string">name:</span> <span class="string">'log4j-api'</span>, <span class="string">version:</span> <span class="string">'2.13.1'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Slf4jLog4j2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Logger logger = LoggerFactory.getLogger(Slf4jLog4j2<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    logger.error(<span class="string">"slf4j整合log4j2"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../../images/slf4j-log4j2.png" alt="slf4j-log4j2"></p>
+<h2 id="slf4j整合jcl"><a href="#slf4j整合jcl" class="headerlink" title="slf4j整合jcl"></a>slf4j整合jcl</h2><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">group:</span> <span class="string">'org.slf4j'</span>, <span class="string">name:</span> <span class="string">'slf4j-api'</span>, <span class="string">version:</span> <span class="string">'1.7.30'</span></span><br><span class="line">compile <span class="string">group:</span> <span class="string">'org.slf4j'</span>, <span class="string">name:</span> <span class="string">'slf4j-jcl'</span>, <span class="string">version:</span> <span class="string">'1.7.30'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="slf4j桥接旧版API"><a href="#slf4j桥接旧版API" class="headerlink" title="slf4j桥接旧版API"></a>slf4j桥接旧版API</h2><p><img src="../../images/slf4j-over.png" alt="其他日志框架统一转换为slf4j"><br>其实总的来说，无论就是以下几种情况</p>
+<ul>
+<li>你在用JCL<br>使用jcl-over-slf4j.jar适配</li>
+<li>你在用log4j<br>使用log4j-over-slf4j.jar适配</li>
+<li>你在用JUL<br>使用jul-to-slf4j.jar适配</li>
+</ul>
+<h1 id="日志框架在spring中使用"><a href="#日志框架在spring中使用" class="headerlink" title="日志框架在spring中使用"></a>日志框架在spring中使用</h1><h2 id="让Spring统一输出"><a href="#让Spring统一输出" class="headerlink" title="让Spring统一输出"></a>让Spring统一输出</h2><p>这就是为了对slf4j的适配做一个例子说明。<br>Spring是用JCL作为日志门面的，那我们的应用是slf4j + logback，怎么让Spring也用到logback作为日志输出呢？这样的好处就是我们可以统一项目内的其他模块、框架的日志输出（日志格式，日志文件，存放路径等，以及其他slf4j支持的功能）<br>很简单，就是加入jcl-over-slf4j.jar就好了。</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">group:</span> <span class="string">'org.slf4j'</span>, <span class="string">name:</span> <span class="string">'jcl-over-slf4j'</span>, <span class="string">version:</span> <span class="string">'1.7.30'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="spring5与spring4日志区别"><a href="#spring5与spring4日志区别" class="headerlink" title="spring5与spring4日志区别"></a>spring5与spring4日志区别</h2><blockquote>
+<p><strong>永远不要尝试将SLF4J适配器（log4j-to-slf4j-2.x.jar）与SLF4J桥接器（log4j-slf4j-impl-2.x.jar）一起使用，因为这会导致事件之间不断地路由SLF4J和Log4j 2。</strong></p>
+</blockquote>
+<p>spring4 使用jcl<br>spring5 使用spring-jcl</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">LogAdapter</span> </span>&#123;</span><br><span class="line">    <span class="comment">//存在于log4j-api:2.13.1</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String LOG4J_SPI = <span class="string">"org.apache.logging.log4j.spi.ExtendedLogger"</span>;</span><br><span class="line">    <span class="comment">//存在于log4j-to-slf4j:2.13.1 </span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String LOG4J_SLF4J_PROVIDER = <span class="string">"org.apache.logging.slf4j.SLF4JProvider"</span>;</span><br><span class="line">    <span class="comment">//存在于slf4j-api:1.7.30</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String SLF4J_SPI = <span class="string">"org.slf4j.spi.LocationAwareLogger"</span>;</span><br><span class="line">    <span class="comment">//存在于slf4j-api:1.7.30</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String SLF4J_API = <span class="string">"org.slf4j.Logger"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> LogApi logApi;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (isPresent(LOG4J_SPI)) &#123;</span><br><span class="line">			<span class="keyword">if</span> (isPresent(LOG4J_SLF4J_PROVIDER) &amp;&amp; isPresent(SLF4J_SPI)) &#123;</span><br><span class="line">				<span class="comment">// log4j-to-slf4j bridge -&gt; we'll rather go with the SLF4J SPI;</span></span><br><span class="line">				<span class="comment">// however, we still prefer Log4j over the plain SLF4J API since</span></span><br><span class="line">				<span class="comment">// the latter does not have location awareness support.</span></span><br><span class="line">				logApi = LogApi.SLF4J_LAL;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="comment">// Use Log4j 2.x directly, including location awareness support</span></span><br><span class="line">				logApi = LogApi.LOG4J;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (isPresent(SLF4J_SPI)) &#123;</span><br><span class="line">			<span class="comment">// Full SLF4J SPI including location awareness support</span></span><br><span class="line">			logApi = LogApi.SLF4J_LAL;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (isPresent(SLF4J_API)) &#123;</span><br><span class="line">			<span class="comment">// Minimal SLF4J API without location awareness support</span></span><br><span class="line">			logApi = LogApi.SLF4J;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// java.util.logging as default</span></span><br><span class="line">			logApi = LogApi.JUL;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="spring-boot-日志"><a href="#spring-boot-日志" class="headerlink" title="spring boot 日志"></a>spring boot 日志</h2><p>springboot 默认使用slf4j+logback</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">group:</span> <span class="string">'org.springframework.boot'</span>, <span class="string">name:</span> <span class="string">'spring-boot-starter-logging'</span>, <span class="string">version:</span> <span class="string">'2.1.10.RELEASE'</span></span><br></pre></td></tr></table></figure>
+<p><img src="../../images/spring-boot-logging%E4%BE%9D%E8%B5%96%E5%8C%85.png" alt="spring boot logging依赖包"><br>springboot 启用slf4j+log4j2</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">group:</span> <span class="string">'org.springframework.boot'</span>, <span class="string">name:</span> <span class="string">'spring-boot-starter-log4j2'</span>, <span class="string">version:</span> <span class="string">'2.1.10.RELEASE'</span></span><br></pre></td></tr></table></figure>
+<p><img src="../../images/spring-boot-log4j%E4%BE%9D%E8%B5%96%E5%8C%85.png" alt="spring boot log4j依赖包"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A0%81/" rel="tag"><i class="fa fa-tag"></i> 框架源码</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/springcloud/zuul/" rel="prev" title="zuul">
+      <i class="fa fa-chevron-left"></i> zuul
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/design-pattern/observer/" rel="next" title="观察者模式">
+      观察者模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Log日志体系"><span class="nav-number">1.</span> <span class="nav-text">Log日志体系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#背景-发展史"><span class="nav-number">2.</span> <span class="nav-text">背景/发展史</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JUL-jdk原生日志"><span class="nav-number">3.</span> <span class="nav-text">JUL jdk原生日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JCL-commons-logging"><span class="nav-number">4.</span> <span class="nav-text">JCL commons-logging</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jcl整合log4j"><span class="nav-number">4.1.</span> <span class="nav-text">jcl整合log4j</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Slf4j"><span class="nav-number">5.</span> <span class="nav-text">Slf4j</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#slf4j与其他日志框架动态绑定"><span class="nav-number">5.1.</span> <span class="nav-text">slf4j与其他日志框架动态绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slf4j整合log4j"><span class="nav-number">5.2.</span> <span class="nav-text">slf4j整合log4j</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slf4j整合logback"><span class="nav-number">5.3.</span> <span class="nav-text">slf4j整合logback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slf4j整合jul"><span class="nav-number">5.4.</span> <span class="nav-text">slf4j整合jul</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slf4j整合log4j2"><span class="nav-number">5.5.</span> <span class="nav-text">slf4j整合log4j2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slf4j整合jcl"><span class="nav-number">5.6.</span> <span class="nav-text">slf4j整合jcl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slf4j桥接旧版API"><span class="nav-number">5.7.</span> <span class="nav-text">slf4j桥接旧版API</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#日志框架在spring中使用"><span class="nav-number">6.</span> <span class="nav-text">日志框架在spring中使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#让Spring统一输出"><span class="nav-number">6.1.</span> <span class="nav-text">让Spring统一输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring5与spring4日志区别"><span class="nav-number">6.2.</span> <span class="nav-text">spring5与spring4日志区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-boot-日志"><span class="nav-number">6.3.</span> <span class="nav-text">spring boot 日志</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="shadow"
+      src="/images/xxx.jpg">
+  <p class="site-author-name" itemprop="name">shadow</p>
+  <div class="site-description" itemprop="description">以梦为马不负韶华</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">195k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:58</span>
+</div>
+
+        
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+              leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=VMKjGQyu0uo7TXTlVQRUkgC6-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'VMKjGQyu0uo7TXTlVQRUkgC6-gzGzoHsz',
+            'X-LC-Key': 'GVb48WETzU7GPEQJ8ibpf9kX',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

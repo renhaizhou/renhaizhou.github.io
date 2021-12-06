@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+  <meta name="baidu-site-verification" content="NjxSGWWluq">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://www.renhz.fun').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#FF00FF","save":"manual"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="外观模式UML类图">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="外观模式">
+<meta property="og:url" content="http://www.renhz.fun/design-pattern/facade/index.html">
+<meta property="og:site_name" content="学海无涯苦作舟">
+<meta property="og:description" content="外观模式UML类图">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.renhz.fun/images/plantuml/facade.urm.png">
+<meta property="og:image" content="http://www.renhz.fun/images/tomcat-facade.png">
+<meta property="og:image" content="http://www.renhz.fun/images/slf4j-bind.png">
+<meta property="og:updated_time" content="2021-12-06T05:43:58.709Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.renhz.fun/images/plantuml/facade.urm.png">
+
+<link rel="canonical" href="http://www.renhz.fun/design-pattern/facade/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>外观模式 | 学海无涯苦作舟</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学海无涯苦作舟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/facade/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          外观模式
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-05 13:07:20" itemprop="dateCreated datePublished" datetime="2020-04-05T13:07:20+08:00">2020-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-06 13:43:58" itemprop="dateModified" datetime="2021-12-06T13:43:58+08:00">2021-12-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">结构型模式</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/design-pattern/facade/" class="post-meta-item leancloud_visitors" data-flag-title="外观模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="外观模式UML类图"><a href="#外观模式UML类图" class="headerlink" title="外观模式UML类图"></a>外观模式UML类图</h1><p><img src="../../images/plantuml/facade.urm.png" alt="外观模式UML类图"></p>
+<a id="more"></a>
+<h1 id="外观模式java实现"><a href="#外观模式java实现" class="headerlink" title="外观模式java实现"></a>外观模式java实现</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * DwarvenMineWorker is one of the goldmine subsystems.</span></span><br><span class="line"><span class="comment"> DwarvenMineWorker(矮人矿工)是金矿子系统之一。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">DwarvenMineWorker</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(DwarvenMineWorker<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goToSleep</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"&#123;&#125; goes to sleep."</span>, name());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">wakeUp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"&#123;&#125; wakes up."</span>, name());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goHome</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"&#123;&#125; goes home."</span>, name());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goToMine</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    LOGGER.info(<span class="string">"&#123;&#125; goes to the mine."</span>, name());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">(Action action)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (action) &#123;</span><br><span class="line">      <span class="keyword">case</span> GO_TO_SLEEP:</span><br><span class="line">        goToSleep();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> WAKE_UP:</span><br><span class="line">        wakeUp();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> GO_HOME:</span><br><span class="line">        goHome();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> GO_TO_MINE:</span><br><span class="line">        goToMine();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> WORK:</span><br><span class="line">        work();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        LOGGER.info(<span class="string">"Undefined action"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Perform actions.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">(Action... actions)</span> </span>&#123;</span><br><span class="line">    Arrays.stream(actions).forEach(<span class="keyword">this</span>::action);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title">name</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">enum</span> Action &#123;</span><br><span class="line">    GO_TO_SLEEP, WAKE_UP, GO_HOME, GO_TO_MINE, WORK</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * DwarvenGoldDigger is one of the goldmine subsystems.</span></span><br><span class="line"><span class="comment"> DwarvenGoldDigger(矮人金矿)是金矿子系统之一。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DwarvenGoldDigger</span> <span class="keyword">extends</span> <span class="title">DwarvenMineWorker</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(DwarvenGoldDigger<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//挖金。</span></span><br><span class="line">    LOGGER.info(<span class="string">"&#123;&#125; digs for gold."</span>, name());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//矮人淘金者</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Dwarf gold digger"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * DwarvenTunnelDigger is one of the goldmine subsystems.</span></span><br><span class="line"><span class="comment"> DwarvenTunnelDigger(矮人隧道挖掘者)是金矿子系统之一。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DwarvenTunnelDigger</span> <span class="keyword">extends</span> <span class="title">DwarvenMineWorker</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(DwarvenTunnelDigger<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//创造另一个有希望的隧道</span></span><br><span class="line">    LOGGER.info(<span class="string">"&#123;&#125; creates another promising tunnel."</span>, name());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//矮人隧道挖掘机</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Dwarven tunnel digger"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * DwarvenCartOperator is one of the goldmine subsystems.</span></span><br><span class="line"><span class="comment"> DwarvenCartOperator(矮人推车运营商)是金矿子系统之一。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DwarvenCartOperator</span> <span class="keyword">extends</span> <span class="title">DwarvenMineWorker</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(DwarvenCartOperator<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//将金块从矿山中移出</span></span><br><span class="line">    LOGGER.info(<span class="string">"&#123;&#125; moves gold chunks out of the mine."</span>, name());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//矮推车操作员</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Dwarf cart operator"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * DwarvenGoldmineFacade provides a single interface through which users can operate the</span></span><br><span class="line"><span class="comment"> * subsystems.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This makes the goldmine easier to operate and cuts the dependencies from the goldmine user to</span></span><br><span class="line"><span class="comment"> * the subsystems.</span></span><br><span class="line"><span class="comment"> DwarvenGoldmineFacade提供了一个界面，用户可以通过该界面来操作子系统。</span></span><br><span class="line"><span class="comment">&lt;p&gt;这使金矿更易于操作，并减少了金矿用户与子系统之间的依赖关系。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DwarvenGoldmineFacade</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> List&lt;DwarvenMineWorker&gt; workers;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Constructor.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">DwarvenGoldmineFacade</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    workers = List.of(</span><br><span class="line">        <span class="keyword">new</span> DwarvenGoldDigger(),</span><br><span class="line">        <span class="keyword">new</span> DwarvenCartOperator(),</span><br><span class="line">        <span class="keyword">new</span> DwarvenTunnelDigger());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startNewDay</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    makeActions(workers, DwarvenMineWorker.Action.WAKE_UP, DwarvenMineWorker.Action.GO_TO_MINE);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">digOutGold</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    makeActions(workers, DwarvenMineWorker.Action.WORK);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">endDay</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    makeActions(workers, DwarvenMineWorker.Action.GO_HOME, DwarvenMineWorker.Action.GO_TO_SLEEP);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">makeActions</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">      Collection&lt;DwarvenMineWorker&gt; workers,</span></span></span><br><span class="line"><span class="function"><span class="params">      DwarvenMineWorker.Action... actions</span></span></span><br><span class="line"><span class="function"><span class="params">  )</span> </span>&#123;</span><br><span class="line">    workers.forEach(worker -&gt; worker.action(actions));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The Facade design pattern is often used when a system is very complex or difficult to understand</span></span><br><span class="line"><span class="comment"> * because the system has a large number of interdependent classes or its source code is</span></span><br><span class="line"><span class="comment"> * unavailable. This pattern hides the complexities of the larger system and provides a simpler</span></span><br><span class="line"><span class="comment"> * interface to the client. It typically involves a single wrapper class which contains a set of</span></span><br><span class="line"><span class="comment"> * members required by client. These members access the system on behalf of the facade client and</span></span><br><span class="line"><span class="comment"> * hide the implementation details.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;In this example the Facade is (&#123;<span class="doctag">@link</span> DwarvenGoldmineFacade&#125;) and it provides a simpler</span></span><br><span class="line"><span class="comment"> * interface to the goldmine subsystem.</span></span><br><span class="line"><span class="comment"> 当系统非常复杂或难以理解时，通常会使用Facade设计模式，因为该系统具有大量相互依赖的类，或者其源代码不可用。 这种模式隐藏了较大系统的复杂性，并为客户端提供了更简单的界面。 它通常涉及单个包装器类，其中包含客户端所需的一组成员。 这些成员代表外观客户端访问系统，并隐藏实现细节。</span></span><br><span class="line"><span class="comment">&lt;p&gt;在此示例中，外观为（&#123;<span class="doctag">@link</span> DwarvenGoldmineFacade&#125;），它为金矿子系统提供了更简单的界面。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Program entry point.</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> args command line args</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> facade = <span class="keyword">new</span> DwarvenGoldmineFacade();</span><br><span class="line">    facade.startNewDay();</span><br><span class="line">    facade.digOutGold();</span><br><span class="line">    facade.endDay();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><h2 id="spring-jdbc中的外观模式"><a href="#spring-jdbc中的外观模式" class="headerlink" title="spring jdbc中的外观模式"></a>spring jdbc中的外观模式</h2><p>查看 org.springframework.jdbc.support.JdbcUtils</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcUtils</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">closeConnection</span><span class="params">(Connection con)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (con != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                con.close();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">catch</span> (SQLException ex) &#123;</span><br><span class="line">                logger.debug(<span class="string">"Could not close JDBC Connection"</span>, ex);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line">                <span class="comment">// We don't trust the JDBC driver: It might throw RuntimeException or Error.</span></span><br><span class="line">                logger.debug(<span class="string">"Unexpected exception on closing JDBC Connection"</span>, ex);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">getResultSetValue</span><span class="params">(ResultSet rs, <span class="keyword">int</span> index, Class&lt;?&gt; requiredType)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (requiredType == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> getResultSetValue(rs, index);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Object value = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">boolean</span> wasNullCheck = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Explicitly extract typed value, as far as possible.</span></span><br><span class="line">        <span class="keyword">if</span> (String<span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getString(index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">boolean</span><span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>) || <span class="title">Boolean</span>.<span class="title">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getBoolean(index);</span><br><span class="line">            wasNullCheck = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">byte</span><span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>) || <span class="title">Byte</span>.<span class="title">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getByte(index);</span><br><span class="line">            wasNullCheck = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">short</span><span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>) || <span class="title">Short</span>.<span class="title">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getShort(index);</span><br><span class="line">            wasNullCheck = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">int</span><span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>) || <span class="title">Integer</span>.<span class="title">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getInt(index);</span><br><span class="line">            wasNullCheck = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">long</span><span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>) || <span class="title">Long</span>.<span class="title">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getLong(index);</span><br><span class="line">            wasNullCheck = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">float</span><span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>) || <span class="title">Float</span>.<span class="title">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getFloat(index);</span><br><span class="line">            wasNullCheck = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">double</span><span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>) || <span class="title">Double</span>.<span class="title">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>) ||</span></span><br><span class="line"><span class="class">                <span class="title">Number</span>.<span class="title">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getDouble(index);</span><br><span class="line">            wasNullCheck = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">byte</span>[]<span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getBytes(index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (java.sql.Date<span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getDate(index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (java.sql.Time<span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getTime(index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (java.sql.Timestamp<span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>) || <span class="title">java</span>.<span class="title">util</span>.<span class="title">Date</span>.<span class="title">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getTimestamp(index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (BigDecimal<span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getBigDecimal(index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (Blob<span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getBlob(index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (Clob<span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">requiredType</span>)) </span>&#123;</span><br><span class="line">            value = rs.getClob(index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// Some unknown type desired -&gt; rely on getObject.</span></span><br><span class="line">            value = getResultSetValue(rs, index);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (wasNullCheck &amp;&amp; value != <span class="keyword">null</span> &amp;&amp; rs.wasNull()) &#123;</span><br><span class="line">            value = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...省略...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该工具类主要是对原生的 jdbc 进行了封装</p>
+<h2 id="Mybatis中的外观模式"><a href="#Mybatis中的外观模式" class="headerlink" title="Mybatis中的外观模式"></a>Mybatis中的外观模式</h2><p>查看 org.apache.ibatis.session.Configuration 类中以 new 开头的方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Configuration</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Executor <span class="title">newExecutor</span><span class="params">(Transaction transaction, ExecutorType executorType)</span> </span>&#123;</span><br><span class="line">        executorType = executorType == <span class="keyword">null</span> ? defaultExecutorType : executorType;</span><br><span class="line">        executorType = executorType == <span class="keyword">null</span> ? ExecutorType.SIMPLE : executorType;</span><br><span class="line">        Executor executor;</span><br><span class="line">        <span class="keyword">if</span> (ExecutorType.BATCH == executorType) &#123;</span><br><span class="line">          executor = <span class="keyword">new</span> BatchExecutor(<span class="keyword">this</span>, transaction);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ExecutorType.REUSE == executorType) &#123;</span><br><span class="line">          executor = <span class="keyword">new</span> ReuseExecutor(<span class="keyword">this</span>, transaction);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          executor = <span class="keyword">new</span> SimpleExecutor(<span class="keyword">this</span>, transaction);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cacheEnabled) &#123;</span><br><span class="line">          executor = <span class="keyword">new</span> CachingExecutor(executor);</span><br><span class="line">        &#125;</span><br><span class="line">        executor = (Executor) interceptorChain.pluginAll(executor);</span><br><span class="line">        <span class="keyword">return</span> executor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResultSetHandler <span class="title">newResultSetHandler</span><span class="params">(Executor executor, MappedStatement mappedStatement, RowBounds rowBounds, ParameterHandler parameterHandler,</span></span></span><br><span class="line"><span class="function"><span class="params">          ResultHandler resultHandler, BoundSql boundSql)</span> </span>&#123;</span><br><span class="line">        ResultSetHandler resultSetHandler = <span class="keyword">new</span> DefaultResultSetHandler(executor, mappedStatement, parameterHandler, resultHandler, boundSql, rowBounds);</span><br><span class="line">        resultSetHandler = (ResultSetHandler) interceptorChain.pluginAll(resultSetHandler);</span><br><span class="line">        <span class="keyword">return</span> resultSetHandler;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...省略...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该类主要对一些创建对象的操作进行封装</p>
+<h2 id="Tomcat-中的外观模式"><a href="#Tomcat-中的外观模式" class="headerlink" title="Tomcat 中的外观模式"></a>Tomcat 中的外观模式</h2><p>Tomcat 源码中大量使用了很多外观模式<br><img src="../../images/tomcat-facade.png" alt="tomcat-facade"><br>org.apache.catalina.connector.Request 和 org.apache.catalina.connector.RequestFacade 这两个类都实现了 HttpServletRequest 接口<br>在 Request 中调用 getRequest() 实际获取的是 RequestFacade 的对象</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">protected</span> RequestFacade facade = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> HttpServletRequest <span class="title">getRequest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (facade == <span class="keyword">null</span>) &#123;</span><br><span class="line">        facade = <span class="keyword">new</span> RequestFacade(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> facade;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 RequestFacade 中再对认为是子系统的操作进行封装</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RequestFacade</span> <span class="keyword">implements</span> <span class="title">HttpServletRequest</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The wrapped request.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> Request request = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getAttribute</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (request == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(sm.getString(<span class="string">"requestFacade.nullRequest"</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> request.getAttribute(name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...省略...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="SLF4J-中的外观模式"><a href="#SLF4J-中的外观模式" class="headerlink" title="SLF4J 中的外观模式"></a>SLF4J 中的外观模式</h2><p>SLF4J 是简单的日志外观模式框架，抽象了各种日志框架例如 Logback、Log4j、Commons-logging 和 JDK 自带的 logging 实现接口。它使得用户可以在部署时使用自己想要的日志框架。</p>
+<p>SLF4J 没有替代任何日志框架，它仅仅是标准日志框架的外观模式。如果在类路径下除了 SLF4J 再没有任何日志框架，那么默认状态是在控制台输出日志。</p>
+<blockquote>
+<p>日志处理框架 Logback 是 Log4j 的改进版本，原生支持SLF4J（因为是同一作者开发的），因此 Logback＋SLF4J 的组合是日志框架的最佳选择，比 SLF4J+其它日志框架 的组合要快一些。而且Logback的配置可以是XML或Groovy代码。</p>
+</blockquote>
+<p>SLF4J 的 helloworld 如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Logger logger = LoggerFactory.getLogger(HelloWorld<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    logger.info(<span class="string">"Hello World"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下图为 SLF4J 与日志处理框架的绑定调用关系<br><img src="../../images/slf4j-bind.png" alt="slf4j"><br>应用层调用 slf4j-api.jar，slf4j-api.jar 再根据所绑定的日志处理框架调用不同的 jar 包进行处理</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/design-pattern/23/" rel="prev" title="23种设计模式分类">
+      <i class="fa fa-chevron-left"></i> 23种设计模式分类
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/design-pattern/bridge/" rel="next" title="桥接模式">
+      桥接模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#外观模式UML类图"><span class="nav-number">1.</span> <span class="nav-text">外观模式UML类图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#外观模式java实现"><span class="nav-number">2.</span> <span class="nav-text">外观模式java实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用场景"><span class="nav-number">3.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-jdbc中的外观模式"><span class="nav-number">3.1.</span> <span class="nav-text">spring jdbc中的外观模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis中的外观模式"><span class="nav-number">3.2.</span> <span class="nav-text">Mybatis中的外观模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat-中的外观模式"><span class="nav-number">3.3.</span> <span class="nav-text">Tomcat 中的外观模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SLF4J-中的外观模式"><span class="nav-number">3.4.</span> <span class="nav-text">SLF4J 中的外观模式</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="shadow"
+      src="/images/xxx.jpg">
+  <p class="site-author-name" itemprop="name">shadow</p>
+  <div class="site-description" itemprop="description">以梦为马不负韶华</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">195k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:58</span>
+</div>
+
+        
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+              leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=VMKjGQyu0uo7TXTlVQRUkgC6-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'VMKjGQyu0uo7TXTlVQRUkgC6-gzGzoHsz',
+            'X-LC-Key': 'GVb48WETzU7GPEQJ8ibpf9kX',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

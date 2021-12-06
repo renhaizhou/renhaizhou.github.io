@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="true">
+  <meta name="baidu-site-verification" content="NjxSGWWluq">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://www.renhz.fun').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#FF00FF","save":"manual"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="策略模式UML类图">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="策略模式">
+<meta property="og:url" content="http://www.renhz.fun/design-pattern/strategy/index.html">
+<meta property="og:site_name" content="学海无涯苦作舟">
+<meta property="og:description" content="策略模式UML类图">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.renhz.fun/images/plantuml/strategy.urm.png">
+<meta property="og:image" content="http://www.renhz.fun/images/spring-resource.png">
+<meta property="og:image" content="http://www.renhz.fun/images/spring-instantiation.png">
+<meta property="og:updated_time" content="2021-12-06T05:43:58.812Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.renhz.fun/images/plantuml/strategy.urm.png">
+
+<link rel="canonical" href="http://www.renhz.fun/design-pattern/strategy/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>策略模式 | 学海无涯苦作舟</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学海无涯苦作舟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.renhz.fun/design-pattern/strategy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/xxx.jpg">
+      <meta itemprop="name" content="shadow">
+      <meta itemprop="description" content="以梦为马不负韶华">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学海无涯苦作舟">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          策略模式
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-07 14:46:17" itemprop="dateCreated datePublished" datetime="2020-04-07T14:46:17+08:00">2020-04-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-06 13:43:58" itemprop="dateModified" datetime="2021-12-06T13:43:58+08:00">2021-12-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">行为型模式</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/design-pattern/strategy/" class="post-meta-item leancloud_visitors" data-flag-title="策略模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="策略模式UML类图"><a href="#策略模式UML类图" class="headerlink" title="策略模式UML类图"></a>策略模式UML类图</h1><p><img src="../../images/plantuml/strategy.urm.png" alt="策略模式UML类图"></p>
+<a id="more"></a>
+<h1 id="策略模式java实现"><a href="#策略模式java实现" class="headerlink" title="策略模式java实现"></a>策略模式java实现</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Strategy interface.</span></span><br><span class="line"><span class="comment"> 屠龙策略</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DragonSlayingStrategy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Spell strategy.</span></span><br><span class="line"><span class="comment"> 法术策略</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpellStrategy</span> <span class="keyword">implements</span> <span class="title">DragonSlayingStrategy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(SpellStrategy<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">//你投下了瓦解的魔咒，龙在一堆尘土中蒸发了！</span></span><br><span class="line">    LOGGER.info(<span class="string">"You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Projectile strategy.</span></span><br><span class="line"><span class="comment"> 弹丸策略。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProjectileStrategy</span> <span class="keyword">implements</span> <span class="title">DragonSlayingStrategy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(ProjectileStrategy<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">//您用神奇的弓箭射击了龙，它掉在了地上！</span></span><br><span class="line">    LOGGER.info(<span class="string">"You shoot the dragon with the magical crossbow and it falls dead on the ground!"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Melee strategy.</span></span><br><span class="line"><span class="comment"> 近战策略。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MeleeStrategy</span> <span class="keyword">implements</span> <span class="title">DragonSlayingStrategy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(MeleeStrategy<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">//用您的神剑切断龙的头！</span></span><br><span class="line">    LOGGER.info(<span class="string">"With your Excalibur you sever the dragon's head!"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * DragonSlayer uses different strategies to slay the dragon.</span></span><br><span class="line"><span class="comment"> DragonSlayer使用不同的策略来杀死龙。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DragonSlayer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> DragonSlayingStrategy strategy;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">DragonSlayer</span><span class="params">(DragonSlayingStrategy strategy)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.strategy = strategy;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">changeStrategy</span><span class="params">(DragonSlayingStrategy strategy)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.strategy = strategy;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goToBattle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    strategy.execute();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * &lt;p&gt;The Strategy pattern (also known as the policy pattern) is a software design pattern that</span></span><br><span class="line"><span class="comment"> * enables an algorithm's behavior to be selected at runtime.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Before Java 8 the Strategies needed to be separate classes forcing the developer</span></span><br><span class="line"><span class="comment"> * to write lots of boilerplate code. With modern Java it is easy to pass behavior</span></span><br><span class="line"><span class="comment"> * with method references and lambdas making the code shorter and more readable.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;In this example (&#123;<span class="doctag">@link</span> DragonSlayingStrategy&#125;) encapsulates an algorithm. The containing</span></span><br><span class="line"><span class="comment"> * object (&#123;<span class="doctag">@link</span> DragonSlayer&#125;) can alter its behavior by changing its strategy.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> &lt;p&gt;策略模式（也称为策略模式）是一种软件设计模式，可以在运行时选择算法的行为。&lt;/ p&gt;</span></span><br><span class="line"><span class="comment">&lt;p&gt;在Java 8之前，策略必须是单独的类，从而迫使开发人员编写大量样板代码。 使用现代Java，可以轻松地通过方法引用和lambda传递行为，从而使代码更短，更易读。&lt;/ p&gt;</span></span><br><span class="line"><span class="comment">&lt;p&gt;在此示例（&#123;<span class="doctag">@link</span> DragonSlayingStrategy&#125;）中封装了一种算法。 包含对象（&#123;<span class="doctag">@link</span> DragonSlayer&#125;）可以通过更改其策略来更改其行为。&lt;/ p&gt;</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(App<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Program entry point.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> args command line args</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// GoF Strategy pattern</span></span><br><span class="line">    LOGGER.info(<span class="string">"Green dragon spotted ahead!"</span>);</span><br><span class="line">    <span class="keyword">var</span> dragonSlayer = <span class="keyword">new</span> DragonSlayer(<span class="keyword">new</span> MeleeStrategy());</span><br><span class="line">    dragonSlayer.goToBattle();</span><br><span class="line">    LOGGER.info(<span class="string">"Red dragon emerges."</span>);</span><br><span class="line">    dragonSlayer.changeStrategy(<span class="keyword">new</span> ProjectileStrategy());</span><br><span class="line">    dragonSlayer.goToBattle();</span><br><span class="line">    LOGGER.info(<span class="string">"Black dragon lands before you."</span>);</span><br><span class="line">    dragonSlayer.changeStrategy(<span class="keyword">new</span> SpellStrategy());</span><br><span class="line">    dragonSlayer.goToBattle();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Java 8 Strategy pattern</span></span><br><span class="line">    LOGGER.info(<span class="string">"Green dragon spotted ahead!"</span>);</span><br><span class="line">    dragonSlayer = <span class="keyword">new</span> DragonSlayer(</span><br><span class="line">        () -&gt; LOGGER.info(<span class="string">"With your Excalibur you severe the dragon's head!"</span>));</span><br><span class="line">    dragonSlayer.goToBattle();</span><br><span class="line">    LOGGER.info(<span class="string">"Red dragon emerges."</span>);</span><br><span class="line">    dragonSlayer.changeStrategy(() -&gt; LOGGER.info(</span><br><span class="line">        <span class="string">"You shoot the dragon with the magical crossbow and it falls dead on the ground!"</span>));</span><br><span class="line">    dragonSlayer.goToBattle();</span><br><span class="line">    LOGGER.info(<span class="string">"Black dragon lands before you."</span>);</span><br><span class="line">    dragonSlayer.changeStrategy(() -&gt; LOGGER.info(</span><br><span class="line">        <span class="string">"You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"</span>));</span><br><span class="line">    dragonSlayer.goToBattle();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><h2 id="Java-Comparator-中的策略模式"><a href="#Java-Comparator-中的策略模式" class="headerlink" title="Java Comparator 中的策略模式"></a>Java Comparator 中的策略模式</h2><p>java.util.Comparator 接口是比较器接口，可以通过 Collections.sort(List,Comparator) 和 Arrays.sort(Object[],Comparator) 对集合和数据进行排序，下面为示例程序<br>一个学生类，有两个属性 id 和 name</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&#123;id="</span> + id + <span class="string">", name='"</span> + name + <span class="string">"'&#125;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现两个比较器，比较器实现了 Comparator 接口，一个升序，一个降序</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 降序</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DescSortor</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student o1, Student o2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o2.getId() - o1.getId();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 升序</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AscSortor</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student o1, Student o2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o1.getId() - o2.getId();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过 Arrays.sort() 对数组进行排序</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Student[] students = &#123;</span><br><span class="line">                <span class="keyword">new</span> Student(<span class="number">3</span>, <span class="string">"张三"</span>),</span><br><span class="line">                <span class="keyword">new</span> Student(<span class="number">1</span>, <span class="string">"李四"</span>),</span><br><span class="line">                <span class="keyword">new</span> Student(<span class="number">4</span>, <span class="string">"王五"</span>),</span><br><span class="line">                <span class="keyword">new</span> Student(<span class="number">2</span>, <span class="string">"赵六"</span>)</span><br><span class="line">        &#125;;</span><br><span class="line">        toString(students, <span class="string">"排序前"</span>);</span><br><span class="line"></span><br><span class="line">        Arrays.sort(students, <span class="keyword">new</span> AscSortor());</span><br><span class="line">        toString(students, <span class="string">"升序后"</span>);</span><br><span class="line"></span><br><span class="line">        Arrays.sort(students, <span class="keyword">new</span> DescSortor());</span><br><span class="line">        toString(students, <span class="string">"降序后"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">toString</span><span class="params">(Student[] students, String desc)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; students.length; i++) &#123;</span><br><span class="line">            System.out.print(desc + <span class="string">": "</span> +students[i].toString() + <span class="string">", "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">排序前: &#123;id=<span class="number">3</span>, name=<span class="string">'张三'</span>&#125;, 排序前: &#123;id=<span class="number">1</span>, name=<span class="string">'李四'</span>&#125;, 排序前: &#123;id=<span class="number">4</span>, name=<span class="string">'王五'</span>&#125;, 排序前: &#123;id=<span class="number">2</span>, name=<span class="string">'赵六'</span>&#125;, </span><br><span class="line">升序后: &#123;id=<span class="number">1</span>, name=<span class="string">'李四'</span>&#125;, 升序后: &#123;id=<span class="number">2</span>, name=<span class="string">'赵六'</span>&#125;, 升序后: &#123;id=<span class="number">3</span>, name=<span class="string">'张三'</span>&#125;, 升序后: &#123;id=<span class="number">4</span>, name=<span class="string">'王五'</span>&#125;, </span><br><span class="line">降序后: &#123;id=<span class="number">4</span>, name=<span class="string">'王五'</span>&#125;, 降序后: &#123;id=<span class="number">3</span>, name=<span class="string">'张三'</span>&#125;, 降序后: &#123;id=<span class="number">2</span>, name=<span class="string">'赵六'</span>&#125;, 降序后: &#123;id=<span class="number">1</span>, name=<span class="string">'李四'</span>&#125;,</span><br></pre></td></tr></table></figure>
+<p>通过 Collections.sort() 对集合List进行排序</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;Student&gt; students = Arrays.asList(</span><br><span class="line">                <span class="keyword">new</span> Student(<span class="number">3</span>, <span class="string">"张三"</span>),</span><br><span class="line">                <span class="keyword">new</span> Student(<span class="number">1</span>, <span class="string">"李四"</span>),</span><br><span class="line">                <span class="keyword">new</span> Student(<span class="number">4</span>, <span class="string">"王五"</span>),</span><br><span class="line">                <span class="keyword">new</span> Student(<span class="number">2</span>, <span class="string">"赵六"</span>)</span><br><span class="line">        );</span><br><span class="line">        toString(students, <span class="string">"排序前"</span>);</span><br><span class="line"></span><br><span class="line">        Collections.sort(students, <span class="keyword">new</span> AscSortor());</span><br><span class="line">        toString(students, <span class="string">"升序后"</span>);</span><br><span class="line"></span><br><span class="line">        Collections.sort(students, <span class="keyword">new</span> DescSortor());</span><br><span class="line">        toString(students, <span class="string">"降序后"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">toString</span><span class="params">(List&lt;Student&gt; students, String desc)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Student student : students) &#123;</span><br><span class="line">            System.out.print(desc + <span class="string">": "</span> + student.toString() + <span class="string">", "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">排序前: &#123;id=<span class="number">3</span>, name=<span class="string">'张三'</span>&#125;, 排序前: &#123;id=<span class="number">1</span>, name=<span class="string">'李四'</span>&#125;, 排序前: &#123;id=<span class="number">4</span>, name=<span class="string">'王五'</span>&#125;, 排序前: &#123;id=<span class="number">2</span>, name=<span class="string">'赵六'</span>&#125;, </span><br><span class="line">升序后: &#123;id=<span class="number">1</span>, name=<span class="string">'李四'</span>&#125;, 升序后: &#123;id=<span class="number">2</span>, name=<span class="string">'赵六'</span>&#125;, 升序后: &#123;id=<span class="number">3</span>, name=<span class="string">'张三'</span>&#125;, 升序后: &#123;id=<span class="number">4</span>, name=<span class="string">'王五'</span>&#125;, </span><br><span class="line">降序后: &#123;id=<span class="number">4</span>, name=<span class="string">'王五'</span>&#125;, 降序后: &#123;id=<span class="number">3</span>, name=<span class="string">'张三'</span>&#125;, 降序后: &#123;id=<span class="number">2</span>, name=<span class="string">'赵六'</span>&#125;, 降序后: &#123;id=<span class="number">1</span>, name=<span class="string">'李四'</span>&#125;,</span><br></pre></td></tr></table></figure>
+<p>我们向 Collections.sort() 和 Arrays.sort() 分别传入不同的比较器即可实现不同的排序效果（升序或降序）<br>这里 Comparator 接口充当了抽象策略角色，两个比较器 DescSortor 和 AscSortor 则充当了具体策略角色，Collections 和 Arrays 则是环境角色</p>
+<h2 id="Spring-Resource-中的策略模式"><a href="#Spring-Resource-中的策略模式" class="headerlink" title="Spring Resource 中的策略模式"></a>Spring Resource 中的策略模式</h2><p>Spring 把所有能记录信息的载体，如各种类型的文件、二进制流等都称为资源，譬如最常用的Spring配置文件。<br>在 Sun 所提供的标准 API 里，资源访问通常由 java.NET.URL 和文件 IO 来完成，尤其是当我们需要访问来自网络的资源时，通常会选择 URL 类。<br>URL 类可以处理一些常规的资源访问问题，但依然不能很好地满足所有底层资源访问的需要，比如，暂时还无法从类加载路径、或相对于 ServletContext 的路径来访问资源，虽然 Java 允许使用特定的 URL 前缀注册新的处理类（例如已有的 http: 前缀的处理类），但是这样做通常比较复杂，而且 URL 接口还缺少一些有用的功能，比如检查所指向的资源是否存在等。<br>Spring 改进了 Java 资源访问的策略，Spring 为资源访问提供了一个 Resource 接口，该接口提供了更强的资源访问能力，Spring 框架本身大量使用了 Resource 接口来访问底层资源。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Resource</span> <span class="keyword">extends</span> <span class="title">InputStreamSource</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">exists</span><span class="params">()</span></span>;    <span class="comment">// 返回 Resource 所指向的资源是否存在</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isReadable</span><span class="params">()</span></span>;   <span class="comment">// 资源内容是否可读</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isOpen</span><span class="params">()</span></span>;   <span class="comment">// 返回资源文件是否打开</span></span><br><span class="line">    <span class="function">URL <span class="title">getURL</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line">    <span class="function">URI <span class="title">getURI</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line">    <span class="function">File <span class="title">getFile</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;  <span class="comment">// 返回资源对应的 File 对象</span></span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="title">contentLength</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="title">lastModified</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line">    <span class="function">Resource <span class="title">createRelative</span><span class="params">(String var1)</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line">    <span class="function">String <span class="title">getFilename</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">getDescription</span><span class="params">()</span></span>;    <span class="comment">// 返回资源的描述信息</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Resource 接口是 Spring 资源访问策略的抽象，它本身并不提供任何资源访问实现，具体的资源访问由该接口的实现类完成——每个实现类代表一种资源访问策略。<br>Spring 为 Resource 接口提供的部分实现类如下：<br>UrlResource：访问网络资源的实现类。<br>ClassPathResource：访问类加载路径里资源的实现类。<br>FileSystemResource：访问文件系统里资源的实现类。<br>ServletContextResource：访问相对于 ServletContext 路径里的资源的实现类：<br>InputStreamResource：访问输入流资源的实现类。<br>ByteArrayResource：访问字节数组资源的实现类。<br>WritableResource：写资源文件<br>这些 Resource 实现类，针对不同的的底层资源，提供了相应的资源访问逻辑，并提供便捷的包装，以利于客户端程序的资源访问。<br>它们之间的类关系如下所示：<br><img src="../../images/spring-resource.png" alt="spring-resource"><br>可以看到 AbstractResource 资源抽象类实现了 Resource 接口，为子类通用的操作提供了具体实现，非通用的操作留给子类实现，所以这里也应用了模板方法模式。（只不过缺少了模板方法）<br>Resource 不仅可在 Spring 的项目中使用，也可直接作为资源访问的工具类使用。意思是说：即使不使用 Spring 框架，也可以使用 Resource 作为工具类，用来代替 URL。<br>譬如我们可以使用 UrlResource 访问网络资源。<br>也可以通过其它协议访问资源，file: 用于访问文件系统；http: 用于通过 HTTP 协议访问资源；ftp: 用于通过 FTP 协议访问资源等</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        UrlResource ur = <span class="keyword">new</span> UrlResource(<span class="string">"http://image.laijianfeng.org/hello.txt"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"文件名："</span> + ur.getFilename());</span><br><span class="line">        System.out.println(<span class="string">"网络文件URL："</span> + ur.getURL());</span><br><span class="line">        System.out.println(<span class="string">"是否存在："</span> + ur.exists());</span><br><span class="line">        System.out.println(<span class="string">"是否可读："</span> + ur.isReadable());</span><br><span class="line">        System.out.println(<span class="string">"文件长度："</span> + ur.contentLength());</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n--------文件内容----------\n"</span>);</span><br><span class="line">        <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">47</span>];</span><br><span class="line">        ur.getInputStream().read(bytes);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> String(bytes));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出的内容如下，符合预期</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">文件名：hello.txt</span><br><span class="line">网络文件URL：http:<span class="comment">//image.laijianfeng.org/hello.txt</span></span><br><span class="line">是否存在：<span class="keyword">true</span></span><br><span class="line">是否可读：<span class="keyword">true</span></span><br><span class="line">文件长度：<span class="number">47</span></span><br><span class="line"></span><br><span class="line">--------文件内容----------</span><br><span class="line"></span><br><span class="line">hello world!</span><br><span class="line">welcome to http:<span class="comment">//laijianfeng.org</span></span><br></pre></td></tr></table></figure>
+<h2 id="Spring-Bean-实例化中的策略模式"><a href="#Spring-Bean-实例化中的策略模式" class="headerlink" title="Spring Bean 实例化中的策略模式"></a>Spring Bean 实例化中的策略模式</h2><p>Spring实例化Bean有三种方式：构造器实例化、静态工厂实例化、实例工厂实例化<br>譬如通过构造器实例化bean的XML示例如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"com.demo.Person"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"personWithParam"</span> <span class="attr">class</span>=<span class="string">"com.demo.Person"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"小旋锋"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"personWirhParams"</span> <span class="attr">class</span>=<span class="string">"com.demo.Person"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"小旋锋"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"22"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>具体实例化Bean的过程中，Spring中角色分工很明确，创建对象的时候先通过 ConstructorResolver 找到对应的实例化方法和参数，再通过实例化策略 InstantiationStrategy 进行实例化，根据创建对象的三个分支( 工厂方法、有参构造方法、无参构造方法 ), InstantiationStrategy 提供了三个接口方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">InstantiationStrategy</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 默认构造方法</span></span><br><span class="line">    <span class="function">Object <span class="title">instantiate</span><span class="params">(RootBeanDefinition beanDefinition, String beanName, BeanFactory owner)</span> <span class="keyword">throws</span> BeansException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指定构造方法</span></span><br><span class="line">    <span class="function">Object <span class="title">instantiate</span><span class="params">(RootBeanDefinition beanDefinition, String beanName, BeanFactory owner, Constructor&lt;?&gt; ctor,</span></span></span><br><span class="line"><span class="function"><span class="params">            Object[] args)</span> <span class="keyword">throws</span> BeansException</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指定工厂方法</span></span><br><span class="line">    <span class="function">Object <span class="title">instantiate</span><span class="params">(RootBeanDefinition beanDefinition, String beanName, BeanFactory owner, Object factoryBean,</span></span></span><br><span class="line"><span class="function"><span class="params">            Method factoryMethod, Object[] args)</span> <span class="keyword">throws</span> BeansException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>InstantiationStrategy 为实例化策略接口，扮演抽象策略角色，有两种具体策略类，分别为 SimpleInstantiationStrategy 和 CglibSubclassingInstantiationStrategy<br><img src="../../images/spring-instantiation.png" alt="spring-instantiation"><br>在 SimpleInstantiationStrategy 中对这三个方法做了简单实现，如果工厂方法实例化直接用反射创建对象，如果是构造方法实例化的则判断是否有 MethodOverrides，如果有无 MethodOverrides 也是直接用反射，如果有 MethodOverrides 就需要用 cglib 实例化对象，SimpleInstantiationStrategy 把通过 cglib 实例化的任务交给了它的子类 CglibSubclassingInstantiationStrategy。</p>
+<h1 id="项目实战"><a href="#项目实战" class="headerlink" title="项目实战"></a>项目实战</h1><p>患者绑定医生</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/design-pattern/bridge/" rel="prev" title="桥接模式">
+      <i class="fa fa-chevron-left"></i> 桥接模式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/design-pattern/template-method/" rel="next" title="模板方法模式">
+      模板方法模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#策略模式UML类图"><span class="nav-number">1.</span> <span class="nav-text">策略模式UML类图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#策略模式java实现"><span class="nav-number">2.</span> <span class="nav-text">策略模式java实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用场景"><span class="nav-number">3.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-Comparator-中的策略模式"><span class="nav-number">3.1.</span> <span class="nav-text">Java Comparator 中的策略模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Resource-中的策略模式"><span class="nav-number">3.2.</span> <span class="nav-text">Spring Resource 中的策略模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Bean-实例化中的策略模式"><span class="nav-number">3.3.</span> <span class="nav-text">Spring Bean 实例化中的策略模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目实战"><span class="nav-number">4.</span> <span class="nav-text">项目实战</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="shadow"
+      src="/images/xxx.jpg">
+  <p class="site-author-name" itemprop="name">shadow</p>
+  <div class="site-description" itemprop="description">以梦为马不负韶华</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://dongkw.fun/" title="https:&#x2F;&#x2F;dongkw.fun&#x2F;" rel="noopener" target="_blank">dongkw</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shadow</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">195k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:58</span>
+</div>
+
+        
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+              leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=VMKjGQyu0uo7TXTlVQRUkgC6-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'VMKjGQyu0uo7TXTlVQRUkgC6-gzGzoHsz',
+            'X-LC-Key': 'GVb48WETzU7GPEQJ8ibpf9kX',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
